@@ -1,0 +1,13 @@
+[
+  {
+    "description": "An attacker could send a link to the victim. By visiting the\nmalicious link, a web page would trigger a POST request (because it is a\nblind attack - the attacker doesn’t see a response from triggered request\nand has no use from GET request and GET requests should not change a state\non the server by definition) to the website. The victim would not be able\nto acknowledge that an action is made in the background, but his cookie\nwould be automatically submitted if he is authenticated to the website.\nThis attack does not require special interaction other than visiting a\nwebsite.\n",
+    "fingerprint": "abc",
+    "severity": "major",
+    "location": {
+      "path": "WebApplication1/Controllers/CsrfHttpMethodController.cs",
+      "lines": {
+        "begin": 22
+      }
+    }
+  }
+]
