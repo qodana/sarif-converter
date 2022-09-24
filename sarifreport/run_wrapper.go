@@ -24,11 +24,11 @@ func (r *SarifRunWrapper) FindRule(id string) RuleWrapper {
 	return RuleWrapper{rule: rule}
 }
 
-func (r *SarifRunWrapper) results() []SarifResultWrapper {
-	var elements []SarifResultWrapper
+func (r *SarifRunWrapper) results() []ResultWrapper {
+	var elements []ResultWrapper
 
 	for _, result := range r.run.Results {
-		elements = append(elements, SarifResultWrapper{result: result, run: r})
+		elements = append(elements, ResultWrapper{result: result, run: r})
 	}
 
 	return elements

@@ -17,6 +17,6 @@ func (w LevelWrapper) Severity() string {
 	return "unknown"
 }
 
-func NewLevel(r *SarifResultWrapper) LevelWrapper {
+func NewLevel(r *ResultWrapper) LevelWrapper {
 	return LevelWrapper{level: r.rule().DefaultLevel()}
 }
