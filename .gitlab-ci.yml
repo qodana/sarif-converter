@@ -2,10 +2,21 @@ default:
   image: golang:1.19
 
 test:
-  stage: test
+  stage: build
   script:
     - go test -json ./... 2>&1 | ./dev/linux/go-junit-report -parser gojson > junit.xml
   artifacts:
     reports:
       junit: junit.xml
 
+build:
+  stage: build
+  variables:
+    GOOS: linux
+    GOARCH: amd64
+  script:
+    - go build -o codequality-converter-linux main/main.go
+  artifacts:
+    name: dist
+    paths:
+      - ./codequality-converter-linux

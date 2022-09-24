@@ -14,14 +14,9 @@ func (r *ReportWrapper) CodeQualityElements() []codequality.CodeQualityElement {
 	return r.run.CodeQualityElements()
 }
 
-func FromString(content string) (*ReportWrapper, error) {
-	data, err := sarif.FromString(content)
-	if err != nil {
-		return nil, err
+func NewReport(sarif *sarif.Report) ReportWrapper {
+	return ReportWrapper{
+		Sarif: sarif,
+		run:   SarifRunWrapper{run: sarif.Runs[0]},
 	}
-
-	return &ReportWrapper{
-		Sarif: data,
-		run:   SarifRunWrapper{run: data.Runs[0]},
-	}, nil
 }

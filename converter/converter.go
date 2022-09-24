@@ -3,11 +3,14 @@ package converter
 import (
 	"codequality-converter/sarifreport"
 	"encoding/json"
+	"github.com/owenrumney/go-sarif/sarif"
 )
 
-func convert(input string) string {
-	sarif, _ := sarifreport.FromString(input)
+func Convert(input []byte) []byte {
+	data, _ := sarif.FromBytes(input)
+	report := sarifreport.NewReport(data)
 
-	output, _ := json.MarshalIndent(sarif.CodeQualityElements(), "", "  ")
-	return string(output)
+	output, _ := json.MarshalIndent(report.CodeQualityElements(), "", "  ")
+
+	return output
 }
