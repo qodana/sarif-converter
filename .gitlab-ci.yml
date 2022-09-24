@@ -20,3 +20,13 @@ build:
     name: dist
     paths:
       - ./codequality-converter-linux
+
+test:convert:
+  stage: test
+  script:
+    - ./codequality-converter-linux ./converter/fixtures/semgrep.sarif gl-sast-report.json
+    - diff ./converter/fixtures/actual.json gl-sast-report.json > /dev/null
+  artifacts:
+    paths:
+      - ./gl-sast-report.json
+  needs: [build]
