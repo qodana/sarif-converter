@@ -4,4 +4,8 @@ default:
 test:
   stage: test
   script:
-    - go test ./...
+    - go test -json ./... 2>&1 | ./dev/linux/go-junit-report -parser gojson > junit.xml
+  artifacts:
+    reports:
+      junit: junit.xml
+
