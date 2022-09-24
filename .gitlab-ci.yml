@@ -30,3 +30,14 @@ test:convert:
     paths:
       - ./gl-sast-report.json
   needs: [build]
+
+test:sast:
+  image: $CI_TEMPLATE_REGISTRY_HOST/security-products/semgrep:3
+  stage: test
+  script:
+    - /analyzer run
+    - ./codequality-converter-linux semgrep.sarif gl-code-quality-report.json
+  artifacts:
+    reports:
+      codequality: gl-code-quality-report.json
+  needs: [build]
