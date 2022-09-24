@@ -1,0 +1,7 @@
+default:
+  image: golang:1.19
+
+test:
+  stage: test
+  script:
+    - go test ./...
