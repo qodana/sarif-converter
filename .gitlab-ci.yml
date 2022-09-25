@@ -1,0 +1,43 @@
+default:
+  image: golang:1.19
+
+test:
+  stage: build
+  script:
+    - go test -json ./... 2>&1 | ./dev/linux/go-junit-report -parser gojson > junit.xml
+  artifacts:
+    reports:
+      junit: junit.xml
+
+build:
+  stage: build
+  variables:
+    GOOS: linux
+    GOARCH: amd64
+  script:
+    - go build -o codequality-converter-linux main/main.go
+  artifacts:
+    name: dist
+    paths:
+      - ./codequality-converter-linux
+
+test:convert:
+  stage: test
+  script:
+    - ./codequality-converter-linux ./converter/fixtures/semgrep.sarif gl-sast-report.json
+    - diff ./converter/fixtures/actual.json gl-sast-report.json > /dev/null
+  artifacts:
+    paths:
+      - ./gl-sast-report.json
+  needs: [build]
+
+test:sast:
+  image: $CI_TEMPLATE_REGISTRY_HOST/security-products/semgrep:3
+  stage: test
+  script:
+    - /analyzer run
+    - ./codequality-converter-linux semgrep.sarif gl-code-quality-report.json
+  artifacts:
+    reports:
+      codequality: gl-code-quality-report.json
+  needs: [build]
