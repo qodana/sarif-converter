@@ -8,7 +8,7 @@ Linux only!
 
 ### Install
 ```shell
-$ wget -O codequality-converter https://gitlab.com/ignis-build/codequality-converter/-/releases
+$ wget -O codequality-converter 'https://gitlab.com/ignis-build/codequality-converter/-/jobs/artifacts/master/raw/codequality-converter-linux?job=build'
 $ chmod +x codequality-converter
 ```
 
@@ -32,7 +32,7 @@ $ ./codequality-converter semgrep.sarif gl-code-quality-report.json
 codequality:sast:
   image: $CI_TEMPLATE_REGISTRY_HOST/security-products:3
   before_script:
-    - wget -O codequality-converter https://gitlab.com/ignis-build/codequality-converter/-/releases
+    - wget -O codequality-converter 'https://gitlab.com/ignis-build/codequality-converter/-/jobs/artifacts/master/raw/codequality-converter-linux?job=build'
     - chmod +x codequality-converter
   script:
     - /analyzer run
