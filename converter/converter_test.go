@@ -12,7 +12,8 @@ func read(filename string) []byte {
 }
 
 func TestConvert(t *testing.T) {
-	actual := string(Convert(read("fixtures/semgrep.sarif")))
+	report, _ := Convert(read("fixtures/semgrep.sarif"))
+	actual := string(report)
 
 	expected := string(read("fixtures/actual.json"))
 
