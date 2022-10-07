@@ -1,3 +1,7 @@
+stages:
+  - build
+  - test
+
 default:
   image: golang:1.19
 
@@ -41,3 +45,14 @@ test:sast:
     reports:
       codequality: gl-code-quality-report.json
   needs: [build]
+
+release:
+  script: echo Release...
+  artifacts:
+    name: codequality-converter
+    paths:
+      - codequality-converter-linux
+    expire_in: never
+  dependencies: [build]
+  only:
+    - tags
