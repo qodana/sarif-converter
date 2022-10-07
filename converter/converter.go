@@ -6,11 +6,18 @@ import (
 	"github.com/owenrumney/go-sarif/sarif"
 )
 
-func Convert(input []byte) []byte {
-	data, _ := sarif.FromBytes(input)
+func Convert(input []byte) ([]byte, error) {
+	data, err := sarif.FromBytes(input)
+	if err != nil {
+		return nil, err
+	}
+
 	report := sarifreport.NewReport(data)
 
-	output, _ := json.MarshalIndent(report.CodeQualityElements(), "", "  ")
+	output, err := json.MarshalIndent(report.CodeQualityElements(), "", "  ")
+	if err != nil {
+		return nil, err
+	}
 
-	return output
+	return output, nil
 }
