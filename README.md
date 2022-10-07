@@ -8,7 +8,7 @@ Linux only!
 
 ### Install
 ```shell
-$ wget -O codequality-converter 'https://gitlab.com/ignis-build/codequality-converter/-/jobs/artifacts/master/raw/codequality-converter-linux?job=build'
+$ wget -O codequality-converter https://gitlab.com/ignis-build/codequality-converter/-/releases/permalink/latest/downloads/bin/codequality-converter-linux
 $ chmod +x codequality-converter
 ```
 
