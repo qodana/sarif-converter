@@ -2,6 +2,7 @@ package main
 
 import (
 	"codequality-converter/converter"
+	"codequality-converter/main/argument"
 	"fmt"
 	"os"
 )
@@ -10,16 +11,31 @@ var version = "unknown"
 var revision = "unknown"
 
 func main() {
-	if len(os.Args) <= 1 {
-		fmt.Println("codequality-converter version " + version + " (" + revision + ")")
+	arguments := argument.Parse(os.Args)
+
+	if !arguments.IsValid() {
+		usage()
 		os.Exit(0)
 	}
 
-	input := tryRead(os.Args[1])
+	if arguments.RequireShowVersion() {
+		showVersion()
+		os.Exit(0)
+	}
+
+	input := tryRead(arguments.Input())
 
 	output := tryConvert(input)
 
-	tryWrite(output, os.Args[2])
+	tryWrite(output, arguments.Output())
+}
+
+func usage() {
+	fmt.Println("usage: codequality-converter input.sarif output.json")
+}
+
+func showVersion() {
+	fmt.Println("codequality-converter version " + version + " (" + revision + ")")
 }
 
 func tryRead(input string) []byte {
