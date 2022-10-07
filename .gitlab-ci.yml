@@ -20,7 +20,7 @@ build:
     GOOS: linux
     GOARCH: amd64
   script:
-    - go build -o codequality-converter-linux main/main.go
+    - go build -ldflags "-X main.version=$(git describe --tags --abbrev=0) -X main.revision=$(git rev-parse --short HEAD)" -o codequality-converter-linux main/main.go
   artifacts:
     name: dist
     paths:

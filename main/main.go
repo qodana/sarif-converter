@@ -6,21 +6,29 @@ import (
 	"os"
 )
 
+var version = "unknown"
+var revision = "unknown"
+
 func main() {
-	input := tryRead()
+	if len(os.Args) <= 1 {
+		fmt.Println("codequality-converter version " + version + " (" + revision + ")")
+		os.Exit(0)
+	}
+
+	input := tryRead(os.Args[1])
 
 	output := tryConvert(input)
 
-	tryWrite(output)
+	tryWrite(output, os.Args[2])
 }
 
-func tryRead() []byte {
-	input, err := os.ReadFile(os.Args[1])
+func tryRead(input string) []byte {
+	bytes, err := os.ReadFile(input)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	return input
+	return bytes
 }
 
 func tryConvert(input []byte) []byte {
@@ -32,8 +40,8 @@ func tryConvert(input []byte) []byte {
 	return output
 }
 
-func tryWrite(output []byte) {
-	err := os.WriteFile(os.Args[2], output, 0666)
+func tryWrite(output []byte, outputFile string) {
+	err := os.WriteFile(outputFile, output, 0666)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
