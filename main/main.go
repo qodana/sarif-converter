@@ -6,7 +6,15 @@ import (
 	"os"
 )
 
+var version = "unknown"
+var revision = "unknown"
+
 func main() {
+	if len(os.Args) <= 1 {
+		fmt.Println("codequality-converter version " + version + " (" + revision + ")")
+		os.Exit(0)
+	}
+
 	input := tryRead()
 
 	output := tryConvert(input)
