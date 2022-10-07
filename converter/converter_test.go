@@ -1,21 +1,15 @@
 package converter
 
 import (
+	"codequality-converter/testing/fixture"
 	"github.com/stretchr/testify/assert"
-	"os"
 	"testing"
 )
 
-func read(filename string) []byte {
-	file, _ := os.ReadFile(filename)
-	return file
-}
-
 func TestConvert(t *testing.T) {
-	report, _ := Convert(read("fixtures/semgrep.sarif"))
-	actual := string(report)
+	fixtures := fixture.NewFixtures("../testing/fixtures")
 
-	expected := string(read("fixtures/actual.json"))
+	report, _ := Convert(fixtures.SemgrepSarif())
 
-	assert.Equal(t, expected, actual)
+	assert.Equal(t, fixtures.ActualJson(), string(report))
 }
