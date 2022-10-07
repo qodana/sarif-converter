@@ -32,6 +32,7 @@ func main() {
 
 func usage() {
 	fmt.Println("usage: codequality-converter input.sarif output.json")
+	fmt.Println("  -v, --version\tdisplay version information and ext")
 }
 
 func showVersion() {
