@@ -30,9 +30,9 @@ $ ./codequality-converter semgrep.sarif gl-code-quality-report.json
 ### Run in GitLab CI
 ```yaml
 codequality:sast:
-  image: $CI_TEMPLATE_REGISTRY_HOST/security-products:3
+  image: $CI_TEMPLATE_REGISTRY_HOST/security-products/semgrep:3
   before_script:
-    - wget -O codequality-converter 'https://gitlab.com/ignis-build/codequality-converter/-/jobs/artifacts/master/raw/codequality-converter-linux?job=build'
+    - wget -O codequality-converter https://gitlab.com/ignis-build/codequality-converter/-/releases/permalink/latest/downloads/bin/codequality-converter-linux
     - chmod +x codequality-converter
   script:
     - /analyzer run
