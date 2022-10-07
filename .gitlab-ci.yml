@@ -47,7 +47,17 @@ test:sast:
   needs: [build]
 
 release:
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
   script: echo Release...
+  release:
+    tag_name: '$CI_COMMIT_TAG'
+    description: 'TODO: write release note.'
+    assets:
+      links:
+        - name: codequality-converter-linux
+          url: $CI_PROJECT_URL/-/jobs/artifacts/$CI_COMMIT_TAG/raw/codequality-converter-linux?job=release
+          filepath: /bin/codequality-converter-linux
+          link_type: other
   artifacts:
     name: codequality-converter
     paths:
