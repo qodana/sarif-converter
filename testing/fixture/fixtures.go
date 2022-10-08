@@ -1,19 +1,25 @@
 package fixture
 
-import "os"
+import (
+	_ "embed"
+)
+
+// go:embed actual.json
+var actualJson string
+
+// go:embed semgrep.sarif
+var semgrepSarif []byte
 
 type Fixtures struct {
 	path string
 }
 
 func (f Fixtures) ActualJson() string {
-	bytes, _ := os.ReadFile(f.path + "/actual.json")
-	return string(bytes)
+	return actualJson
 }
 
 func (f Fixtures) SemgrepSarif() []byte {
-	bytes, _ := os.ReadFile(f.path + "/semgrep.sarfi")
-	return bytes
+	return semgrepSarif
 }
 
 func NewFixtures(path string) Fixtures {
