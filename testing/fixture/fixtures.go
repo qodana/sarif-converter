@@ -4,10 +4,10 @@ import (
 	_ "embed"
 )
 
-// go:embed actual.json
+//go:embed actual.json
 var actualJson string
 
-// go:embed semgrep.sarif
+//go:embed semgrep.sarif
 var semgrepSarif []byte
 
 type Fixtures struct {
