@@ -2,7 +2,7 @@ package sarifreport
 
 import (
 	"codequality-converter/codequality"
-	"crypto/sha1"
+	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
 )
@@ -14,6 +14,6 @@ type Element struct {
 
 func Fingerprint(location codequality.CodeQualityLocation, description *string) string {
 	output, _ := json.Marshal(Element{location: location, description: description})
-	h := sha1.New()
+	h := sha256.New()
 	return hex.EncodeToString(h.Sum(output))
 }
