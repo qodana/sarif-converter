@@ -68,3 +68,6 @@ release:
   dependencies: [build]
   only:
     - tags
+
+include:
+  - template: Security/SAST.gitlab-ci.yml
