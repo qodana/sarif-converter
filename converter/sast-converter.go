@@ -32,10 +32,28 @@ func ConvertToSast(input []byte) ([]byte, error) {
 }
 
 func transformToGLSASTReport(input []byte, err error) (*report.Report, error) {
-	original := os.Getenv("GITLAB_FEATURES")
-	os.Unsetenv("GITLAB_FEATURES")
+	gf := newGitLabFeatures()
+
+	gf.unset()
 	sast, err := report.TransformToGLSASTReport(bytes2.NewReader(input), "", "", report.Scanner{})
-	os.Setenv("GITLAB_FEATURES", original)
+	gf.restore()
 
 	return sast, err
+}
+
+type gitlabFeatures struct {
+	original string
+}
+
+func newGitLabFeatures() gitlabFeatures {
+	return gitlabFeatures{}
+}
+
+func (f gitlabFeatures) unset() {
+	f.original = os.Getenv("GITLAB_FEATURES")
+	_ = os.Unsetenv("GITLAB_FEATURES")
+}
+
+func (f gitlabFeatures) restore() {
+	_ = os.Setenv("GITLAB_FEATURES", f.original)
 }
