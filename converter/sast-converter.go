@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"github.com/owenrumney/go-sarif/sarif"
 	"gitlab.com/gitlab-org/security-products/analyzers/report/v3"
+	"os"
 )
 
 func ConvertToSast(input []byte) ([]byte, error) {
@@ -13,8 +14,7 @@ func ConvertToSast(input []byte) ([]byte, error) {
 		return nil, err
 	}
 
-	sast, err := report.TransformToGLSASTReport(bytes2.NewReader(input), "", "", report.Scanner{})
-
+	sast, err := transformToGLSASTReport(input, err)
 	if err != nil {
 		return nil, err
 	}
@@ -29,4 +29,13 @@ func ConvertToSast(input []byte) ([]byte, error) {
 	}
 
 	return bytes, nil
+}
+
+func transformToGLSASTReport(input []byte, err error) (*report.Report, error) {
+	original := os.Getenv("GITLAB_FEATURES")
+	os.Unsetenv("GITLAB_FEATURES")
+	sast, err := report.TransformToGLSASTReport(bytes2.NewReader(input), "", "", report.Scanner{})
+	os.Setenv("GITLAB_FEATURES", original)
+
+	return sast, err
 }
