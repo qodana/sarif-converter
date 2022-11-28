@@ -42,9 +42,11 @@ test:sast:
   script:
     - /analyzer run
     - ./codequality-converter-linux semgrep.sarif gl-code-quality-report.json
+    - ./codequality-converter-linux --type sast semgrep.sarif gl-sast-report.json
   artifacts:
     reports:
       codequality: gl-code-quality-report.json
+      sast: gl-sast-report.json
   needs: [build]
 
 release:

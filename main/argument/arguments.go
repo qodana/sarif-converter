@@ -2,11 +2,14 @@ package argument
 
 import (
 	"github.com/jessevdk/go-flags"
+	"os"
+	"path/filepath"
 )
 
 type Arguments struct {
 	args    []string
 	options Options
+	parser  *flags.Parser
 }
 
 type Options struct {
@@ -48,11 +51,19 @@ func (a Arguments) Type() string {
 	return a.options.Type
 }
 
+func (a Arguments) ShowUsage() {
+	a.parser.WriteHelp(os.Stdout)
+}
+
 func Parse(args []string) (*Arguments, error) {
 	options := Options{}
-	restArgs, err := flags.ParseArgs(&options, args)
+	parser := flags.NewParser(&options, flags.Default)
+	parser.Name = filepath.Base(args[0])
+	parser.Usage = "[OPTIONS] input.sarif output.json"
+
+	restArgs, err := parser.ParseArgs(args)
 	if err != nil {
 		return nil, err
 	}
-	return &Arguments{args: restArgs, options: options}, nil
+	return &Arguments{args: restArgs, options: options, parser: parser}, nil
 }
