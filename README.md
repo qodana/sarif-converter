@@ -26,6 +26,12 @@ Convert to GitLab Code Quality json.
 $ ./codequality-converter semgrep.sarif gl-code-quality-report.json
 ```
 
+Conver to GitLab SAST json.
+
+```
+$ ./codequality-converter --type sast semgrep.sarif gl-sast-report.json
+```
+
 
 ### Run in GitLab CI
 ```yaml
