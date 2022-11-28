@@ -11,7 +11,10 @@ var version = "unknown"
 var revision = "unknown"
 
 func main() {
-	arguments := argument.Parse(os.Args)
+	arguments, err := argument.Parse(os.Args)
+	if err != nil {
+		panic(err)
+	}
 
 	if !arguments.IsValid() {
 		usage()

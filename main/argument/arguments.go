@@ -1,7 +1,17 @@
 package argument
 
+import (
+	"github.com/jessevdk/go-flags"
+)
+
 type Arguments struct {
-	args []string
+	args    []string
+	options Options
+}
+
+type Options struct {
+	Version bool   `short:"v" long:"version" description:"Show version."`
+	Type    string `short:"t" long:"type" description:"Output report type." default:"codequality" choice:"sast" choice:"codequality"`
 }
 
 func (a Arguments) IsValid() bool {
@@ -17,15 +27,7 @@ func (a Arguments) IsValid() bool {
 }
 
 func (a Arguments) RequireShowVersion() bool {
-	for _, arg := range a.args {
-		if arg == "--version" {
-			return true
-		}
-		if arg == "-v" {
-			return true
-		}
-	}
-	return false
+	return a.options.Version
 }
 
 func (a Arguments) Input() string {
@@ -42,6 +44,15 @@ func (a Arguments) Output() string {
 	return ""
 }
 
-func Parse(args []string) Arguments {
-	return Arguments{args: args}
+func (a Arguments) Type() string {
+	return a.options.Type
+}
+
+func Parse(args []string) (*Arguments, error) {
+	options := Options{}
+	restArgs, err := flags.ParseArgs(&options, args)
+	if err != nil {
+		return nil, err
+	}
+	return &Arguments{args: restArgs, options: options}, nil
 }

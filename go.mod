@@ -3,6 +3,7 @@ module codequality-converter
 go 1.19
 
 require (
+	github.com/jessevdk/go-flags v1.5.0
 	github.com/owenrumney/go-sarif v1.1.1
 	github.com/stretchr/testify v1.8.0
 	gitlab.com/gitlab-org/security-products/analyzers/report/v3 v3.15.5
