@@ -1,0 +1,55 @@
+{
+  "version": "14.0.4",
+  "vulnerabilities": [
+    {
+      "id": "36919138358f0b3644b219e2f93c45f03d7fc2be1e0655c54bfdcdb6a0ebf89f",
+      "category": "sast",
+      "message": "Cross-Site Request Forgery (CSRF)",
+      "description": "An attacker could send a link to the victim. By visiting the\nmalicious link, a web page would trigger a POST request (because it is a\nblind attack - the attacker doesn’t see a response from triggered request\nand has no use from GET request and GET requests should not change a state\non the server by definition) to the website. The victim would not be able\nto acknowledge that an action is made in ",
+      "cve": "",
+      "severity": "Medium",
+      "scanner": {
+        "id": "",
+        "name": ""
+      },
+      "location": {
+        "file": "WebApplication1/Controllers/CsrfHttpMethodController.cs",
+        "start_line": 22,
+        "end_line": 23
+      },
+      "identifiers": [
+        {
+          "type": "_id",
+          "name": "security_code_scan.SCS0016-1",
+          "value": "security_code_scan.SCS0016-1"
+        },
+        {
+          "type": "cwe",
+          "name": "CWE-352",
+          "value": "352",
+          "url": "https://cwe.mitre.org/data/definitions/352.html"
+        }
+      ]
+    }
+  ],
+  "dependency_files": [],
+  "scan": {
+    "analyzer": {
+      "id": "",
+      "name": "",
+      "vendor": {
+        "name": ""
+      },
+      "version": ""
+    },
+    "scanner": {
+      "id": "semgrep",
+      "name": "semgrep",
+      "vendor": {
+        "name": ""
+      },
+      "version": ""
+    },
+    "type": "sast"
+  }
+}

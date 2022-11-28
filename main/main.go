@@ -3,6 +3,7 @@ package main
 import (
 	"codequality-converter/converter"
 	"codequality-converter/main/argument"
+	"errors"
 	"fmt"
 	"os"
 )
@@ -11,11 +12,14 @@ var version = "unknown"
 var revision = "unknown"
 
 func main() {
-	arguments := argument.Parse(os.Args)
+	arguments, err := argument.Parse(os.Args)
+	if err != nil {
+		panic(err)
+	}
 
 	if !arguments.IsValid() {
-		usage()
-		os.Exit(0)
+		arguments.ShowUsage()
+		os.Exit(1)
 	}
 
 	if arguments.RequireShowVersion() {
@@ -25,14 +29,9 @@ func main() {
 
 	input := tryRead(arguments.Input())
 
-	output := tryConvert(input)
+	output := tryConvert(input, arguments)
 
 	tryWrite(output, arguments.Output())
-}
-
-func usage() {
-	fmt.Println("usage: codequality-converter input.sarif output.json")
-	fmt.Println("  -v, --version\tdisplay version information and ext")
 }
 
 func showVersion() {
@@ -48,13 +47,25 @@ func tryRead(input string) []byte {
 	return bytes
 }
 
-func tryConvert(input []byte) []byte {
-	output, err := converter.Convert(input)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+func tryConvert(input []byte, arguments *argument.Arguments) []byte {
+	if arguments.Type() == "codequality" {
+		output, err := converter.Convert(input)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		return output
 	}
-	return output
+	if arguments.Type() == "sast" {
+		output, err := converter.ConvertToSast(input)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		return output
+	}
+
+	panic(errors.New("invalid report type"))
 }
 
 func tryWrite(output []byte, outputFile string) {

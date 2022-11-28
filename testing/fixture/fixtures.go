@@ -10,6 +10,9 @@ var actualJson string
 //go:embed semgrep.sarif
 var semgrepSarif []byte
 
+//go:embed gl-sast-report.json
+var sast []byte
+
 type Fixtures struct {
 	path string
 }
@@ -20,6 +23,10 @@ func (f Fixtures) ActualJson() string {
 
 func (f Fixtures) SemgrepSarif() []byte {
 	return semgrepSarif
+}
+
+func Sast() []byte {
+	return sast
 }
 
 func NewFixtures(path string) Fixtures {
