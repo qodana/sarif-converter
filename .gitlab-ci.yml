@@ -43,7 +43,11 @@ test:sast:
     - /analyzer run
     - ./sarif-converter-linux semgrep.sarif gl-code-quality-report.json
     - ./sarif-converter-linux --type sast semgrep.sarif gl-sast-report.json
+    - ./sarif-converter-linux --type html semgrep.sarif semgrep-report.html
   artifacts:
+    expose_as: semgrep-report-html
+    paths:
+      - semgrep-report.html
     reports:
       codequality: gl-code-quality-report.json
       sast: gl-sast-report.json

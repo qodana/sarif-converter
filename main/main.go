@@ -64,6 +64,14 @@ func tryConvert(input []byte, arguments *argument.Arguments) []byte {
 		}
 		return output
 	}
+	if arguments.Type() == "html" {
+		output, err := converter.ConvertToHtml(input)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		return output
+	}
 
 	panic(errors.New("invalid report type"))
 }
