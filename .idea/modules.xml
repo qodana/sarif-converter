@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/codequality-converter.iml" filepath="$PROJECT_DIR$/.idea/codequality-converter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/sarif-converter.iml" filepath="$PROJECT_DIR$/.idea/sarif-converter.iml" />
     </modules>
   </component>
 </project>
