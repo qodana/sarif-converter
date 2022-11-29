@@ -13,6 +13,9 @@ var semgrepSarif []byte
 //go:embed gl-sast-report.json
 var sast []byte
 
+//go:embed sarif-report.html
+var html string
+
 type Fixtures struct {
 	path string
 }
@@ -27,6 +30,10 @@ func (f Fixtures) SemgrepSarif() []byte {
 
 func Sast() []byte {
 	return sast
+}
+
+func Html() string {
+	return html
 }
 
 func NewFixtures(path string) Fixtures {
