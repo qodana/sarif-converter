@@ -20,16 +20,16 @@ build:
     GOOS: linux
     GOARCH: amd64
   script:
-    - CGO_ENABLED=0 go build -ldflags "-X main.version=$(git describe --tags --abbrev=0) -X main.revision=$(git rev-parse --short HEAD)" -o codequality-converter-linux main/main.go
+    - CGO_ENABLED=0 go build -ldflags "-X main.version=$(git describe --tags --abbrev=0) -X main.revision=$(git rev-parse --short HEAD)" -o sarif-converter-linux main/main.go
   artifacts:
     name: dist
     paths:
-      - ./codequality-converter-linux
+      - ./sarif-converter-linux
 
 test:convert:
   stage: test
   script:
-    - ./codequality-converter-linux ./testing/fixture/semgrep.sarif gl-sast-report.json
+    - ./sarif-converter-linux ./testing/fixture/semgrep.sarif gl-sast-report.json
     - diff ./testing/fixture/actual.json gl-sast-report.json > /dev/null
   artifacts:
     paths:
@@ -41,8 +41,8 @@ test:sast:
   stage: test
   script:
     - /analyzer run
-    - ./codequality-converter-linux semgrep.sarif gl-code-quality-report.json
-    - ./codequality-converter-linux --type sast semgrep.sarif gl-sast-report.json
+    - ./sarif-converter-linux semgrep.sarif gl-code-quality-report.json
+    - ./sarif-converter-linux --type sast semgrep.sarif gl-sast-report.json
   artifacts:
     reports:
       codequality: gl-code-quality-report.json
@@ -58,14 +58,14 @@ release:
     description: 'TODO: write release note.'
     assets:
       links:
-        - name: codequality-converter-linux
-          url: $CI_PROJECT_URL/-/jobs/artifacts/$CI_COMMIT_TAG/raw/codequality-converter-linux?job=release
-          filepath: /bin/codequality-converter-linux
+        - name: sarif-converter-linux
+          url: $CI_PROJECT_URL/-/jobs/artifacts/$CI_COMMIT_TAG/raw/sarif-converter-linux?job=release
+          filepath: /bin/sarif-converter-linux
           link_type: other
   artifacts:
-    name: codequality-converter
+    name: sarif-converter
     paths:
-      - codequality-converter-linux
+      - sarif-converter-linux
     expire_in: never
   dependencies: [build]
   only:
