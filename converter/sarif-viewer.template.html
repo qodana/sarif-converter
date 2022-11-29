@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SARIF Viewer</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://cdn.jsdelivr.net/npm/@roopakv/sarif-web-component@0.4.0/dist/index.js"
+        integrity="sha256-gNSXma2GAXVZwhgzeS0OBPsKO8QsKud/OI6AcZU0vNk=" crossorigin="anonymous"></script>
+
+
+<script>
+    (() => {
+
+        const root = document.querySelector('#app');
+        const sarif = JSON.parse(atob(`
+%sarif%
+`));
+
+        ReactDOM.render(React.createElement(Viewer, {logs: [sarif]}), root);
+    })();
+</script>
+</body>
+</html>

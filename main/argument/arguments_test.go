@@ -47,6 +47,12 @@ func TestArguments_TypeSast(t *testing.T) {
 	assert.Equal(t, "sast", arguments.Type())
 }
 
+func TestArguments_TypeHtml(t *testing.T) {
+	arguments, _ := Parse([]string{"codequaility-converter", "--type", "html", "semgrep.sarf", "gl-sast-report.json"})
+
+	assert.Equal(t, "html", arguments.Type())
+}
+
 func TestArguments_TypeInvalid(t *testing.T) {
 	_, err := Parse([]string{"codequaility-converter", "--type", "invalid", "semgrep.sarf", "gl-sast-report.json"})
 

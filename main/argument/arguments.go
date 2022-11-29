@@ -14,7 +14,7 @@ type Arguments struct {
 
 type Options struct {
 	Version bool   `short:"v" long:"version" description:"Show version."`
-	Type    string `short:"t" long:"type" description:"Output report type." default:"codequality" choice:"sast" choice:"codequality"`
+	Type    string `short:"t" long:"type" description:"Output report type." default:"codequality" choice:"sast" choice:"codequality" choice:"html"`
 }
 
 func (a Arguments) IsValid() bool {

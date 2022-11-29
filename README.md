@@ -3,6 +3,7 @@ Convert report from SARIF to other format reports.
 
 * [GitLab CodeQuality](https://docs.gitlab.com/ee/ci/testing/code_quality.html#implementing-a-custom-tool)
 * [GitLab SAST](https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/blob/master/dist/sast-report-format.json?_gl=1%2a1guihbz%2a_ga%2aOTc1NjM2NDI3LjE2NjY3MDc4NzI.%2a_ga_ENFH3X7M5Y%2aMTY2OTcwMjI3MC45LjEuMTY2OTcwMjMxMC4wLjAuMA..)
+* HTML (powered by [SARIF Web Component](https://github.com/microsoft/sarif-web-component))
 
 
 ## Usage
@@ -33,6 +34,12 @@ Conver to GitLab SAST json.
 
 ```
 $ ./sarif-converter --type sast semgrep.sarif gl-sast-report.json
+```
+
+Convert to html report.
+
+```
+$ ./sarif-converter --type html semgrep.sarif semgrp-report.html
 ```
 
 
