@@ -55,6 +55,10 @@ func (a Arguments) ShowUsage() {
 	a.parser.WriteHelp(os.Stdout)
 }
 
+func (a Arguments) Command() string {
+	return a.parser.Name
+}
+
 func Parse(args []string) (*Arguments, error) {
 	options := Options{}
 	parser := flags.NewParser(&options, flags.Default)

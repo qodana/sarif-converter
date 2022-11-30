@@ -23,7 +23,7 @@ func main() {
 	}
 
 	if arguments.RequireShowVersion() {
-		showVersion()
+		showVersion(arguments)
 		os.Exit(0)
 	}
 
@@ -34,8 +34,8 @@ func main() {
 	tryWrite(output, arguments.Output())
 }
 
-func showVersion() {
-	fmt.Println("codequality-converter version " + version + " (" + revision + ")")
+func showVersion(arguments *argument.Arguments) {
+	fmt.Println(arguments.Command() + " version " + version + " (" + revision + ")")
 }
 
 func tryRead(input string) []byte {
