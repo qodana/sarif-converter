@@ -1,4 +1,4 @@
-# CodeQuality Converter
+# SARIF Converter
 Convert report from SARIF to other format reports.
 
 * [GitLab CodeQuality](https://docs.gitlab.com/ee/ci/testing/code_quality.html#implementing-a-custom-tool)
