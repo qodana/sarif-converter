@@ -9,7 +9,7 @@ import (
 func TestConvert(t *testing.T) {
 	fixtures := fixture.NewFixtures("../testing/fixtures")
 
-	report, _ := Convert(fixtures.SemgrepSarif())
+	report, _ := GetConverter("codequality").Convert(fixtures.SemgrepSarif())
 
 	assert.Equal(t, fixtures.ActualJson(), string(report))
 }
