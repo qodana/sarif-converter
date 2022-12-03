@@ -9,7 +9,7 @@ import (
 func TestConvertToHtml(t *testing.T) {
 	fixtures := fixture.NewFixtures("")
 
-	report, _ := ConvertToHtml(fixtures.SemgrepSarif())
+	report, _ := GetConverter("html").Convert(fixtures.SemgrepSarif())
 
 	assert.Equal(t, fixture.Html(), string(report))
 }

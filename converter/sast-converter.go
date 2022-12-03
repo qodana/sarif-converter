@@ -8,7 +8,16 @@ import (
 	"os"
 )
 
-func ConvertToSast(input []byte) ([]byte, error) {
+type sastConverter struct {
+}
+
+var Sast = sastConverter{}
+
+func (c sastConverter) Type() string {
+	return "sast"
+}
+
+func (c sastConverter) Convert(input []byte) ([]byte, error) {
 	s, err := sarif.FromBytes(input)
 	if err != nil {
 		return nil, err

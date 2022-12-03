@@ -9,7 +9,7 @@ import (
 func TestConvertToSast(t *testing.T) {
 	fixtures := fixture.NewFixtures("")
 
-	actual, _ := ConvertToSast(fixtures.SemgrepSarif())
+	report, _ := GetConverter("sast").Convert(fixtures.SemgrepSarif())
 
-	assert.Equal(t, string(fixture.Sast()), string(actual))
+	assert.Equal(t, string(fixture.Sast()), string(report))
 }

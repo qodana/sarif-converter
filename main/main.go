@@ -3,7 +3,6 @@ package main
 import (
 	"codequality-converter/converter"
 	"codequality-converter/main/argument"
-	"errors"
 	"fmt"
 	"os"
 )
@@ -48,32 +47,13 @@ func tryRead(input string) []byte {
 }
 
 func tryConvert(input []byte, arguments *argument.Arguments) []byte {
-	if arguments.Type() == "codequality" {
-		output, err := converter.Convert(input)
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-		return output
+	c := converter.GetConverter(arguments.Type())
+	output, err := c.Convert(input)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
 	}
-	if arguments.Type() == "sast" {
-		output, err := converter.ConvertToSast(input)
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-		return output
-	}
-	if arguments.Type() == "html" {
-		output, err := converter.ConvertToHtml(input)
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-		return output
-	}
-
-	panic(errors.New("invalid report type"))
+	return output
 }
 
 func tryWrite(output []byte, outputFile string) {
