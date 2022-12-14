@@ -28,7 +28,7 @@ func (r *SarifRunWrapper) results() []ResultWrapper {
 	var elements []ResultWrapper
 
 	for _, result := range r.run.Results {
-		elements = append(elements, ResultWrapper{result: result, run: r})
+		elements = append(elements, NewResultWrapper(result, r))
 	}
 
 	return elements

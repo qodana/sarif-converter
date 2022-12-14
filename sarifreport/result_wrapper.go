@@ -10,6 +10,13 @@ type ResultWrapper struct {
 	run    *SarifRunWrapper
 }
 
+func NewResultWrapper(result *sarif.Result, run *SarifRunWrapper) ResultWrapper {
+	return ResultWrapper{
+		result: result,
+		run:    run,
+	}
+}
+
 func (r *ResultWrapper) CodeQualityElement() codequality.CodeQualityElement {
 	return codequality.CodeQualityElement{
 		Description: r.description(),
@@ -20,7 +27,7 @@ func (r *ResultWrapper) CodeQualityElement() codequality.CodeQualityElement {
 }
 
 func (r *ResultWrapper) severity() string {
-	return NewLevel(r).Severity()
+	return NewLevel(*r.level()).Severity()
 }
 
 func (r *ResultWrapper) fingerprint() string {
@@ -38,6 +45,22 @@ func (r *ResultWrapper) lines() codequality.CodeQualityLocationLine {
 	return codequality.CodeQualityLocationLine{
 		Begin: *r.result.Locations[0].PhysicalLocation.Region.StartLine,
 	}
+}
+
+func (r *ResultWrapper) level() *string {
+	// https://docs.oasis-open.org/sarif/sarif/v2.0/csprd02/sarif-v2.0-csprd02.html#_Toc10127839
+
+	if r.result.Level != nil {
+		return r.result.Level
+	}
+
+	var d = r.rule().DefaultLevel()
+	if d != nil {
+		return d
+	}
+
+	var defaultLevel = "none"
+	return &defaultLevel
 }
 
 func (r *ResultWrapper) path() *string {

@@ -10,6 +10,9 @@ var actualJson string
 //go:embed semgrep.sarif
 var semgrepSarif []byte
 
+//go:embed resharper.sarif
+var resharperSarif []byte
+
 //go:embed gl-sast-report.json
 var sast []byte
 
@@ -26,6 +29,10 @@ func (f Fixtures) ActualJson() string {
 
 func (f Fixtures) SemgrepSarif() []byte {
 	return semgrepSarif
+}
+
+func ReSharperSarif() []byte {
+	return resharperSarif
 }
 
 func Sast() []byte {

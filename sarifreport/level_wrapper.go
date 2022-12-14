@@ -1,7 +1,7 @@
 package sarifreport
 
 type LevelWrapper struct {
-	level interface{}
+	level string
 }
 
 func (w LevelWrapper) Severity() string {
@@ -17,6 +17,6 @@ func (w LevelWrapper) Severity() string {
 	return "unknown"
 }
 
-func NewLevel(r *ResultWrapper) LevelWrapper {
-	return LevelWrapper{level: r.rule().DefaultLevel()}
+func NewLevel(l string) LevelWrapper {
+	return LevelWrapper{level: l}
 }
