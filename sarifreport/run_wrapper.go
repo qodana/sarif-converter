@@ -10,7 +10,8 @@ type SarifRunWrapper struct {
 }
 
 func (r *SarifRunWrapper) CodeQualityElements() []codequality.CodeQualityElement {
-	var elements []codequality.CodeQualityElement
+	//goland:noinspection GoPreferNilSlice
+	elements := []codequality.CodeQualityElement{}
 
 	for _, result := range r.results() {
 		elements = append(elements, result.CodeQualityElement())
@@ -25,7 +26,8 @@ func (r *SarifRunWrapper) FindRule(id string) RuleWrapper {
 }
 
 func (r *SarifRunWrapper) results() []ResultWrapper {
-	var elements []ResultWrapper
+	//goland:noinspection GoPreferNilSlice
+	elements := []ResultWrapper{}
 
 	for _, result := range r.run.Results {
 		elements = append(elements, NewResultWrapper(result, r))

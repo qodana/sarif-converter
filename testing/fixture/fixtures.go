@@ -13,6 +13,9 @@ var semgrepSarif []byte
 //go:embed resharper.sarif
 var resharperSarif []byte
 
+//go:embed resharper-no-inspections.sarif
+var resharperNoInspectionsSarif []byte
+
 //go:embed gl-sast-report.json
 var sast []byte
 
@@ -33,6 +36,10 @@ func (f Fixtures) SemgrepSarif() []byte {
 
 func ReSharperSarif() []byte {
 	return resharperSarif
+}
+
+func ReSharperNoInspectionsSarif() []byte {
+	return resharperNoInspectionsSarif
 }
 
 func Sast() []byte {
