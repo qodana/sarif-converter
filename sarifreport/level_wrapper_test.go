@@ -22,3 +22,9 @@ func TestSeverityNote(t *testing.T) {
 
 	assert.Equal(t, "minor", target.Severity())
 }
+
+func TestSeverityNone(t *testing.T) {
+	target := LevelWrapper{level: "none"}
+
+	assert.Equal(t, "info", target.Severity())
+}

@@ -12,6 +12,8 @@ func (w LevelWrapper) Severity() string {
 		return "major"
 	case "note":
 		return "minor"
+	case "none":
+		return "info"
 	}
 
 	return "unknown"
