@@ -27,3 +27,9 @@ func TestConvertFromReSharperInspectCode(t *testing.T) {
 
 	assert.Equal(t, 18, len(result))
 }
+
+func TestConvertFromReShaperInspectCodeNoInspections(t *testing.T) {
+	report, _ := GetConverter("codequality").Convert(fixture.ReSharperNoInspectionsSarif())
+
+	assert.Equal(t, "[]", string(report))
+}
