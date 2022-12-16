@@ -1,0 +1,61 @@
+{
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "SCS0016",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Controller method is potentially vulnerable to Cross Site Request Forgery (CSRF)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/masakura/tmp/sc/Controllers/HomeController.cs"
+                },
+                "region": {
+                  "startLine": 33,
+                  "startColumn": 26,
+                  "endLine": 33,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "Security Code Scan",
+          "version": "5.6.7",
+          "dottedQuadFileVersion": "5.6.7.0",
+          "semanticVersion": "5.6.7",
+          "language": "ja-JP",
+          "rules": [
+            {
+              "id": "SCS0016",
+              "shortDescription": {
+                "text": "Controller method is potentially vulnerable to Cross Site Request Forgery (CSRF)."
+              },
+              "fullDescription": {
+                "text": "The annotation [ValidateAntiForgeryToken] is missing. The warning may be ignored/suppressed if .NET Core AutoValidateAntiforgeryToken is set up globally."
+              },
+              "helpUri": "https://security-code-scan.github.io/#SCS0016",
+              "properties": {
+                "category": "Security"
+              }
+            }
+          ]
+        }
+      },
+      "columnKind": "utf16CodeUnits"
+    }
+  ]
+}
