@@ -58,3 +58,27 @@ func TestArguments_TypeInvalid(t *testing.T) {
 
 	assert.Error(t, err)
 }
+
+func TestArguments_SrcRootRelative(t *testing.T) {
+	arguments, _ := Parse([]string{"codequaility-converter", "--src-root", ".", "semgrep.sarf", "gl-sast-report.json"})
+
+	assert.Equal(t, "file:///foo/bar", *arguments.SrcRoot("/foo/bar"))
+}
+
+func TestArguments_SrcRootParent(t *testing.T) {
+	arguments, _ := Parse([]string{"codequaility-converter", "--src-root", "..", "semgrep.sarf", "gl-sast-report.json"})
+
+	assert.Equal(t, "file:///foo", *arguments.SrcRoot("/foo/bar"))
+}
+
+func TestArguments_SrcRootAbsolute(t *testing.T) {
+	arguments, _ := Parse([]string{"codequaility-converter", "--src-root=/home/john", "semgrep.sarf", "gl-sast-report.json"})
+
+	assert.Equal(t, "file:///home/john", *arguments.SrcRoot("/foo/bar"))
+}
+
+func TestArguments_SrcRootNone(t *testing.T) {
+	arguments, _ := Parse([]string{"codequaility-converter", "semgrep.sarf", "gl-sast-report.json"})
+
+	assert.Nil(t, arguments.SrcRoot("/foo/bar"))
+}

@@ -16,6 +16,9 @@ var resharperSarif []byte
 //go:embed resharper-no-inspections.sarif
 var resharperNoInspectionsSarif []byte
 
+//go:embed security-scan.sarif
+var securityCodeScanSarif []byte
+
 //go:embed gl-sast-report.json
 var sast []byte
 
@@ -40,6 +43,10 @@ func ReSharperSarif() []byte {
 
 func ReSharperNoInspectionsSarif() []byte {
 	return resharperNoInspectionsSarif
+}
+
+func SecurityCodeScan() []byte {
+	return securityCodeScanSarif
 }
 
 func Sast() []byte {

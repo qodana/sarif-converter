@@ -2,6 +2,7 @@ package main
 
 import (
 	"codequality-converter/converter"
+	"codequality-converter/filter"
 	"codequality-converter/main/argument"
 	"fmt"
 	"os"
@@ -27,6 +28,7 @@ func main() {
 	}
 
 	input := tryRead(arguments.Input())
+	input = tryFilter(input, arguments)
 
 	output := tryConvert(input, arguments)
 
@@ -44,6 +46,15 @@ func tryRead(input string) []byte {
 		os.Exit(1)
 	}
 	return bytes
+}
+
+func tryFilter(input []byte, arguments *argument.Arguments) []byte {
+	converted, err := filter.AllSarifFilter(input, arguments)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	return converted
 }
 
 func tryConvert(input []byte, arguments *argument.Arguments) []byte {

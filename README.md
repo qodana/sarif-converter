@@ -6,6 +6,12 @@ Convert report from SARIF to other format reports.
 * HTML (powered by [SARIF Web Component](https://github.com/microsoft/sarif-web-component))
 
 
+## Supported Static Analyzer Tools
+* [Semgrep](https://semgrep.dev/) - Static Code Scanning & Analysis Tool
+* [GitLab Semgrep analyzer](https://gitlab.com/gitlab-org/security-products/analyzers/semgrep)
+* [Security Code Scan](https://security-code-scan.github.io/) - static code analyzer for .NET
+
+
 ## Usage
 Linux only!
 
@@ -41,6 +47,30 @@ Convert to html report.
 ```
 $ ./sarif-converter --type html semgrep.sarif semgrp-report.html
 ```
+
+
+#### Security Code Scan
+[Install Security Code Scan](https://security-code-scan.github.io/#Installation) into your .NET project.
+
+```shell
+$ dotnet new tool-manifest
+$ dotnet tool install security-scan
+```
+
+Scan your project.
+
+```shell
+$ dotnet security-scan YourProject.sln --export=security-scan.sarif
+```
+
+Convert to GitLab CodeQuality report.
+
+```shell
+$ ./sarif-converter --type codequality --src-root . security-scan.sarif gl-code-quality-report.json
+```
+
+Security Code Scan sarif reports are output as absolute paths.
+The `--src-root` argument converts them to relative paths as required by the Code Quality report.
 
 
 ### Run in GitLab CI
