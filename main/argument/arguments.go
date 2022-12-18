@@ -2,6 +2,7 @@ package argument
 
 import (
 	"github.com/jessevdk/go-flags"
+	"net/url"
 	"os"
 	"path/filepath"
 )
@@ -13,8 +14,9 @@ type Arguments struct {
 }
 
 type Options struct {
-	Version bool   `short:"v" long:"version" description:"Show version."`
-	Type    string `short:"t" long:"type" description:"Output report type." default:"codequality" choice:"sast" choice:"codequality" choice:"html"`
+	Version bool    `short:"v" long:"version" description:"Show version."`
+	Type    string  `short:"t" long:"type" description:"Output report type." default:"codequality" choice:"sast" choice:"codequality" choice:"html"`
+	SrcRoot *string `short:"r" long:"src-root" description:"Source root path."`
 }
 
 func (a Arguments) IsValid() bool {
@@ -49,6 +51,30 @@ func (a Arguments) Output() string {
 
 func (a Arguments) Type() string {
 	return a.options.Type
+}
+
+func (a Arguments) SrcRoot(basepath string) *string {
+	if a.options.SrcRoot == nil {
+		return nil
+	}
+
+	u, err := url.Parse(resolve(basepath, *a.options.SrcRoot))
+	u.Scheme = "file"
+	if err != nil {
+		panic(err)
+	}
+
+	s := u.String()
+
+	return &s
+}
+
+func resolve(basepath string, srcRoot string) string {
+	if filepath.IsAbs(filepath.FromSlash(srcRoot)) {
+		return srcRoot
+	}
+
+	return filepath.ToSlash(filepath.Join(basepath, srcRoot))
 }
 
 func (a Arguments) ShowUsage() {
