@@ -6,6 +6,12 @@ Convert report from SARIF to other format reports.
 * HTML (powered by [SARIF Web Component](https://github.com/microsoft/sarif-web-component))
 
 
+## Supported Static Analyzer Tools
+* [Semgrep](https://semgrep.dev/) - Static Code Scanning & Analysis Tool
+* [GitLab Semgrep analyzer](https://gitlab.com/gitlab-org/security-products/analyzers/semgrep)
+* [Security Code Scan](https://security-code-scan.github.io/) - static code analyzer for .NET
+
+
 ## Usage
 Linux only!
 
