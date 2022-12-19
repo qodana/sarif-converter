@@ -48,7 +48,7 @@ $ semgrep --config=auto --sarif --output=semgrep.sarif .
 Convert to GitLab Code Quality json.
 
 ```shell
-$ ./sarif-converter semgrep.sarif gl-code-quality-report.json
+$ ./sarif-converter --type codequality semgrep.sarif gl-code-quality-report.json
 ```
 
 Conver to GitLab SAST json.
@@ -97,7 +97,7 @@ codequality:sast:
     - chmod +x sarif-converter
   script:
     - /analyzer run
-    - ./sarif-converter semgrep.sarif gl-code-quality-report.json
+    - ./sarif-converter --type codequality semgrep.sarif gl-code-quality-report.json
   artifacts:
     reports:
       codequality: gl-code-quality-report.json
