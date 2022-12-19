@@ -30,7 +30,7 @@ build:
 test:convert:
   stage: test
   script:
-    - ./sarif-converter-linux ./testing/fixture/semgrep.sarif gl-sast-report.json
+    - ./sarif-converter-linux --type codequality ./testing/fixture/semgrep.sarif gl-sast-report.json
     - diff ./testing/fixture/actual.json gl-sast-report.json > /dev/null
   artifacts:
     paths:
@@ -42,7 +42,7 @@ test:sast:
   stage: test
   script:
     - /analyzer run
-    - ./sarif-converter-linux semgrep.sarif gl-code-quality-report.json
+    - ./sarif-converter-linux --type codequality semgrep.sarif gl-code-quality-report.json
     - ./sarif-converter-linux --type sast semgrep.sarif gl-sast-report.json
     - ./sarif-converter-linux --type html semgrep.sarif semgrep-report.html
   artifacts:
