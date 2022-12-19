@@ -5,6 +5,7 @@ stages:
 
 default:
   image: golang:1.19
+  tags: [saas-linux-large-amd64]
 
 test:
   stage: build
