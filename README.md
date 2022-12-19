@@ -15,6 +15,20 @@ Convert report from SARIF to other format reports.
 ## Usage
 Linux only!
 
+```
+$ sarif-converter --help
+Usage:
+  sarif-converter [OPTIONS] input.sarif output.json
+
+Application Options:
+  -v, --version                      Show version.
+  -t, --type=[sast|codequality|html] Output report type. (default: html)
+  -r, --src-root=                    Source root path.
+
+Help Options:
+  -h, --help                         Show this help message
+```
+
 
 ### Install
 ```shell

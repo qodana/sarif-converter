@@ -38,7 +38,7 @@ func TestArguments_Output(t *testing.T) {
 func TestArguments_TypeDefault(t *testing.T) {
 	arguments, _ := Parse([]string{"codequaility-converter", "semgrep.sarf", "gl-sast-report.json"})
 
-	assert.Equal(t, "codequality", arguments.Type())
+	assert.Equal(t, "html", arguments.Type())
 }
 
 func TestArguments_TypeSast(t *testing.T) {

@@ -15,7 +15,7 @@ type Arguments struct {
 
 type Options struct {
 	Version bool    `short:"v" long:"version" description:"Show version."`
-	Type    string  `short:"t" long:"type" description:"Output report type." default:"codequality" choice:"sast" choice:"codequality" choice:"html"`
+	Type    string  `short:"t" long:"type" description:"Output report type." default:"html" choice:"sast" choice:"codequality" choice:"html"`
 	SrcRoot *string `short:"r" long:"src-root" description:"Source root path."`
 }
 
