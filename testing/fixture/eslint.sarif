@@ -1,0 +1,60 @@
+{
+  "version": "2.1.0",
+  "$schema": "http://json.schemastore.org/sarif-2.1.0-rtm.5",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "ESLint",
+          "informationUri": "https://eslint.org",
+          "rules": [
+            {
+              "id": "security/detect-eval-with-expression",
+              "helpUri": "https://github.com/nodesecurity/eslint-plugin-security#detect-eval-with-expression",
+              "properties": {
+                "category": "Possible Security Vulnerability"
+              },
+              "shortDescription": {
+                "text": "Detects \"eval(variable)\" which can allow an attacker to run arbitrary code inside your process."
+              }
+            }
+          ],
+          "version": "8.29.0"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///home/masakura/tmp/sc/foo.js"
+          }
+        }
+      ],
+      "results": [
+        {
+          "level": "warning",
+          "message": {
+            "text": "eval with argument of type Identifier"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///home/masakura/tmp/sc/foo.js",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 3,
+                  "endLine": 2,
+                  "endColumn": 10
+                }
+              }
+            }
+          ],
+          "ruleId": "security/detect-eval-with-expression",
+          "ruleIndex": 0
+        }
+      ]
+    }
+  ]
+}

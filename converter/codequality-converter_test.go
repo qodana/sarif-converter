@@ -33,17 +33,20 @@ func TestConvertFromReShaperInspectCodeNoInspections(t *testing.T) {
 }
 
 func TestConvertFromSecurityCodeScan(t *testing.T) {
-	s := toSarif(fixture.SecurityCodeScan())
-
-	rpf := filter.NewRelativePathFilter("file:///home/masakura/tmp/sc")
-	rpf.Run(s)
-	bytes := sarifToBytes(s)
-
+	bytes := convertToRelativePath(fixture.SecurityCodeScan(), "file:///home/masakura/tmp/sc")
 	report, _ := GetConverter("codequality").Convert(bytes)
 
 	result := codeQuality(report)
 
 	assert.Equal(t, "Controllers/HomeController.cs", *result[0].Location.Path)
+}
+
+func TestConvertFromEslintSarif(t *testing.T) {
+	report, _ := GetConverter("codequality").Convert(fixture.Eslint())
+
+	result := codeQuality(report)
+
+	assert.Equal(t, "eval with argument of type Identifier", *result[0].Description)
 }
 
 func sarifToBytes(report *sarif.Report) []byte {
@@ -69,4 +72,13 @@ func codeQuality(report []byte) []codequality.CodeQualityElement {
 		panic(err)
 	}
 	return result
+}
+
+func convertToRelativePath(input []byte, srcRoot string) []byte {
+	s := toSarif(input)
+
+	rpf := filter.NewRelativePathFilter(srcRoot)
+	rpf.Run(s)
+	bytes := sarifToBytes(s)
+	return bytes
 }
