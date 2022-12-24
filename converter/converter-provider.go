@@ -3,13 +3,12 @@ package converter
 import "errors"
 
 func GetConverter(converterType string) Converter {
-	if converterType == CodeQuality.Type() {
+	switch converterType {
+	case CodeQuality.Type():
 		return CodeQuality
-	}
-	if converterType == Sast.Type() {
+	case Sast.Type():
 		return Sast
-	}
-	if converterType == Html.Type() {
+	case Html.Type():
 		return Html
 	}
 
