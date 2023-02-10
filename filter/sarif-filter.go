@@ -3,7 +3,7 @@ package filter
 import (
 	"codequality-converter/main/argument"
 	"encoding/json"
-	"github.com/owenrumney/go-sarif/sarif"
+	"github.com/owenrumney/go-sarif/v2/sarif"
 	"os"
 )
 

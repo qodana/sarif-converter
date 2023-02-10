@@ -5,6 +5,7 @@ go 1.19
 require (
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/owenrumney/go-sarif v1.1.1
+	github.com/owenrumney/go-sarif/v2 v2.1.2
 	github.com/stretchr/testify v1.8.0
 	gitlab.com/gitlab-org/security-products/analyzers/report/v3 v3.15.5
 )
