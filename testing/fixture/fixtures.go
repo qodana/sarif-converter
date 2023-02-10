@@ -31,6 +31,12 @@ var multiRunSarif []byte
 //go:embed multi-run-actual.json
 var multiRunCodeQuality string
 
+//go:embed ktlint.sarif
+var ktlintSarif []byte
+
+//go:embed ktlint-actual.json
+var ktlintCodeQuality string
+
 //go:embed sarif-report.html
 var html string
 
@@ -76,6 +82,14 @@ func MultiRunSarif() []byte {
 
 func MultiRunCodeQuality() string {
 	return multiRunCodeQuality
+}
+
+func KtlintSarif() []byte {
+	return ktlintSarif
+}
+
+func KtlintCodeQuality() string {
+	return ktlintCodeQuality
 }
 
 func Html() string {
