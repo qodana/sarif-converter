@@ -1,7 +1,7 @@
-package converter
+package main
 
 import (
-	"codequality-converter/file"
+	"codequality-converter/testing/file"
 	"codequality-converter/testing/fixture"
 	"errors"
 	"github.com/stretchr/testify/assert"
@@ -10,11 +10,19 @@ import (
 
 func TestConvertMultipleFiles(t *testing.T) {
 	reader := newFakeReader()
-	inputs := file.NewInput([]string{"semgrep.sarif", "security-scan.sarif"})
-	bytes, _ := inputs.Read(reader)
-	report, _ := GetConverter("codequality").Convert(bytes)
+	writer := file.NewFakeWriter()
+	target := newConverter(reader, writer)
 
-	assert.Equal(t, fixture.MultiRunCodeQuality(), string(report))
+	var _ = target.convert([]string{
+		"sarif-converter",
+		"--type=codequality",
+		"semgrep.sarif",
+		"security-scan.sarif",
+		"output.json",
+	})
+	actual, _ := writer.Get("output.json")
+
+	assert.Equal(t, fixture.MultiRunCodeQuality(), string(actual))
 }
 
 type fakeReader struct {

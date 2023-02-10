@@ -9,7 +9,6 @@ import (
 )
 
 type Arguments struct {
-	args    []string
 	options Options
 	parser  *flags.Parser
 	files   files
@@ -89,5 +88,5 @@ func Parse(args []string) (*Arguments, error) {
 	}
 
 	files := parseFileArguments(restArgs[1:])
-	return &Arguments{args: restArgs, options: options, parser: parser, files: files}, nil
+	return &Arguments{options: options, parser: parser, files: files}, nil
 }
