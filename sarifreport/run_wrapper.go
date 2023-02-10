@@ -2,7 +2,7 @@ package sarifreport
 
 import (
 	"codequality-converter/codequality"
-	"github.com/owenrumney/go-sarif/sarif"
+	"github.com/owenrumney/go-sarif/v2/sarif"
 )
 
 type SarifRunWrapper struct {
