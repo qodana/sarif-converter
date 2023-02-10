@@ -1,6 +1,9 @@
 package file
 
-import "os"
+import (
+	"codequality-converter/file/reader"
+	"os"
+)
 
 type Single struct {
 	path string
@@ -14,10 +17,10 @@ func (s Single) IsEmpty() bool {
 	return true
 }
 
-func (s Single) Read() ([]byte, error) {
+func (s Single) Read(reader.Reader) ([]byte, error) {
 	return os.ReadFile(s.path)
 }
 
-func NewSingleFile(path string) Single {
+func newSingleFile(path string) Single {
 	return Single{path: path}
 }

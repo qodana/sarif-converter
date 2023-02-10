@@ -12,6 +12,7 @@ type Arguments struct {
 	args    []string
 	options Options
 	parser  *flags.Parser
+	files   files
 }
 
 type Options struct {
@@ -25,29 +26,19 @@ func (a Arguments) IsValid() bool {
 		return true
 	}
 
-	if !a.Input().IsEmpty() && a.Output() != "" {
-		return true
-	}
-
-	return false
+	return a.files.isValid()
 }
 
 func (a Arguments) RequireShowVersion() bool {
 	return a.options.Version
 }
 
-func (a Arguments) Input() file.Input {
-	if len(a.args) > 1 {
-		return file.NewSingleFile(a.args[1])
-	}
-	return file.NewEmpty()
+func (a Arguments) Inputs() file.Input {
+	return file.NewInput(a.files.inputs)
 }
 
 func (a Arguments) Output() string {
-	if len(a.args) > 2 {
-		return a.args[2]
-	}
-	return ""
+	return a.files.output
 }
 
 func (a Arguments) Type() string {
@@ -90,11 +81,13 @@ func Parse(args []string) (*Arguments, error) {
 	options := Options{}
 	parser := flags.NewParser(&options, flags.Default)
 	parser.Name = filepath.Base(args[0])
-	parser.Usage = "[OPTIONS] input.sarif output.json"
+	parser.Usage = "[OPTIONS] input1.sarif [input2.sarif...] output.json"
 
 	restArgs, err := parser.ParseArgs(args)
 	if err != nil {
 		return nil, err
 	}
-	return &Arguments{args: restArgs, options: options, parser: parser}, nil
+
+	files := parseFileArguments(restArgs[1:])
+	return &Arguments{args: restArgs, options: options, parser: parser, files: files}, nil
 }

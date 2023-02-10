@@ -1,6 +1,9 @@
 package file
 
-import "errors"
+import (
+	"codequality-converter/file/reader"
+	"errors"
+)
 
 type Empty struct {
 }
@@ -9,7 +12,7 @@ func (n Empty) Paths() []string {
 	return []string{}
 }
 
-func (n Empty) Read() ([]byte, error) {
+func (n Empty) Read(reader.Reader) ([]byte, error) {
 	return nil, errors.New("null")
 }
 
@@ -17,6 +20,6 @@ func (n Empty) IsEmpty() bool {
 	return true
 }
 
-func NewEmpty() Empty {
+func newEmpty() Empty {
 	return Empty{}
 }

@@ -26,7 +26,7 @@ func TestArguments_RequireShowVersionShort(t *testing.T) {
 func TestArguments_Input(t *testing.T) {
 	arguments, _ := Parse([]string{"codequality-converter", "semgrep.sarif", "gl-code-quality.json"})
 
-	assert.Equal(t, []string{"semgrep.sarif"}, arguments.Input().Paths())
+	assert.Equal(t, []string{"semgrep.sarif"}, arguments.Inputs().Paths())
 }
 
 func TestArguments_Output(t *testing.T) {
