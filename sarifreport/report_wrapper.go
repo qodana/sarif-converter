@@ -7,16 +7,16 @@ import (
 
 type ReportWrapper struct {
 	Sarif *sarif.Report
-	run   SarifRunWrapper
+	runs  SarifRunsWrapper
 }
 
 func (r *ReportWrapper) CodeQualityElements() []codequality.CodeQualityElement {
-	return r.run.CodeQualityElements()
+	return r.runs.CodeQualityElements()
 }
 
 func NewReport(sarif *sarif.Report) ReportWrapper {
 	return ReportWrapper{
 		Sarif: sarif,
-		run:   SarifRunWrapper{run: sarif.Runs[0]},
+		runs:  newSarifRunsWrapper(sarif.Runs),
 	}
 }

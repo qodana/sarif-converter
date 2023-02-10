@@ -25,6 +25,12 @@ var eslint []byte
 //go:embed gl-sast-report.json
 var sast []byte
 
+//go:embed multi-run.sarif
+var multiRunSarif []byte
+
+//go:embed multi-run-actual.json
+var multiRunCodeQuality string
+
 //go:embed sarif-report.html
 var html string
 
@@ -58,6 +64,14 @@ func Eslint() []byte {
 
 func Sast() []byte {
 	return sast
+}
+
+func MultiRunSarif() []byte {
+	return multiRunSarif
+}
+
+func MultiRunCodeQuality() string {
+	return multiRunCodeQuality
 }
 
 func Html() string {
