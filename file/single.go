@@ -1,7 +1,6 @@
 package file
 
 import (
-	"codequality-converter/file/reader"
 	"os"
 )
 
@@ -17,7 +16,7 @@ func (s Single) IsEmpty() bool {
 	return true
 }
 
-func (s Single) Read(reader.Reader) ([]byte, error) {
+func (s Single) Read(Reader) ([]byte, error) {
 	return os.ReadFile(s.path)
 }
 

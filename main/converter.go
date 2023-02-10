@@ -3,8 +3,6 @@ package main
 import (
 	"codequality-converter/converter"
 	"codequality-converter/file"
-	"codequality-converter/file/reader"
-	"codequality-converter/file/writer"
 	"codequality-converter/filter"
 	"codequality-converter/main/argument"
 	"errors"
@@ -12,8 +10,9 @@ import (
 )
 
 type Converter struct {
-	reader reader.Reader
-	writer writer.Writer
+	reader file.Reader
+	writer file.Writer
+	io     file.IO
 }
 
 func (c Converter) convert(args []string) error {
@@ -81,9 +80,10 @@ func (c Converter) showVersion(arguments *argument.Arguments) {
 	fmt.Println(arguments.Command() + " version " + version + " (" + revision + ")")
 }
 
-func newConverter(reader reader.Reader, writer writer.Writer) Converter {
+func newConverterWith(io file.IO) Converter {
 	return Converter{
-		reader: reader,
-		writer: writer,
+		reader: io,
+		writer: io,
+		io:     io,
 	}
 }

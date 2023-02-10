@@ -1,10 +1,8 @@
 package file
 
-import "codequality-converter/file/reader"
-
 type Input interface {
 	IsEmpty() bool
-	Read(reader reader.Reader) ([]byte, error)
+	Read(reader Reader) ([]byte, error)
 	Paths() []string
 }
 

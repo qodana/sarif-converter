@@ -1,7 +1,6 @@
 package file
 
 import (
-	"codequality-converter/file/reader"
 	"encoding/json"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 )
@@ -14,7 +13,7 @@ func (m Multiple) IsEmpty() bool {
 	return len(m.paths) > 0
 }
 
-func (m Multiple) Read(reader reader.Reader) ([]byte, error) {
+func (m Multiple) Read(reader Reader) ([]byte, error) {
 	reports, err := m.reports(reader)
 	if err != nil {
 		return nil, err
@@ -27,7 +26,7 @@ func (m Multiple) Paths() []string {
 	return m.paths
 }
 
-func (m Multiple) reports(reader reader.Reader) ([]*sarif.Report, error) {
+func (m Multiple) reports(reader Reader) ([]*sarif.Report, error) {
 	//goland:noinspection GoPreferNilSlice
 	result := []*sarif.Report{}
 
@@ -55,7 +54,7 @@ func merge(reports []*sarif.Report) *sarif.Report {
 	return first
 }
 
-func report(path string, reader reader.Reader) (*sarif.Report, error) {
+func report(path string, reader Reader) (*sarif.Report, error) {
 	b, err := reader.Read(path)
 	if err != nil {
 		return nil, err

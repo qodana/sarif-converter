@@ -1,8 +1,7 @@
 package main
 
 import (
-	"codequality-converter/file/reader"
-	"codequality-converter/file/writer"
+	"codequality-converter/file"
 	"fmt"
 	"os"
 )
@@ -11,7 +10,7 @@ var version = "unknown"
 var revision = "unknown"
 
 func main() {
-	c := newConverter(reader.NewReader(), writer.NewWriter())
+	c := newConverterWith(file.NewIO())
 
 	err := c.convert(os.Args)
 	if err != nil {

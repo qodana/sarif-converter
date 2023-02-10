@@ -1,7 +1,6 @@
 package file
 
 import (
-	"codequality-converter/file/reader"
 	"errors"
 )
 
@@ -12,7 +11,7 @@ func (n Empty) Paths() []string {
 	return []string{}
 }
 
-func (n Empty) Read(reader.Reader) ([]byte, error) {
+func (n Empty) Read(Reader) ([]byte, error) {
 	return nil, errors.New("null")
 }
 
