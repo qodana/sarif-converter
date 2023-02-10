@@ -7,8 +7,12 @@ import (
 	"os"
 )
 
+var version = "unknown"
+var revision = "unknown"
+
 func main() {
-	c := command.NewCommand(file.NewIO())
+	fmt.Println(version)
+	c := command.NewCommand(file.NewIO(), version, revision)
 
 	err := c.Convert(os.Args)
 	if err != nil {

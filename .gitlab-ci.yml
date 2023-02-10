@@ -21,7 +21,7 @@ build:
     GOOS: linux
     GOARCH: amd64
   script:
-    - CGO_ENABLED=0 go build -ldflags "-X command.version=$(git describe --tags --abbrev=0) -X command.revision=$(git rev-parse --short HEAD)" -o sarif-converter-linux main/main.go
+    - CGO_ENABLED=0 go build -ldflags "-X main.version=$(git describe --tags --abbrev=0) -X main.revision=$(git rev-parse --short HEAD)" -o sarif-converter-linux main/main.go
   artifacts:
     name: dist
     paths:

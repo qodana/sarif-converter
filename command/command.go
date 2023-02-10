@@ -10,11 +10,10 @@ import (
 )
 
 type Command struct {
-	io file.IO
+	io       file.IO
+	version  string
+	revision string
 }
-
-var version = "unknown"
-var revision = "unknown"
 
 func (c Command) Convert(args []string) error {
 	arguments, err := c.parse(args)
@@ -78,11 +77,13 @@ func (c Command) runConvert(input []byte, arguments *argument.Arguments) ([]byte
 }
 
 func (c Command) showVersion(arguments *argument.Arguments) {
-	fmt.Println(arguments.Command() + " version " + version + " (" + revision + ")")
+	fmt.Println(arguments.Command() + " version " + c.version + " (" + c.revision + ")")
 }
 
-func NewCommand(io file.IO) Command {
+func NewCommand(io file.IO, version string, revision string) Command {
 	return Command{
-		io: io,
+		io:       io,
+		version:  version,
+		revision: revision,
 	}
 }

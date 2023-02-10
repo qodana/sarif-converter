@@ -28,7 +28,7 @@ func (w wrapper) readText(name string) string {
 func newWrapper() wrapper {
 	io := fake.NewFakeIO()
 	return wrapper{
-		command: NewCommand(io),
+		command: NewCommand(io, "", ""),
 		io:      io,
 	}
 }
