@@ -35,3 +35,9 @@ func (r *SarifRunWrapper) results() []ResultWrapper {
 
 	return elements
 }
+
+func newSarifRunWrapper(r *sarif.Run) SarifRunWrapper {
+	return SarifRunWrapper{
+		run: r,
+	}
+}
