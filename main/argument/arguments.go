@@ -1,6 +1,7 @@
 package argument
 
 import (
+	"codequality-converter/file"
 	"github.com/jessevdk/go-flags"
 	"net/url"
 	"os"
@@ -24,7 +25,7 @@ func (a Arguments) IsValid() bool {
 		return true
 	}
 
-	if a.Input() != "" && a.Output() != "" {
+	if !a.Input().IsEmpty() && a.Output() != "" {
 		return true
 	}
 
@@ -35,11 +36,11 @@ func (a Arguments) RequireShowVersion() bool {
 	return a.options.Version
 }
 
-func (a Arguments) Input() string {
+func (a Arguments) Input() file.Input {
 	if len(a.args) > 1 {
-		return a.args[1]
+		return file.NewSingleFile(a.args[1])
 	}
-	return ""
+	return file.NewEmpty()
 }
 
 func (a Arguments) Output() string {

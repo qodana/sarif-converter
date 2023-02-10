@@ -2,6 +2,7 @@ package main
 
 import (
 	"codequality-converter/converter"
+	"codequality-converter/file"
 	"codequality-converter/filter"
 	"codequality-converter/main/argument"
 	"fmt"
@@ -39,8 +40,8 @@ func showVersion(arguments *argument.Arguments) {
 	fmt.Println(arguments.Command() + " version " + version + " (" + revision + ")")
 }
 
-func tryRead(input string) []byte {
-	bytes, err := os.ReadFile(input)
+func tryRead(input file.Input) []byte {
+	bytes, err := input.Read()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
