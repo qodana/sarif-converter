@@ -3,7 +3,7 @@ package converter
 import (
 	"codequality-converter/sarifreport"
 	"encoding/json"
-	"github.com/owenrumney/go-sarif/sarif"
+	"github.com/owenrumney/go-sarif/v2/sarif"
 )
 
 type codeQualityConverter struct {

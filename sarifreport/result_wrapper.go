@@ -2,7 +2,7 @@ package sarifreport
 
 import (
 	"codequality-converter/codequality"
-	"github.com/owenrumney/go-sarif/sarif"
+	"github.com/owenrumney/go-sarif/v2/sarif"
 )
 
 type ResultWrapper struct {
@@ -27,7 +27,7 @@ func (r *ResultWrapper) CodeQualityElement() codequality.CodeQualityElement {
 }
 
 func (r *ResultWrapper) severity() string {
-	return NewLevel(*r.level()).Severity()
+	return NewLevel(r.level()).Severity()
 }
 
 func (r *ResultWrapper) fingerprint() string {
@@ -47,20 +47,19 @@ func (r *ResultWrapper) lines() codequality.CodeQualityLocationLine {
 	}
 }
 
-func (r *ResultWrapper) level() *string {
+func (r *ResultWrapper) level() string {
 	// https://docs.oasis-open.org/sarif/sarif/v2.0/csprd02/sarif-v2.0-csprd02.html#_Toc10127839
 
 	if r.result.Level != nil {
-		return r.result.Level
+		return *r.result.Level
 	}
 
 	var d = r.rule().DefaultLevel()
-	if d != nil {
+	if d != "" {
 		return d
 	}
 
-	var defaultLevel = "none"
-	return &defaultLevel
+	return "none"
 }
 
 func (r *ResultWrapper) path() *string {

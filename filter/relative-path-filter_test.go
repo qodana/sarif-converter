@@ -1,8 +1,9 @@
 package filter
 
 import (
+	"codequality-converter/sarifreport/originaluri"
 	"codequality-converter/testing/fixture"
-	"github.com/owenrumney/go-sarif/sarif"
+	"github.com/owenrumney/go-sarif/v2/sarif"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -19,6 +20,44 @@ func TestConvertToRelativePathArtifactLocation(t *testing.T) {
 		URI:       "Controllers/HomeController.cs",
 		URIBaseID: "%SRCROOT%",
 	}, extract(al))
+}
+
+func TestConvertToRelativePath(t *testing.T) {
+	target := NewRelativePathFilter("file:///home/masakura/tmp/sc")
+
+	l := sarif.ArtifactLocation{
+		URI: p("file:///home/masakura/tmp/sc/Controllers/HomeController.cs"),
+	}
+
+	target.convertToRelativePath2(&l, originaluri.NewBases(map[string]*sarif.ArtifactLocation{}))
+
+	assert.Equal(t, artifactLocation{
+		URI:       "Controllers/HomeController.cs",
+		URIBaseID: "%SRCROOT%",
+	}, extract(&l))
+}
+
+func TestConvertToRelativePathWIthBaseURI(t *testing.T) {
+	target := NewRelativePathFilter("file:///builds/jetbrains-ide-plugins/semgrep-plugin")
+	bases := originaluri.NewBases(map[string]*sarif.ArtifactLocation{
+		"SRCROOT": {URI: p("file:///root")},
+	})
+
+	l := sarif.ArtifactLocation{
+		URI:       p("../builds/jetbrains-ide-plugins/semgrep-plugin/settings.gradle.kts"),
+		URIBaseId: p("%SRCROOT%"),
+	}
+
+	target.convertToRelativePath2(&l, bases)
+
+	assert.Equal(t, artifactLocation{
+		URI:       "settings.gradle.kts",
+		URIBaseID: "%SRCROOT%",
+	}, extract(&l))
+}
+
+func p(s string) *string {
+	return &s
 }
 
 type artifactLocation struct {
