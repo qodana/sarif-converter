@@ -27,6 +27,7 @@ func NewFakeIO() FakeIO {
 		files: map[string][]byte{
 			"semgrep.sarif":       fixture.SemgrepSarif(),
 			"security-scan.sarif": fixture.SecurityCodeScan(),
+			"multi-run.sarif":     fixture.MultiRunSarif(),
 		},
 	}
 }
