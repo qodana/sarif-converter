@@ -1,4 +1,4 @@
-package main
+package command
 
 import (
 	"codequality-converter/converter"
@@ -9,13 +9,14 @@ import (
 	"fmt"
 )
 
-type Converter struct {
-	reader file.Reader
-	writer file.Writer
-	io     file.IO
+type Command struct {
+	io file.IO
 }
 
-func (c Converter) convert(args []string) error {
+var version = "unknown"
+var revision = "unknown"
+
+func (c Command) Convert(args []string) error {
 	arguments, err := c.parse(args)
 	if err != nil {
 		return err
@@ -44,7 +45,7 @@ func (c Converter) convert(args []string) error {
 	return c.write(arguments, output)
 }
 
-func (c Converter) parse(args []string) (*argument.Arguments, error) {
+func (c Command) parse(args []string) (*argument.Arguments, error) {
 	arguments, err := argument.Parse(args)
 	if err != nil {
 		return nil, err
@@ -58,32 +59,30 @@ func (c Converter) parse(args []string) (*argument.Arguments, error) {
 	return arguments, nil
 }
 
-func (c Converter) write(arguments *argument.Arguments, output []byte) error {
-	return c.writer.Write(arguments.Output(), output)
+func (c Command) write(arguments *argument.Arguments, output []byte) error {
+	return c.io.Write(arguments.Output(), output)
 }
 
-func (c Converter) read(inputs file.Input) ([]byte, error) {
-	return inputs.Read(c.reader)
+func (c Command) read(inputs file.Input) ([]byte, error) {
+	return inputs.Read(c.io)
 }
 
-func (c Converter) runFilter(input []byte, arguments *argument.Arguments) ([]byte, error) {
+func (c Command) runFilter(input []byte, arguments *argument.Arguments) ([]byte, error) {
 	return filter.AllSarifFilter(input, arguments)
 }
 
-func (c Converter) runConvert(input []byte, arguments *argument.Arguments) ([]byte, error) {
+func (c Command) runConvert(input []byte, arguments *argument.Arguments) ([]byte, error) {
 	sarifConverter := converter.GetConverter(arguments.Type())
 	return sarifConverter.Convert(input)
 
 }
 
-func (c Converter) showVersion(arguments *argument.Arguments) {
+func (c Command) showVersion(arguments *argument.Arguments) {
 	fmt.Println(arguments.Command() + " version " + version + " (" + revision + ")")
 }
 
-func newConverterWith(io file.IO) Converter {
-	return Converter{
-		reader: io,
-		writer: io,
-		io:     io,
+func NewCommand(io file.IO) Command {
+	return Command{
+		io: io,
 	}
 }

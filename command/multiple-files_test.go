@@ -1,4 +1,4 @@
-package main
+package command
 
 import (
 	"codequality-converter/testing/file"
@@ -9,9 +9,9 @@ import (
 
 func TestConvertMultipleFiles(t *testing.T) {
 	files := file.NewFakeIO()
-	target := newConverterWith(files)
+	target := NewCommand(files)
 
-	var _ = target.convert([]string{
+	var _ = target.Convert([]string{
 		"sarif-converter",
 		"--type=codequality",
 		"semgrep.sarif",
