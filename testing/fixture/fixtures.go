@@ -54,6 +54,10 @@ func ReSharperNoInspectionsSarif() []byte {
 	return resharperNoInspectionsSarif
 }
 
+func SemgrepSarif() []byte {
+	return semgrepSarif
+}
+
 func SecurityCodeScan() []byte {
 	return securityCodeScanSarif
 }

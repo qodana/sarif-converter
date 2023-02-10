@@ -19,7 +19,7 @@ Linux only!
 ```
 $ sarif-converter --help
 Usage:
-  sarif-converter [OPTIONS] input.sarif output.json
+  sarif-converter [OPTIONS] input1.sarif [input2.sarif...] output.json
 
 Application Options:
   -v, --version                      Show version.
