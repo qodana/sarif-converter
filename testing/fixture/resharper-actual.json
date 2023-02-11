@@ -1,0 +1,200 @@
+[
+  {
+    "description": "Method 'Run' is never used",
+    "Fingerprint": "48c4038d1ca84df64b630538acff6ec38a0d9c95864ee27c3bfcae83ab51bd2d",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/CPU.cs",
+      "lines": {
+        "begin": 20
+      }
+    }
+  },
+  {
+    "description": "Function never returns",
+    "Fingerprint": "8782184eb2116a70a4870f122d8919f508f85cc572eb85eeb090ce62b7fab712",
+    "severity": "info",
+    "location": {
+      "path": "Intel8086.Tests/CPU.cs",
+      "lines": {
+        "begin": 23
+      }
+    }
+  },
+  {
+    "description": "Constructor 'Address' can be made private",
+    "Fingerprint": "d704aaf2ee9a14e90e05b2e8cd970e41fd10c1dba848567cdb2f7b77675c662e",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/Memory/Address.cs",
+      "lines": {
+        "begin": 20
+      }
+    }
+  },
+  {
+    "description": "Method 'Poke' can be made private",
+    "Fingerprint": "4ee892c8c6b1fac034adf5d0ba3facbf78493f991ed00e5eee6b1d4099829d19",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/Memory/CPUMemory.cs",
+      "lines": {
+        "begin": 32
+      }
+    }
+  },
+  {
+    "description": "Using directive is not required by the code and can be safely removed",
+    "Fingerprint": "9eef5efa4a9519b809dfd1b9dfe18b4a62f4b1f015820c775e5e40187e09eca9",
+    "severity": "info",
+    "location": {
+      "path": "Intel8086.Tests/Memory/ProgramMemory.cs",
+      "lines": {
+        "begin": 3
+      }
+    }
+  },
+  {
+    "description": "Using directive is not required by the code and can be safely removed",
+    "Fingerprint": "a9cfc22f04cf522b3aa34964401e9d95e5c444338ac206a1d3693e71ee41d87e",
+    "severity": "info",
+    "location": {
+      "path": "Intel8086.Tests/Operations/Mov/MovImmediateWordToRegisterTest.cs",
+      "lines": {
+        "begin": 3
+      }
+    }
+  },
+  {
+    "description": "Using directive is not required by the code and can be safely removed",
+    "Fingerprint": "a3013b13370cdbfcb99a8d5bd946c19a8a4a882d5eecf45b2069ab766d7540c7",
+    "severity": "info",
+    "location": {
+      "path": "Intel8086.Tests/Operations/Mov/MovMemoryToRegisterWordTest.cs",
+      "lines": {
+        "begin": 3
+      }
+    }
+  },
+  {
+    "description": "Class 'TestCase' is never used",
+    "Fingerprint": "86a2badade582616232ff7ca10a041c85e49017531aea7d98335018785ee1fef",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/Operations/Mov/Testing/TestCase.cs",
+      "lines": {
+        "begin": 8
+      }
+    }
+  },
+  {
+    "description": "Method 'Word' is never used",
+    "Fingerprint": "8e0892e3965d84618b50921387dcfbbc4a0361bb45ce9e418475e23d7e171bf2",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/Operations/Mov/Testing/TestCase.cs",
+      "lines": {
+        "begin": 10
+      }
+    }
+  },
+  {
+    "description": "Method 'Byte' is never used",
+    "Fingerprint": "c1da86e6e5806f2e4c9df8ae4fba4947989b4b1da7c01bcf66e0738aac060701",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/Operations/Mov/Testing/TestCase.cs",
+      "lines": {
+        "begin": 16
+      }
+    }
+  },
+  {
+    "description": "Property 'Opcode' is never used",
+    "Fingerprint": "60997b36d6a1273dbc80d754b33f402b85f5c3980d32f52d040e891db49d1899",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/Operations/Mov/Testing/TestCase.cs",
+      "lines": {
+        "begin": 36
+      }
+    }
+  },
+  {
+    "description": "Method 'RegisterValue' is never used",
+    "Fingerprint": "74d7083e6109e3f2638ecc326d0f58833c70dfa0428644305e5c725bc7efcf72",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/Operations/Mov/Testing/TestCase.cs",
+      "lines": {
+        "begin": 38
+      }
+    }
+  },
+  {
+    "description": "Parameter 'cpu' is only passed to itself",
+    "Fingerprint": "2702dce8986642d75d0d416e83fe0f4a56adb39691a8cf137e3d13943d40199c",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/Operations/Parsing/IParser.cs",
+      "lines": {
+        "begin": 8
+      }
+    }
+  },
+  {
+    "description": "Constructor 'ParserCollection' can be made protected",
+    "Fingerprint": "6f74966f28b03dd982154cda080ff4e060d1bd35bf2dcbb1c8b0fccdac2bd6bd",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/Operations/Parsing/ParserCollection.cs",
+      "lines": {
+        "begin": 13
+      }
+    }
+  },
+  {
+    "description": "Qualifier is redundant",
+    "Fingerprint": "dbb98ab5dd2aa616b141017b5d9b08d070f8453b32ab365cd3fa8f9317c27a8e",
+    "severity": "info",
+    "location": {
+      "path": "Intel8086.Tests/Operations/Parsing/Register/RegByte.cs",
+      "lines": {
+        "begin": 10
+      }
+    }
+  },
+  {
+    "description": "Method 'Dump' is never used",
+    "Fingerprint": "28a000692a89f93475acfd662706405fa85e896fb14e9c3211177b47cceb24c0",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/Register/Registers.cs",
+      "lines": {
+        "begin": 40
+      }
+    }
+  },
+  {
+    "description": "Property 'Value' can be made private",
+    "Fingerprint": "3b6acd384a53a33cb5a4f325da6e86d580cd31e4032c0b30174ae4b673990aad",
+    "severity": "minor",
+    "location": {
+      "path": "Intel8086.Tests/Store/ImmediateSource.cs",
+      "lines": {
+        "begin": 10
+      }
+    }
+  },
+  {
+    "description": "Using directive is not required by the code and can be safely removed",
+    "Fingerprint": "d9510048dc763f08580af3602afab7b5dcdb72895b4411b63138bf6c4a920e77",
+    "severity": "info",
+    "location": {
+      "path": "Intel8086.Tests/Store/ISource.cs",
+      "lines": {
+        "begin": 1
+      }
+    }
+  }
+]

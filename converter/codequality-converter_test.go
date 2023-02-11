@@ -18,14 +18,6 @@ func TestConvert(t *testing.T) {
 	assert.Equal(t, fixtures.ActualJson(), string(report))
 }
 
-func TestConvertFromReSharperInspectCode(t *testing.T) {
-	report, _ := GetConverter("codequality").Convert(fixture.ReSharperSarif())
-
-	result := codeQuality(report)
-
-	assert.Equal(t, 18, len(result))
-}
-
 func TestConvertFromReShaperInspectCodeNoInspections(t *testing.T) {
 	report, _ := GetConverter("codequality").Convert(fixture.ReSharperNoInspectionsSarif())
 
