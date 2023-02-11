@@ -17,7 +17,7 @@ func TestFingerprint(t *testing.T) {
 		},
 	})
 
-	assert.Equal(t, "32f1254f9dd83b6e3c0bb4609fe0c2b6c5629c29d1061e89dfe0741e70cf8e91", actual)
+	assert.Equal(t, "f42130385113fe8a11be6c5d542d99f62ef04c44155294c4e38ca005be422688", actual)
 }
 
 func p(s string) *string {

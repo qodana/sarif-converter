@@ -1,7 +1,7 @@
 [
   {
     "description": "File must end with a newline (\\n)",
-    "Fingerprint": "32ad9be2539fc0f3cb8a912090a7f3a9e30f5b6e04c71d1b0d0715da72d7e21b",
+    "fingerprint": "2ef3712f9616bea08583040cb74a501b77cc6750e9705d08afeb183d5ef66c97",
     "severity": "critical",
     "location": {
       "path": "settings.gradle.kts",
