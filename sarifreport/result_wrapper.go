@@ -17,8 +17,8 @@ func NewResultWrapper(result *sarif.Result, run *SarifRunWrapper) ResultWrapper 
 	}
 }
 
-func (r *ResultWrapper) CodeQualityElement() codequality.CodeQualityElement {
-	return codequality.CodeQualityElement{
+func (r *ResultWrapper) CodeQualityElement() codequality.Element {
+	return codequality.Element{
 		Description: r.description(),
 		Fingerprint: r.fingerprint(),
 		Severity:    r.severity(),
@@ -31,18 +31,23 @@ func (r *ResultWrapper) severity() string {
 }
 
 func (r *ResultWrapper) fingerprint() string {
-	return Fingerprint(r.location(), r.description())
+	element := codequality.Element{
+		Description: r.description(),
+		Severity:    r.severity(),
+		Location:    r.location(),
+	}
+	return codequality.Fingerprint(element)
 }
 
-func (r *ResultWrapper) location() codequality.CodeQualityLocation {
-	return codequality.CodeQualityLocation{
+func (r *ResultWrapper) location() codequality.Location {
+	return codequality.Location{
 		Path:  r.path(),
 		Lines: r.lines(),
 	}
 }
 
-func (r *ResultWrapper) lines() codequality.CodeQualityLocationLine {
-	return codequality.CodeQualityLocationLine{
+func (r *ResultWrapper) lines() codequality.LocationLine {
+	return codequality.LocationLine{
 		Begin: *r.result.Locations[0].PhysicalLocation.Region.StartLine,
 	}
 }

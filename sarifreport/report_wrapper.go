@@ -10,7 +10,7 @@ type ReportWrapper struct {
 	runs  SarifRunsWrapper
 }
 
-func (r *ReportWrapper) CodeQualityElements() []codequality.CodeQualityElement {
+func (r *ReportWrapper) CodeQualityElements() []codequality.Element {
 	return r.runs.CodeQualityElements()
 }
 

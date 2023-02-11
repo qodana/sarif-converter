@@ -9,9 +9,9 @@ type SarifRunsWrapper struct {
 	target []*sarif.Run
 }
 
-func (w SarifRunsWrapper) CodeQualityElements() []codequality.CodeQualityElement {
+func (w SarifRunsWrapper) CodeQualityElements() []codequality.Element {
 	//goland:noinspection GoPreferNilSlice
-	result := []codequality.CodeQualityElement{}
+	result := []codequality.Element{}
 
 	for _, run := range w.runs() {
 		for _, element := range run.CodeQualityElements() {

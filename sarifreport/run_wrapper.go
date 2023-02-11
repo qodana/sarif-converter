@@ -9,9 +9,9 @@ type SarifRunWrapper struct {
 	run *sarif.Run
 }
 
-func (r *SarifRunWrapper) CodeQualityElements() []codequality.CodeQualityElement {
+func (r *SarifRunWrapper) CodeQualityElements() []codequality.Element {
 	//goland:noinspection GoPreferNilSlice
-	elements := []codequality.CodeQualityElement{}
+	elements := []codequality.Element{}
 
 	for _, result := range r.results() {
 		elements = append(elements, result.CodeQualityElement())

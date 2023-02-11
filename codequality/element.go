@@ -1,17 +1,17 @@
 package codequality
 
-type CodeQualityLocationLine struct {
+type LocationLine struct {
 	Begin int `json:"begin"`
 }
 
-type CodeQualityLocation struct {
-	Path  *string                 `json:"path"`
-	Lines CodeQualityLocationLine `json:"lines"`
+type Location struct {
+	Path  *string      `json:"path"`
+	Lines LocationLine `json:"lines"`
 }
 
-type CodeQualityElement struct {
-	Description *string             `json:"description"`
-	Fingerprint string              `json:"fingerprint"`
-	Severity    string              `json:"severity"`
-	Location    CodeQualityLocation `json:"location"`
+type Element struct {
+	Description *string  `json:"description"`
+	Fingerprint string   `json:"Fingerprint"`
+	Severity    string   `json:"severity"`
+	Location    Location `json:"location"`
 }

@@ -65,8 +65,8 @@ func toSarif(report []byte) *sarif.Report {
 	return s
 }
 
-func codeQuality(report []byte) []codequality.CodeQualityElement {
-	var result []codequality.CodeQualityElement
+func codeQuality(report []byte) []codequality.Element {
+	var result []codequality.Element
 	err := json.Unmarshal(report, &result)
 	if err != nil {
 		panic(err)
