@@ -11,6 +11,7 @@ Convert report from SARIF to other format reports.
 * [GitLab Semgrep analyzer](https://gitlab.com/gitlab-org/security-products/analyzers/semgrep)
 * [Security Code Scan](https://security-code-scan.github.io/) - static code analyzer for .NET
 * [ESLint](https://eslint.org/) - Used together with [SARIF formatter for ESLint](https://www.npmjs.com/package/@microsoft/eslint-formatter-sarif)
+* [ktlint](https://pinterest.github.io/ktlint/) - Kotlin linter
 
 
 ## Usage
