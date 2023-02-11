@@ -29,6 +29,7 @@ func NewFakeIO() FakeIO {
 			"security-scan.sarif": fixture.SecurityCodeScan(),
 			"multi-run.sarif":     fixture.MultiRunSarif(),
 			"ktlint.sarif":        fixture.KtlintSarif(),
+			"resharper.sarif":     fixture.ReSharperSarif(),
 		},
 	}
 }

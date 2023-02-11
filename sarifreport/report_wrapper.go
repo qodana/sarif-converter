@@ -1,22 +1,27 @@
 package sarifreport
 
 import (
-	"codequality-converter/codequality"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 )
 
 type ReportWrapper struct {
-	Sarif *sarif.Report
-	runs  SarifRunsWrapper
+	runs SarifRunsWrapper
 }
 
-func (r *ReportWrapper) CodeQualityElements() []codequality.CodeQualityElement {
-	return r.runs.CodeQualityElements()
+func (r *ReportWrapper) Issues() []Issue {
+	return r.runs.issues()
 }
 
-func NewReport(sarif *sarif.Report) ReportWrapper {
-	return ReportWrapper{
-		Sarif: sarif,
-		runs:  newSarifRunsWrapper(sarif.Runs),
+func NewReport(sarif *sarif.Report) *ReportWrapper {
+	return &ReportWrapper{
+		runs: newSarifRunsWrapper(sarif.Runs),
 	}
+}
+
+func FromBytes(data []byte) (*ReportWrapper, error) {
+	report, err := sarif.FromBytes(data)
+	if err != nil {
+		return nil, err
+	}
+	return NewReport(report), nil
 }

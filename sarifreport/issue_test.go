@@ -12,14 +12,14 @@ func TestLevelResultOnly(t *testing.T) {
 	result := makeWrapper(makeResult("rule1", &level),
 		makeRule("rule1", ""))
 
-	assert.Equal(t, level, result.level())
+	assert.Equal(t, level, result.Level())
 }
 
 func TestLevelNone(t *testing.T) {
 	result := makeWrapper(makeResult("rule1", nil),
 		makeRule("rule1", ""))
 
-	assert.Equal(t, "none", result.level())
+	assert.Equal(t, "none", result.Level())
 }
 
 func TestLevelRuleOnly(t *testing.T) {
@@ -28,15 +28,15 @@ func TestLevelRuleOnly(t *testing.T) {
 	result := makeWrapper(makeResult("rule1", nil),
 		makeRule("rule1", level))
 
-	assert.Equal(t, level, result.level())
+	assert.Equal(t, level, result.Level())
 }
 
-func makeWrapper(result sarif.Result, rule sarif.ReportingDescriptor) ResultWrapper {
+func makeWrapper(result sarif.Result, rule sarif.ReportingDescriptor) Issue {
 	var wrapper = makeRunWrapper(rule)
 
-	return ResultWrapper{
+	return Issue{
 		result: &result,
-		run:    &wrapper,
+		run:    wrapper,
 	}
 }
 

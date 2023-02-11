@@ -18,14 +18,6 @@ func TestConvert(t *testing.T) {
 	assert.Equal(t, fixtures.ActualJson(), string(report))
 }
 
-func TestConvertFromReSharperInspectCode(t *testing.T) {
-	report, _ := GetConverter("codequality").Convert(fixture.ReSharperSarif())
-
-	result := codeQuality(report)
-
-	assert.Equal(t, 18, len(result))
-}
-
 func TestConvertFromReShaperInspectCodeNoInspections(t *testing.T) {
 	report, _ := GetConverter("codequality").Convert(fixture.ReSharperNoInspectionsSarif())
 
@@ -65,8 +57,8 @@ func toSarif(report []byte) *sarif.Report {
 	return s
 }
 
-func codeQuality(report []byte) []codequality.CodeQualityElement {
-	var result []codequality.CodeQualityElement
+func codeQuality(report []byte) []codequality.Element {
+	var result []codequality.Element
 	err := json.Unmarshal(report, &result)
 	if err != nil {
 		panic(err)
