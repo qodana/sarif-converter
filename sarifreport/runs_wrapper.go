@@ -1,7 +1,6 @@
 package sarifreport
 
 import (
-	"codequality-converter/codequality"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 )
 
@@ -9,25 +8,21 @@ type SarifRunsWrapper struct {
 	target []*sarif.Run
 }
 
-func (w SarifRunsWrapper) CodeQualityElements() []codequality.Element {
-	//goland:noinspection GoPreferNilSlice
-	result := []codequality.Element{}
+func (w SarifRunsWrapper) issues() []Issue {
+	result := make([]Issue, 0)
 
 	for _, run := range w.runs() {
-		for _, element := range run.CodeQualityElements() {
-			result = append(result, element)
-		}
+		result = append(result, run.issues()...)
 	}
 
 	return result
 }
 
 func (w SarifRunsWrapper) runs() []SarifRunWrapper {
-	//goland:noinspection ALL
-	result := []SarifRunWrapper{}
+	result := make([]SarifRunWrapper, len(w.target))
 
-	for _, run := range w.target {
-		result = append(result, newSarifRunWrapper(run))
+	for i, run := range w.target {
+		result[i] = newSarifRunWrapper(run)
 	}
 
 	return result

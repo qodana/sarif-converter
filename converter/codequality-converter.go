@@ -1,9 +1,8 @@
 package converter
 
 import (
+	"codequality-converter/codequality"
 	"codequality-converter/sarifreport"
-	"encoding/json"
-	"github.com/owenrumney/go-sarif/v2/sarif"
 )
 
 type codeQualityConverter struct {
@@ -14,14 +13,14 @@ func (c codeQualityConverter) Type() string {
 }
 
 func (c codeQualityConverter) Convert(input []byte) ([]byte, error) {
-	data, err := sarif.FromBytes(input)
+	data, err := sarifreport.FromBytes(input)
 	if err != nil {
 		return nil, err
 	}
 
-	report := sarifreport.NewReport(data)
+	report := codequality.ConvertFrom(*data)
 
-	output, err := json.MarshalIndent(report.CodeQualityElements(), "", "  ")
+	output, err := report.Json()
 	if err != nil {
 		return nil, err
 	}
