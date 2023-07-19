@@ -41,6 +41,15 @@ func TestConvertFromEslintSarif(t *testing.T) {
 	assert.Equal(t, "eval with argument of type Identifier", *result[0].Description)
 }
 
+func TestConvertFromBinSkimSarif(t *testing.T) {
+	report, _ := GetConverter("codequality").Convert(fixture.BinSkim())
+
+	result := codeQuality(report)
+
+	assert.Nil(t, result[0].Location.Lines)
+	assert.Equal(t, "Application code should be compiled with the Spectre mitigations switch (/Qspectre) and toolsets that support it.", *result[0].Description)
+}
+
 func sarifToBytes(report *sarif.Report) []byte {
 	j, err := json.Marshal(report)
 	if err != nil {

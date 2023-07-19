@@ -11,10 +11,10 @@ type Issue struct {
 
 type Location struct {
 	Path      *string
-	StartLine int
+	StartLine *int
 }
 
-func newIssue(result *sarif.Result, run SarifRunWrapper) Issue {
+func NewIssue(result *sarif.Result, run SarifRunWrapper) Issue {
 	return Issue{
 		result: result,
 		run:    run,
@@ -40,21 +40,31 @@ func (i *Issue) path() *string {
 	return i.result.Locations[0].PhysicalLocation.ArtifactLocation.URI
 }
 
-func (i *Issue) description() *string {
-	return i.result.Message.Text
-}
-
 func (i *Issue) rule() RuleWrapper {
 	return i.run.FindRule(*i.result.RuleID)
 }
 
 func (i *Issue) Message() *string {
-	return i.result.Message.Text
+	// https: //docs.oasis-open.org/sarif/sarif/v2.0/csprd02/sarif-v2.0-csprd02.html#_Toc10127840
+
+	if i.result.Message.Text != nil {
+		return i.result.Message.Text
+	}
+
+	return i.rule().Message()
 }
 
 func (i *Issue) Location() Location {
+	region := i.result.Locations[0].PhysicalLocation.Region
 	return Location{
 		Path:      i.path(),
-		StartLine: *i.result.Locations[0].PhysicalLocation.Region.StartLine,
+		StartLine: startLine(region),
 	}
+}
+
+func startLine(region *sarif.Region) *int {
+	if region == nil {
+		return nil
+	}
+	return region.StartLine
 }

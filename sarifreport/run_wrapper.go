@@ -17,7 +17,7 @@ func (r SarifRunWrapper) issues() []Issue {
 	issues := make([]Issue, len(r.run.Results))
 
 	for i, result := range r.run.Results {
-		issues[i] = newIssue(result, r)
+		issues[i] = NewIssue(result, r)
 	}
 
 	return issues
