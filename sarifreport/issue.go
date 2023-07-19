@@ -11,10 +11,10 @@ type Issue struct {
 
 type Location struct {
 	Path      *string
-	StartLine int
+	StartLine *int
 }
 
-func newIssue(result *sarif.Result, run SarifRunWrapper) Issue {
+func NewIssue(result *sarif.Result, run SarifRunWrapper) Issue {
 	return Issue{
 		result: result,
 		run:    run,
@@ -53,8 +53,16 @@ func (i *Issue) Message() *string {
 }
 
 func (i *Issue) Location() Location {
+	region := i.result.Locations[0].PhysicalLocation.Region
 	return Location{
 		Path:      i.path(),
-		StartLine: *i.result.Locations[0].PhysicalLocation.Region.StartLine,
+		StartLine: startLine(region),
 	}
+}
+
+func startLine(region *sarif.Region) *int {
+	if region == nil {
+		return nil
+	}
+	return region.StartLine
 }

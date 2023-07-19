@@ -41,6 +41,14 @@ func TestConvertFromEslintSarif(t *testing.T) {
 	assert.Equal(t, "eval with argument of type Identifier", *result[0].Description)
 }
 
+func TestConvertFromBinSkimSarif(t *testing.T) {
+	report, _ := GetConverter("codequality").Convert(fixture.BinSkim())
+
+	result := codeQuality(report)
+
+	assert.Nil(t, result[0].Location.Lines)
+}
+
 func sarifToBytes(report *sarif.Report) []byte {
 	j, err := json.Marshal(report)
 	if err != nil {

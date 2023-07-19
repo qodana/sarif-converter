@@ -29,11 +29,16 @@ func (i issueWrapper) severity() string {
 func (i issueWrapper) location() Location {
 	location := i.issue.Location()
 	return Location{
-		Path: location.Path,
-		Lines: LocationLine{
-			Begin: location.StartLine,
-		},
+		Path:  location.Path,
+		Lines: lines(location),
 	}
+}
+
+func lines(location sarifreport.Location) *LocationLine {
+	if location.StartLine == nil {
+		return nil
+	}
+	return &LocationLine{Begin: *location.StartLine}
 }
 
 func newIssueWrapper(issue sarifreport.Issue) issueWrapper {

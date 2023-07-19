@@ -25,6 +25,9 @@ var securityCodeScanSarif []byte
 //go:embed eslint.sarif
 var eslint []byte
 
+//go:embed binskim.sarif
+var binskim []byte
+
 //go:embed gl-sast-report.json
 var sast []byte
 
@@ -77,6 +80,10 @@ func SecurityCodeScan() []byte {
 
 func Eslint() []byte {
 	return eslint
+}
+
+func BinSkim() []byte {
+	return binskim
 }
 
 func Sast() []byte {
