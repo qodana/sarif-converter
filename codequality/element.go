@@ -6,7 +6,7 @@ type LocationLine struct {
 
 type Location struct {
 	Path  *string       `json:"path"`
-	Lines *LocationLine `json:"lines"`
+	Lines *LocationLine `json:"lines,omitempty"`
 }
 
 type Element struct {
