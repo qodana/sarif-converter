@@ -10,13 +10,13 @@ func (w Wrapper) exists() bool {
 	return w.invocation != nil
 }
 
-func (w Wrapper) FindConfiguration(descriptor *sarif.ReportingDescriptor) *sarif.ReportingConfiguration {
-	if descriptor == nil {
+func (w Wrapper) FindConfiguration(descriptorID *string) *sarif.ReportingConfiguration {
+	if descriptorID == nil {
 		return nil
 	}
 
 	for _, override := range w.invocation.RuleConfigurationOverrides {
-		if *override.Descriptor.Id == descriptor.ID {
+		if *override.Descriptor.Id == *descriptorID {
 			return override.Configuration
 		}
 	}

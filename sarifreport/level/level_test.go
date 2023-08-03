@@ -1,6 +1,8 @@
 package level
 
 import (
+	"codequality-converter/sarifreport/invocation"
+	"codequality-converter/sarifreport/rule"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 	"github.com/stretchr/testify/assert"
 	"testing"
@@ -9,19 +11,21 @@ import (
 func TestGetLevel(t *testing.T) {
 	actual := GetLevel(&sarif.Result{
 		Level: p("warning"),
-	}, fakeRun())
+	},
+		fakeInvocations(),
+		fakeRules())
 
 	assert.Equal(t, "warning", actual)
 }
 
 func TestGetLevelNoLevel(t *testing.T) {
-	actual := GetLevel(&sarif.Result{}, fakeRun())
+	actual := GetLevel(&sarif.Result{}, fakeInvocations(), fakeRules())
 
 	assert.Equal(t, "none", actual)
 }
 
 func TestGetLevelNoLabelAndKindIsPass(t *testing.T) {
-	actual := GetLevel(&sarif.Result{Kind: p("pass")}, nil)
+	actual := GetLevel(&sarif.Result{Kind: p("pass")}, fakeInvocations(), fakeRules())
 
 	assert.Equal(t, "none", actual)
 }
@@ -30,7 +34,9 @@ func TestGetLevelNoLabelAndKindIsPassAndHasRule(t *testing.T) {
 	actual := GetLevel(&sarif.Result{
 		Kind:   p("pass"),
 		RuleID: p("error1"),
-	}, fakeRun())
+	},
+		fakeInvocations(),
+		fakeRules())
 
 	assert.Equal(t, "none", actual)
 }
@@ -38,7 +44,9 @@ func TestGetLevelNoLabelAndKindIsPassAndHasRule(t *testing.T) {
 func TestGetLevelKindIsFailAndNoLevel(t *testing.T) {
 	actual := GetLevel(&sarif.Result{
 		Kind: p("fail"),
-	}, fakeRun())
+	},
+		fakeInvocations(),
+		fakeRules())
 
 	assert.Equal(t, "warning", actual)
 }
@@ -50,7 +58,9 @@ func TestGetLevelKindIsFailAndHasDefaultConfiguration(t *testing.T) {
 		Provenance: &sarif.ResultProvenance{
 			InvocationIndex: pi(1),
 		},
-	}, fakeRun())
+	},
+		fakeInvocations(),
+		fakeRules())
 
 	assert.Equal(t, "note", actual)
 }
@@ -73,6 +83,14 @@ func fakeRun() *sarif.Run {
 	return run
 }
 
+func fakeInvocations() invocation.Wrappers {
+	return invocation.NewWrappers(fakeRun())
+}
+
+func fakeRules() rule.Wrappers {
+	return rule.NewWrappers(fakeRun())
+}
+
 func addRuleWithLevel(run *sarif.Run, ruleId string, level string) {
 	r := run.AddRule(ruleId)
 	r.DefaultConfiguration = &sarif.ReportingConfiguration{
@@ -81,12 +99,12 @@ func addRuleWithLevel(run *sarif.Run, ruleId string, level string) {
 }
 
 func addInvocation(run *sarif.Run, descriptorId string, level string) {
-	invocation := sarif.NewInvocation()
+	i := sarif.NewInvocation()
 	override := sarif.NewConfigurationOverride()
 	override.Descriptor = newReportingDescriptorReference(descriptorId)
 	override.Configuration = newReportingConfiguration(level)
-	invocation.AddRuleConfigurationOverride(override)
-	run.AddInvocations(invocation)
+	i.AddRuleConfigurationOverride(override)
+	run.AddInvocations(i)
 }
 
 func newReportingConfiguration(level string) *sarif.ReportingConfiguration {

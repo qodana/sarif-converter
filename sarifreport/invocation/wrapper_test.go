@@ -9,7 +9,7 @@ import (
 func TestFindConfiguration(t *testing.T) {
 	target := newWrapper(fakeInvocation())
 
-	configuration := target.FindConfiguration(&sarif.ReportingDescriptor{ID: "error1"})
+	configuration := target.FindConfiguration(p("error1"))
 
 	assert.Equal(t, "error", configuration.Level)
 }
@@ -17,7 +17,7 @@ func TestFindConfiguration(t *testing.T) {
 func TestFindConfiguration_None(t *testing.T) {
 	target := newWrapper(fakeInvocation())
 
-	configuration := target.FindConfiguration(&sarif.ReportingDescriptor{ID: "not-found"})
+	configuration := target.FindConfiguration(p("not-found"))
 
 	assert.Nil(t, configuration)
 }
@@ -47,4 +47,8 @@ func newConfigurationOverride(descriptorId string, defaultLevel string) *sarif.C
 			Level: defaultLevel,
 		},
 	}
+}
+
+func p(s string) *string {
+	return &s
 }
