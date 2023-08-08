@@ -2,6 +2,7 @@ package level
 
 import (
 	"codequality-converter/sarifreport/invocation"
+	"codequality-converter/sarifreport/kind"
 	"codequality-converter/sarifreport/rule"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 )
@@ -11,7 +12,7 @@ func GetLevel(result *sarif.Result, invocations invocation.Wrappers, rules rule.
 		return *result.Level
 	}
 
-	if kindIsFail(result) {
+	if kind.GetKind(result) == "fail" {
 		r := rules.Find(result)
 
 		configuration := invocations.Find(result).FindConfiguration(r.ID())
@@ -28,11 +29,4 @@ func GetLevel(result *sarif.Result, invocations invocation.Wrappers, rules rule.
 	}
 
 	return "none"
-}
-
-func kindIsFail(r *sarif.Result) bool {
-	if r.Kind == nil {
-		return false
-	}
-	return *r.Kind == "fail"
 }

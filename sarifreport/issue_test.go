@@ -15,13 +15,6 @@ func TestLevelResultOnly(t *testing.T) {
 	assert.Equal(t, level, result.Level())
 }
 
-func TestLevelNone(t *testing.T) {
-	result := makeWrapper(makeResult("rule1", nil),
-		makeRule("rule1", ""))
-
-	assert.Equal(t, "none", result.Level())
-}
-
 func TestLevelRuleOnly(t *testing.T) {
 	level := "note"
 

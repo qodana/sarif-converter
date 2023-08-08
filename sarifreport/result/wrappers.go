@@ -45,7 +45,7 @@ func NewWrappers(results []*sarif.Result, invocations invocation.Wrappers, rules
 	list := make([]Wrapper, 0)
 
 	for _, result := range results {
-		list = append(list, newWrapper(result, invocations, rules))
+		list = append(list, NewWrapper(result, invocations, rules))
 	}
 	return Wrappers{results: list}
 }

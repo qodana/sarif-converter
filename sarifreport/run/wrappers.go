@@ -9,7 +9,7 @@ type Wrappers struct {
 	runs []Wrapper
 }
 
-func (w Wrappers) Wrappers() result.Wrappers {
+func (w Wrappers) Results() result.Wrappers {
 	list := result.EmptyWrappers()
 
 	for _, run := range w.runs {

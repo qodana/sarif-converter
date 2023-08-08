@@ -23,7 +23,7 @@ func TestLevel(t *testing.T) {
 	invocations := invocation.NewWrappers(r)
 	rules := rule.NewWrappers(r)
 
-	target := newWrapper(
+	target := NewWrapper(
 		&sarif.Result{Kind: p("warning"), Level: p("note")},
 		invocations,
 		rules,

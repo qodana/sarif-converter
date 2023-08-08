@@ -11,42 +11,36 @@ import (
 func TestGetLevel(t *testing.T) {
 	actual := GetLevel(&sarif.Result{
 		Level: p("warning"),
-	},
-		fakeInvocations(),
-		fakeRules())
+	}, fakeInvocations(), fakeRules())
 
 	assert.Equal(t, "warning", actual)
 }
 
-func TestGetLevelNoLevel(t *testing.T) {
+func TestGetLevel_NoLevel(t *testing.T) {
 	actual := GetLevel(&sarif.Result{}, fakeInvocations(), fakeRules())
 
-	assert.Equal(t, "none", actual)
+	assert.Equal(t, "warning", actual)
 }
 
-func TestGetLevelNoLabelAndKindIsPass(t *testing.T) {
+func TestGetLevel_NoLabelAndKindIsPass(t *testing.T) {
 	actual := GetLevel(&sarif.Result{Kind: p("pass")}, fakeInvocations(), fakeRules())
 
 	assert.Equal(t, "none", actual)
 }
 
-func TestGetLevelNoLabelAndKindIsPassAndHasRule(t *testing.T) {
+func TestGetLevel_NoLabelAndKindIsPassAndHasRule(t *testing.T) {
 	actual := GetLevel(&sarif.Result{
 		Kind:   p("pass"),
 		RuleID: p("error1"),
-	},
-		fakeInvocations(),
-		fakeRules())
+	}, fakeInvocations(), fakeRules())
 
 	assert.Equal(t, "none", actual)
 }
 
-func TestGetLevelKindIsFailAndNoLevel(t *testing.T) {
+func TestGetLevel_KindIsFailAndNoLevel(t *testing.T) {
 	actual := GetLevel(&sarif.Result{
 		Kind: p("fail"),
-	},
-		fakeInvocations(),
-		fakeRules())
+	}, fakeInvocations(), fakeRules())
 
 	assert.Equal(t, "warning", actual)
 }
@@ -58,9 +52,7 @@ func TestGetLevelKindIsFailAndHasDefaultConfiguration(t *testing.T) {
 		Provenance: &sarif.ResultProvenance{
 			InvocationIndex: pi(1),
 		},
-	},
-		fakeInvocations(),
-		fakeRules())
+	}, fakeInvocations(), fakeRules())
 
 	assert.Equal(t, "note", actual)
 }

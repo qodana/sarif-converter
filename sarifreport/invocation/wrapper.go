@@ -14,6 +14,9 @@ func (w Wrapper) FindConfiguration(descriptorID *string) *sarif.ReportingConfigu
 	if descriptorID == nil {
 		return nil
 	}
+	if w.invocation == nil {
+		return nil
+	}
 
 	for _, override := range w.invocation.RuleConfigurationOverrides {
 		if *override.Descriptor.Id == *descriptorID {

@@ -22,5 +22,5 @@ func TestWrappersResults(t *testing.T) {
 		},
 	})
 
-	assert.Equal(t, []string{"run1 message1", "run1 message2", "run2 message1"}, messages(target.Wrappers()))
+	assert.Equal(t, []string{"run1 message1", "run1 message2", "run2 message1"}, messages(target.Results()))
 }

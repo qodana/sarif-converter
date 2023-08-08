@@ -1,9 +1,13 @@
 package sarifreport
 
 import (
+	"codequality-converter/sarifreport/invocation"
+	"codequality-converter/sarifreport/result"
+	"codequality-converter/sarifreport/rule"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 )
 
+// TOOD Deprecated
 type Issue struct {
 	result *sarif.Result
 	run    SarifRunWrapper
@@ -22,18 +26,8 @@ func newIssue(result *sarif.Result, run SarifRunWrapper) Issue {
 }
 
 func (i *Issue) Level() string {
-	// https://docs.oasis-open.org/sarif/sarif/v2.0/csprd02/sarif-v2.0-csprd02.html#_Toc10127839
-
-	if i.result.Level != nil {
-		return *i.result.Level
-	}
-
-	var d = i.rule().DefaultLevel()
-	if d != "" {
-		return d
-	}
-
-	return "none"
+	r := result.NewWrapper(i.result, invocation.NewWrappers(i.run.run), rule.NewWrappers(i.run.run))
+	return r.Level()
 }
 
 func (i *Issue) path() *string {
