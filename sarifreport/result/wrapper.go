@@ -8,13 +8,23 @@ import (
 )
 
 type Wrapper struct {
-	result *sarif.Result
+	result      *sarif.Result
+	invocations invocation.Wrappers
+	rules       rule.Wrappers
 }
 
-func (w Wrapper) Level(invocations invocation.Wrappers, runs rule.Wrappers) string {
-	return level.GetLevel(w.result, invocations, runs)
+func (w Wrapper) Level() string {
+	return level.GetLevel(w.result, w.invocations, w.rules)
 }
 
-func newWrapper(result *sarif.Result) Wrapper {
-	return Wrapper{result: result}
+func (w Wrapper) Message() *string {
+	return w.result.Message.Text
+}
+
+func newWrapper(result *sarif.Result, invocations invocation.Wrappers, rules rule.Wrappers) Wrapper {
+	return Wrapper{
+		result:      result,
+		invocations: invocations,
+		rules:       rules,
+	}
 }

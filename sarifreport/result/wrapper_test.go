@@ -23,9 +23,13 @@ func TestLevel(t *testing.T) {
 	invocations := invocation.NewWrappers(r)
 	rules := rule.NewWrappers(r)
 
-	target := newWrapper(&sarif.Result{Kind: p("warning"), Level: p("note")})
+	target := newWrapper(
+		&sarif.Result{Kind: p("warning"), Level: p("note")},
+		invocations,
+		rules,
+	)
 
-	assert.Equal(t, "note", target.Level(invocations, rules))
+	assert.Equal(t, "note", target.Level())
 }
 
 func p(s string) *string {
