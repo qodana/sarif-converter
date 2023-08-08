@@ -2,7 +2,7 @@ package converter
 
 import (
 	"codequality-converter/codequality"
-	"codequality-converter/sarifreport"
+	"codequality-converter/sarifreport/report"
 )
 
 type codeQualityConverter struct {
@@ -13,14 +13,14 @@ func (c codeQualityConverter) Type() string {
 }
 
 func (c codeQualityConverter) Convert(input []byte) ([]byte, error) {
-	data, err := sarifreport.FromBytes(input)
+	data, err := report.FromBytes(input)
 	if err != nil {
 		return nil, err
 	}
 
-	report := codequality.ConvertFrom(*data)
+	r := codequality.ConvertFrom(data)
 
-	output, err := report.Json()
+	output, err := r.Json()
 	if err != nil {
 		return nil, err
 	}

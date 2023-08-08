@@ -1,12 +1,12 @@
 package codequality
 
 import (
-	"codequality-converter/sarifreport"
+	"codequality-converter/sarifreport/report"
 	"encoding/json"
 )
 
 type Report struct {
-	issues []issueWrapper
+	issues []issue
 }
 
 func (r Report) Json() ([]byte, error) {
@@ -23,13 +23,12 @@ func (r Report) elements() []Element {
 	return result
 }
 
-func ConvertFrom(report sarifreport.ReportWrapper) Report {
-	issues := report.Issues()
-	result := make([]issueWrapper, len(issues))
+func ConvertFrom(report *report.Wrapper) Report {
+	list := make([]issue, 0)
 
-	for i, issue := range issues {
-		result[i] = newIssueWrapper(issue)
+	for result := range report.Results().Iter() {
+		list = append(list, newIssueWrapper(result))
 	}
 
-	return Report{issues: result}
+	return Report{issues: list}
 }
