@@ -12,6 +12,7 @@ Convert report from SARIF to other format reports.
 * [Security Code Scan](https://security-code-scan.github.io/) - static code analyzer for .NET
 * [ESLint](https://eslint.org/) - Used together with [SARIF formatter for ESLint](https://www.npmjs.com/package/@microsoft/eslint-formatter-sarif)
 * [ktlint](https://pinterest.github.io/ktlint/) - Kotlin linter
+* [BinSkim Binary Analyzer](https://github.com/microsoft/binskim) - Portable Executable (PE) light-weight scanner
 
 
 ## Usage
