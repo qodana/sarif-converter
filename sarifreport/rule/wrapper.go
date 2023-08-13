@@ -44,6 +44,18 @@ func (w Wrapper) ID() *string {
 	return &w.rule.ID
 }
 
+func (w Wrapper) TextFullDescription() *string {
+	rule := w.rule
+	if rule == nil {
+		return nil
+	}
+	description := rule.FullDescription
+	if description == nil {
+		return nil
+	}
+	return description.Text
+}
+
 func newWrapper(rule *sarif.ReportingDescriptor) Wrapper {
 	return Wrapper{rule: rule}
 }

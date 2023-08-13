@@ -3,8 +3,7 @@ package rule
 import "github.com/owenrumney/go-sarif/v2/sarif"
 
 type Wrappers struct {
-	rules []Wrapper
-	run   *sarif.Run
+	run *sarif.Run
 }
 
 func (w Wrappers) Find(result *sarif.Result) Wrapper {

@@ -18,12 +18,16 @@ func (w Wrapper) Level() string {
 	return level.GetLevel(w.result, w.invocations, w.rules)
 }
 
-func (w Wrapper) Message() *string {
+func (w Wrapper) TextMessage() *string {
 	return w.result.Message.Text
 }
 
 func (w Wrapper) FirstLocation() *sarif.Location {
 	return w.result.Locations[0]
+}
+
+func (w Wrapper) Rule() rule.Wrapper {
+	return w.rules.Find(w.result)
 }
 
 func (w Wrapper) kind() string {

@@ -6,7 +6,7 @@ func messages(results result.Wrappers) []string {
 	list := make([]string, 0)
 
 	for wrapper := range results.Iter() {
-		list = append(list, *wrapper.Message())
+		list = append(list, *wrapper.TextMessage())
 	}
 
 	return list

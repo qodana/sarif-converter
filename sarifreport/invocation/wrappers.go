@@ -36,6 +36,10 @@ func NewWrappers(run *sarif.Run) Wrappers {
 	}
 }
 
+func EmptyWrappers() Wrappers {
+	return Wrappers{invocations: make([]Wrapper, 0)}
+}
+
 func invocationIndex(result *sarif.Result) *int {
 	if result.Provenance == nil {
 		return nil

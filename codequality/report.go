@@ -27,7 +27,7 @@ func ConvertFrom(report *report.Wrapper) Report {
 	list := make([]issue, 0)
 
 	for result := range report.Results().Iter() {
-		list = append(list, newIssueWrapper(result))
+		list = append(list, newIssue(result))
 	}
 
 	return Report{issues: list}

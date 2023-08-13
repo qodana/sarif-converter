@@ -21,7 +21,12 @@ func (i issue) element() Element {
 }
 
 func (i issue) description() *string {
-	return i.r.Message()
+	message := i.r.TextMessage()
+	if message != nil {
+		return message
+	}
+
+	return i.r.Rule().TextFullDescription()
 }
 
 func (i issue) severity() string {
@@ -31,13 +36,33 @@ func (i issue) severity() string {
 func (i issue) location() Location {
 	location := i.r.FirstLocation()
 	return Location{
-		Path: location.PhysicalLocation.ArtifactLocation.URI,
-		Lines: LocationLine{
-			Begin: *location.PhysicalLocation.Region.StartLine,
-		},
+		Path:  location.PhysicalLocation.ArtifactLocation.URI,
+		Lines: i.locationLine(),
 	}
 }
 
-func newIssueWrapper(r result.Wrapper) issue {
+func (i issue) locationLine() *LocationLine {
+	line := i.line()
+	if line == nil {
+		return nil
+	}
+	return &LocationLine{
+		Begin: *line,
+	}
+}
+
+func (i issue) line() *int {
+	location := i.r.FirstLocation()
+	if location.PhysicalLocation == nil {
+		return nil
+	}
+	if location.PhysicalLocation.Region == nil {
+		return nil
+	}
+
+	return location.PhysicalLocation.Region.StartLine
+}
+
+func newIssue(r result.Wrapper) issue {
 	return issue{r: r}
 }
