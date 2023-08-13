@@ -12,8 +12,8 @@
   },
   {
     "description": "Function never returns",
-    "fingerprint": "2aa23851664e422c115867ca8cf8a7b5c92467680a003f98ab9ea09236701e0d",
-    "severity": "info",
+    "fingerprint": "55fac4554f4a0f53bcb2e7e0a6addf18c633cdc3778d87202b85aa783ac30897",
+    "severity": "major",
     "location": {
       "path": "Intel8086.Tests/CPU.cs",
       "lines": {
@@ -45,8 +45,8 @@
   },
   {
     "description": "Using directive is not required by the code and can be safely removed",
-    "fingerprint": "4f7c0615b9fd70b902cadc495459773fb00fe5ad128d2d71e5950409119d0447",
-    "severity": "info",
+    "fingerprint": "8fa3f0ba1e68bf15ae9dd42417d60a668b578827ddf42f71ba312971615ee063",
+    "severity": "major",
     "location": {
       "path": "Intel8086.Tests/Memory/ProgramMemory.cs",
       "lines": {
@@ -56,8 +56,8 @@
   },
   {
     "description": "Using directive is not required by the code and can be safely removed",
-    "fingerprint": "3a8ca7c8991e34abb33cadcc40afff699f1d405d6eed7b9e7bbf7c3edfe30254",
-    "severity": "info",
+    "fingerprint": "e15d739e64643d2636a715ccc3d933b77770727fac737aa58b94ad136c217bae",
+    "severity": "major",
     "location": {
       "path": "Intel8086.Tests/Operations/Mov/MovImmediateWordToRegisterTest.cs",
       "lines": {
@@ -67,8 +67,8 @@
   },
   {
     "description": "Using directive is not required by the code and can be safely removed",
-    "fingerprint": "dc40c0eea7d3154b03c2d1089c194b79751d0c439f793b1e529f781ba6697081",
-    "severity": "info",
+    "fingerprint": "d9b4a2a709f75c748d7ffcf3613194688a47f998aefff0b941ac38b14a5eeade",
+    "severity": "major",
     "location": {
       "path": "Intel8086.Tests/Operations/Mov/MovMemoryToRegisterWordTest.cs",
       "lines": {
@@ -155,8 +155,8 @@
   },
   {
     "description": "Qualifier is redundant",
-    "fingerprint": "53a3ed9035b94b36e0309895f44b9c4fc8d7df61ffd2d86d23839e425802d8d2",
-    "severity": "info",
+    "fingerprint": "278615b88c4588516938188a2c5fe39708adac0bff863370e8d3a6ab128bc18f",
+    "severity": "major",
     "location": {
       "path": "Intel8086.Tests/Operations/Parsing/Register/RegByte.cs",
       "lines": {
@@ -188,8 +188,8 @@
   },
   {
     "description": "Using directive is not required by the code and can be safely removed",
-    "fingerprint": "cc8c6070d79b4c0bffa07b150c4653c6c47caf40717072449c1f07bfa1ec3b5e",
-    "severity": "info",
+    "fingerprint": "3633436346d82a6c38a5aeb3ece85b3c81920c2a814286222395644859671007",
+    "severity": "major",
     "location": {
       "path": "Intel8086.Tests/Store/ISource.cs",
       "lines": {
