@@ -69,3 +69,13 @@ func (i Issue) line() *int {
 func NewIssue(r result.Wrapper) Issue {
 	return Issue{r: r}
 }
+
+func NewIssues(results result.Wrappers) []Issue {
+	list := make([]Issue, 0)
+
+	for r := range results.RequireReport().Iter() {
+		list = append(list, NewIssue(r))
+	}
+
+	return list
+}

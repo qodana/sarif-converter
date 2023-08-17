@@ -37,6 +37,18 @@ func (w Wrappers) Append(results Wrappers) Wrappers {
 	return Wrappers{results: list}
 }
 
+func (w Wrappers) RequireReport() Wrappers {
+	list := make([]Wrapper, 0)
+
+	for _, result := range w.results {
+		if result.RequireReport() {
+			list = append(list, result)
+		}
+	}
+
+	return Wrappers{results: list}
+}
+
 func EmptyWrappers() Wrappers {
 	return Wrappers{}
 }
