@@ -1,8 +1,8 @@
 package run
 
 import (
-	"codequality-converter/sarifreport/result"
 	"github.com/owenrumney/go-sarif/v2/sarif"
+	"sarif-converter/sarifreport/result"
 )
 
 type Wrappers struct {

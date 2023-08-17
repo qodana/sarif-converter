@@ -1,10 +1,10 @@
 package level
 
 import (
-	"codequality-converter/sarifreport/invocation"
-	"codequality-converter/sarifreport/rule"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 	"github.com/stretchr/testify/assert"
+	"sarif-converter/sarifreport/invocation"
+	"sarif-converter/sarifreport/rule"
 	"testing"
 )
 

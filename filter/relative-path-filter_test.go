@@ -1,10 +1,10 @@
 package filter
 
 import (
-	"codequality-converter/sarifreport/originaluri"
-	"codequality-converter/testing/fixture"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 	"github.com/stretchr/testify/assert"
+	"sarif-converter/sarifreport/originaluri"
+	"sarif-converter/testing/fixture"
 	"testing"
 )
 

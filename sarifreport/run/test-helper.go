@@ -1,6 +1,6 @@
 package run
 
-import "codequality-converter/sarifreport/result"
+import "sarif-converter/sarifreport/result"
 
 func messages(results result.Wrappers) []string {
 	list := make([]string, 0)

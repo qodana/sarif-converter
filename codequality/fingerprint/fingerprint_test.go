@@ -1,8 +1,8 @@
 package fingerprint
 
 import (
-	"codequality-converter/codequality/element"
 	"github.com/stretchr/testify/assert"
+	"sarif-converter/codequality/element"
 	"testing"
 )
 

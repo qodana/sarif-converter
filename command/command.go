@@ -1,12 +1,12 @@
 package command
 
 import (
-	"codequality-converter/converter"
-	"codequality-converter/file"
-	"codequality-converter/filter"
-	"codequality-converter/main/argument"
 	"errors"
 	"fmt"
+	"sarif-converter/converter"
+	"sarif-converter/file"
+	"sarif-converter/filter"
+	"sarif-converter/main/argument"
 )
 
 type Command struct {

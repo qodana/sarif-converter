@@ -1,12 +1,12 @@
 package issue
 
 import (
-	"codequality-converter/codequality/element"
-	"codequality-converter/sarifreport/invocation"
-	"codequality-converter/sarifreport/result"
-	"codequality-converter/sarifreport/rule"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 	"github.com/stretchr/testify/assert"
+	"sarif-converter/codequality/element"
+	"sarif-converter/sarifreport/invocation"
+	"sarif-converter/sarifreport/result"
+	"sarif-converter/sarifreport/rule"
 	"testing"
 )
 

@@ -1,11 +1,11 @@
 package argument
 
 import (
-	"codequality-converter/file"
 	"github.com/jessevdk/go-flags"
 	"net/url"
 	"os"
 	"path/filepath"
+	"sarif-converter/file"
 )
 
 type Arguments struct {
