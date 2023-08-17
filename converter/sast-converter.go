@@ -4,7 +4,7 @@ import (
 	bytes2 "bytes"
 	"encoding/json"
 	"github.com/owenrumney/go-sarif/v2/sarif"
-	"gitlab.com/gitlab-org/security-products/analyzers/report/v3"
+	"gitlab.com/gitlab-org/security-products/analyzers/report/v4"
 	"os"
 )
 

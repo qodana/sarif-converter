@@ -1,12 +1,11 @@
 {
-  "version": "14.0.4",
+  "version": "15.0.4",
   "vulnerabilities": [
     {
-      "id": "36919138358f0b3644b219e2f93c45f03d7fc2be1e0655c54bfdcdb6a0ebf89f",
+      "id": "0638bd504c40f550fde6b2716ad23419faff2d0aa60fbbb83eda2e2ff25bccd0",
       "category": "sast",
-      "message": "Cross-Site Request Forgery (CSRF)",
-      "description": "An attacker could send a link to the victim. By visiting the\nmalicious link, a web page would trigger a POST request (because it is a\nblind attack - the attacker doesn’t see a response from triggered request\nand has no use from GET request and GET requests should not change a state\non the server by definition) to the website. The victim would not be able\nto acknowledge that an action is made in ",
-      "cve": "",
+      "name": "Cross-Site Request Forgery (CSRF)",
+      "description": "An attacker could send a link to the victim. By visiting the\nmalicious link, a web page would trigger a POST request (because it is a\nblind attack - the attacker doesn’t see a response from triggered request\nand has no use from GET request and GET requests should not change a state\non the server by definition) to the website. The victim would not be able\nto acknowledge that an action is made in the background, but his cookie\nwould be automatically submitted if he is authenticated to the website.\nThis attack does not require special interaction other than visiting a\nwebsite.\n",
       "severity": "Medium",
       "scanner": {
         "id": "",
