@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JsonSchemaMappingsProjectConfiguration">
+    <state>
+      <map>
+        <entry key="sarif-2.1.0-rtm.5">
+          <value>
+            <SchemaInfo>
+              <option name="name" value="sarif-2.1.0-rtm.5" />
+              <option name="relativePathToSchema" value="https://json.schemastore.org/sarif-2.1.0-rtm.5.json" />
+              <option name="applicationDefined" value="true" />
+              <option name="patterns">
+                <list>
+                  <Item>
+                    <option name="path" value="testing/fixture/kind.sarif" />
+                  </Item>
+                </list>
+              </option>
+            </SchemaInfo>
+          </value>
+        </entry>
+      </map>
+    </state>
+  </component>
+</project>

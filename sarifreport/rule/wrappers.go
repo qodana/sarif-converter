@@ -18,3 +18,7 @@ func (w Wrappers) Find(result *sarif.Result) Wrapper {
 func NewWrappers(run *sarif.Run) Wrappers {
 	return Wrappers{run: run}
 }
+
+func EmptyWrappers() Wrappers {
+	return Wrappers{run: nil}
+}

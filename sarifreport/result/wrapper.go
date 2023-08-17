@@ -34,6 +34,22 @@ func (w Wrapper) kind() string {
 	return kind.GetKind(w.result)
 }
 
+func (w Wrapper) RequireReport() bool {
+	k := w.kind()
+
+	if k == "pass" {
+		return false
+	}
+	if k == "informational" {
+		return false
+	}
+	if k == "notApplicable" {
+		return false
+	}
+
+	return true
+}
+
 func NewWrapper(result *sarif.Result, invocations invocation.Wrappers, rules rule.Wrappers) Wrapper {
 	return Wrapper{
 		result:      result,

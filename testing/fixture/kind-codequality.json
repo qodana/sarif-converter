@@ -1,0 +1,34 @@
+[
+  {
+    "description": "kind: open",
+    "fingerprint": "81ad8c063a4cf0166c5f259eab5c9dc11ee1d7e9a9e7e9fb3f412a181aaba5a1",
+    "severity": "major",
+    "location": {
+      "path": "sample.js"
+    }
+  },
+  {
+    "description": "kind: review",
+    "fingerprint": "f49d62e62771f9f63bb7eb2da228ccb3e59398ad2abe124155ef3ed2c8e49f8e",
+    "severity": "major",
+    "location": {
+      "path": "sample.js"
+    }
+  },
+  {
+    "description": "kind: fail",
+    "fingerprint": "9d800056fdcff94135661cca71ca10e710b75b28d86795e56ac8d6abc99b610e",
+    "severity": "major",
+    "location": {
+      "path": "sample.js"
+    }
+  },
+  {
+    "description": "kind: absent",
+    "fingerprint": "efe1446ebbd5df2a934915997bc2d8bc989950b7f6985259a3c01be63cf13b8b",
+    "severity": "major",
+    "location": {
+      "path": "sample.js"
+    }
+  }
+]

@@ -10,6 +10,12 @@ var actualJson string
 //go:embed semgrep.sarif
 var semgrepSarif []byte
 
+//go:embed kind.sarif
+var kindSarif []byte
+
+//go:embed kind-codequality.json
+var kindCodeQuality string
+
 //go:embed resharper.sarif
 var resharperSarif []byte
 
@@ -56,6 +62,14 @@ func (f Fixtures) ActualJson() string {
 
 func (f Fixtures) SemgrepSarif() []byte {
 	return semgrepSarif
+}
+
+func KindSarif() []byte {
+	return kindSarif
+}
+
+func KindCodeQuality() string {
+	return kindCodeQuality
 }
 
 func ReSharperSarif() []byte {
