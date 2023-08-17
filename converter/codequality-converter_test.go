@@ -1,7 +1,7 @@
 package converter
 
 import (
-	"codequality-converter/codequality"
+	"codequality-converter/codequality/element"
 	"codequality-converter/filter"
 	"codequality-converter/testing/fixture"
 	"encoding/json"
@@ -66,8 +66,8 @@ func toSarif(report []byte) *sarif.Report {
 	return s
 }
 
-func codeQuality(report []byte) []codequality.Element {
-	var result []codequality.Element
+func codeQuality(report []byte) []element.Element {
+	var result []element.Element
 	err := json.Unmarshal(report, &result)
 	if err != nil {
 		panic(err)

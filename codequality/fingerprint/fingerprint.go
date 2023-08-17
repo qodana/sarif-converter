@@ -1,12 +1,13 @@
-package codequality
+package fingerprint
 
 import (
+	"codequality-converter/codequality/element"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
 )
 
-func Fingerprint(element Element) string {
+func Fingerprint(element element.Element) string {
 	j, _ := json.Marshal(element)
 	sum := sha256.Sum256(j)
 	return hex.EncodeToString(sum[:])
