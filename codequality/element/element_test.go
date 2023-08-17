@@ -1,4 +1,4 @@
-package codequality
+package element
 
 import (
 	"encoding/json"
@@ -19,4 +19,8 @@ func TestNoLines(t *testing.T) {
 	bytes, _ := json.Marshal(element)
 
 	assert.Equal(t, "{\"description\":\"description\",\"fingerprint\":\"fingerprint\",\"severity\":\"info\",\"location\":{\"path\":\"foo.js\"}}", string(bytes))
+}
+
+func p(s string) *string {
+	return &s
 }

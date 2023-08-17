@@ -1,26 +1,29 @@
-package codequality
+package issue
 
 import (
+	"codequality-converter/codequality/element"
+	"codequality-converter/codequality/fingerprint"
+	"codequality-converter/codequality/severity"
 	"codequality-converter/sarifreport/result"
 )
 
-type issue struct {
+type Issue struct {
 	r result.Wrapper
 }
 
-func (i issue) element() Element {
-	element := Element{
+func (i Issue) Element() element.Element {
+	el := element.Element{
 		Description: i.description(),
 		Severity:    i.severity(),
 		Location:    i.location(),
 	}
 
-	element.Fingerprint = Fingerprint(element)
+	el.Fingerprint = fingerprint.Fingerprint(el)
 
-	return element
+	return el
 }
 
-func (i issue) description() *string {
+func (i Issue) description() *string {
 	message := i.r.TextMessage()
 	if message != nil {
 		return message
@@ -29,29 +32,29 @@ func (i issue) description() *string {
 	return i.r.Rule().TextFullDescription()
 }
 
-func (i issue) severity() string {
-	return severity(i.r.Level())
+func (i Issue) severity() string {
+	return severity.GetSeverity(i.r.Level())
 }
 
-func (i issue) location() Location {
+func (i Issue) location() element.Location {
 	location := i.r.FirstLocation()
-	return Location{
+	return element.Location{
 		Path:  location.PhysicalLocation.ArtifactLocation.URI,
 		Lines: i.locationLine(),
 	}
 }
 
-func (i issue) locationLine() *LocationLine {
+func (i Issue) locationLine() *element.LocationLine {
 	line := i.line()
 	if line == nil {
 		return nil
 	}
-	return &LocationLine{
+	return &element.LocationLine{
 		Begin: *line,
 	}
 }
 
-func (i issue) line() *int {
+func (i Issue) line() *int {
 	location := i.r.FirstLocation()
 	if location.PhysicalLocation == nil {
 		return nil
@@ -63,6 +66,6 @@ func (i issue) line() *int {
 	return location.PhysicalLocation.Region.StartLine
 }
 
-func newIssue(r result.Wrapper) issue {
-	return issue{r: r}
+func NewIssue(r result.Wrapper) Issue {
+	return Issue{r: r}
 }

@@ -1,4 +1,4 @@
-package codequality
+package element
 
 type LocationLine struct {
 	Begin int `json:"begin"`

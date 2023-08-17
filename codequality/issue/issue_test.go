@@ -1,6 +1,7 @@
-package codequality
+package issue
 
 import (
+	"codequality-converter/codequality/element"
 	"codequality-converter/sarifreport/invocation"
 	"codequality-converter/sarifreport/result"
 	"codequality-converter/sarifreport/rule"
@@ -12,16 +13,16 @@ import (
 func TestLocation(t *testing.T) {
 	target := testingIssue("foo.js", newRegion(10), emptyMessage(), nil)
 
-	assert.Equal(t, Location{
+	assert.Equal(t, element.Location{
 		Path:  p("foo.js"),
-		Lines: &LocationLine{Begin: 10},
+		Lines: &element.LocationLine{Begin: 10},
 	}, target.location())
 }
 
 func TestLocation_NoRegion(t *testing.T) {
 	target := testingIssue("foo.js", nil, emptyMessage(), nil)
 
-	assert.Equal(t, Location{
+	assert.Equal(t, element.Location{
 		Path: p("foo.js"),
 	}, target.location())
 }
@@ -38,8 +39,8 @@ func TestDescription_FromRuleFullDescription(t *testing.T) {
 	assert.Equal(t, "rule1 full description", *target.description())
 }
 
-func testingIssue(file string, region *sarif.Region, message sarif.Message, ruleId *string) issue {
-	return newIssue(result.NewWrapper(&sarif.Result{
+func testingIssue(file string, region *sarif.Region, message sarif.Message, ruleId *string) Issue {
+	return NewIssue(result.NewWrapper(&sarif.Result{
 		Message: message,
 		RuleID:  ruleId,
 		Locations: []*sarif.Location{
@@ -91,4 +92,8 @@ func rules() rule.Wrappers {
 			},
 		},
 	})
+}
+
+func p(s string) *string {
+	return &s
 }
