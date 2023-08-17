@@ -1,6 +1,7 @@
 package codequality
 
 import (
+	"codequality-converter/codequality/severity"
 	"codequality-converter/sarifreport/result"
 )
 
@@ -30,7 +31,7 @@ func (i issue) description() *string {
 }
 
 func (i issue) severity() string {
-	return severity(i.r.Level())
+	return severity.GetSeverity(i.r.Level())
 }
 
 func (i issue) location() Location {

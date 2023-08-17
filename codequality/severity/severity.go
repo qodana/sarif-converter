@@ -1,6 +1,6 @@
-package codequality
+package severity
 
-func severity(level string) string {
+func GetSeverity(level string) string {
 	switch level {
 	case "error":
 		return "critical"
