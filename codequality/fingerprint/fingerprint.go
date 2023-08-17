@@ -1,10 +1,10 @@
 package fingerprint
 
 import (
-	"codequality-converter/codequality/element"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
+	"sarif-converter/codequality/element"
 )
 
 func Fingerprint(element element.Element) string {

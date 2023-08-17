@@ -1,8 +1,8 @@
 package command
 
 import (
-	"codequality-converter/file"
-	fake "codequality-converter/testing/file"
+	"sarif-converter/file"
+	fake "sarif-converter/testing/file"
 )
 
 type wrapper struct {

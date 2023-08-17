@@ -1,10 +1,10 @@
 package level
 
 import (
-	"codequality-converter/sarifreport/invocation"
-	"codequality-converter/sarifreport/kind"
-	"codequality-converter/sarifreport/rule"
 	"github.com/owenrumney/go-sarif/v2/sarif"
+	"sarif-converter/sarifreport/invocation"
+	"sarif-converter/sarifreport/kind"
+	"sarif-converter/sarifreport/rule"
 )
 
 func GetLevel(result *sarif.Result, invocations invocation.Wrappers, rules rule.Wrappers) string {

@@ -1,10 +1,10 @@
 package codequality
 
 import (
-	"codequality-converter/codequality/element"
-	"codequality-converter/codequality/issue"
-	"codequality-converter/sarifreport/report"
 	"encoding/json"
+	"sarif-converter/codequality/element"
+	"sarif-converter/codequality/issue"
+	"sarif-converter/sarifreport/report"
 )
 
 type Report struct {

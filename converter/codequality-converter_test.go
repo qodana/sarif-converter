@@ -1,12 +1,12 @@
 package converter
 
 import (
-	"codequality-converter/codequality/element"
-	"codequality-converter/filter"
-	"codequality-converter/testing/fixture"
 	"encoding/json"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 	"github.com/stretchr/testify/assert"
+	"sarif-converter/codequality/element"
+	"sarif-converter/filter"
+	"sarif-converter/testing/fixture"
 	"testing"
 )
 

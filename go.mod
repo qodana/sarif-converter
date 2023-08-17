@@ -1,4 +1,4 @@
-module codequality-converter
+module sarif-converter
 
 go 1.19
 

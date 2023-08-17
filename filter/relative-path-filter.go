@@ -1,9 +1,9 @@
 package filter
 
 import (
-	"codequality-converter/sarifreport/originaluri"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 	"path/filepath"
+	"sarif-converter/sarifreport/originaluri"
 )
 
 type RelativePathFilter struct {

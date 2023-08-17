@@ -1,8 +1,8 @@
 package converter
 
 import (
-	"codequality-converter/codequality"
-	"codequality-converter/sarifreport/report"
+	"sarif-converter/codequality"
+	"sarif-converter/sarifreport/report"
 )
 
 type codeQualityConverter struct {

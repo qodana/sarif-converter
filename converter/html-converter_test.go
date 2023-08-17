@@ -1,8 +1,8 @@
 package converter
 
 import (
-	"codequality-converter/testing/fixture"
 	"github.com/stretchr/testify/assert"
+	"sarif-converter/testing/fixture"
 	"testing"
 )
 

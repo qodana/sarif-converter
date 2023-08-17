@@ -1,10 +1,10 @@
 package main
 
 import (
-	"codequality-converter/command"
-	"codequality-converter/file"
 	"fmt"
 	"os"
+	"sarif-converter/command"
+	"sarif-converter/file"
 )
 
 var version = "unknown"

@@ -1,11 +1,11 @@
 package result
 
 import (
-	"codequality-converter/sarifreport/invocation"
-	"codequality-converter/sarifreport/kind"
-	"codequality-converter/sarifreport/level"
-	"codequality-converter/sarifreport/rule"
 	"github.com/owenrumney/go-sarif/v2/sarif"
+	"sarif-converter/sarifreport/invocation"
+	"sarif-converter/sarifreport/kind"
+	"sarif-converter/sarifreport/level"
+	"sarif-converter/sarifreport/rule"
 )
 
 type Wrapper struct {

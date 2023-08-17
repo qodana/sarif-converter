@@ -1,8 +1,8 @@
 package file
 
 import (
-	"codequality-converter/testing/fixture"
 	"errors"
+	"sarif-converter/testing/fixture"
 )
 
 type FakeIO struct {

@@ -1,10 +1,10 @@
 package filter
 
 import (
-	"codequality-converter/main/argument"
 	"encoding/json"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 	"os"
+	"sarif-converter/main/argument"
 )
 
 func AllSarifFilter(report []byte, a *argument.Arguments) ([]byte, error) {

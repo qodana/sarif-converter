@@ -1,8 +1,8 @@
 package filter
 
 import (
-	"codequality-converter/sarifreport/originaluri"
 	"github.com/owenrumney/go-sarif/v2/sarif"
+	"sarif-converter/sarifreport/originaluri"
 )
 
 type artifactLocationWrapper struct {

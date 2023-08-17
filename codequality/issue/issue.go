@@ -1,10 +1,10 @@
 package issue
 
 import (
-	"codequality-converter/codequality/element"
-	"codequality-converter/codequality/fingerprint"
-	"codequality-converter/codequality/severity"
-	"codequality-converter/sarifreport/result"
+	"sarif-converter/codequality/element"
+	"sarif-converter/codequality/fingerprint"
+	"sarif-converter/codequality/severity"
+	"sarif-converter/sarifreport/result"
 )
 
 type Issue struct {
