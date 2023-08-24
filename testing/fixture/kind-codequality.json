@@ -1,31 +1,35 @@
 [
   {
+    "check_name": null,
     "description": "kind: open",
-    "fingerprint": "81ad8c063a4cf0166c5f259eab5c9dc11ee1d7e9a9e7e9fb3f412a181aaba5a1",
+    "fingerprint": "fa09a85924082a20b66ceb4d7d455855bdd814da29846345dfa4c37e2b9c905a",
     "severity": "major",
     "location": {
       "path": "sample.js"
     }
   },
   {
+    "check_name": null,
     "description": "kind: review",
-    "fingerprint": "f49d62e62771f9f63bb7eb2da228ccb3e59398ad2abe124155ef3ed2c8e49f8e",
+    "fingerprint": "d310966d5ce9d73e640ec447124acc27d89f4e1951afcdbf5a01a81229eb6709",
     "severity": "major",
     "location": {
       "path": "sample.js"
     }
   },
   {
+    "check_name": null,
     "description": "kind: fail",
-    "fingerprint": "9d800056fdcff94135661cca71ca10e710b75b28d86795e56ac8d6abc99b610e",
+    "fingerprint": "3606be81d81210c04b8765a039899c18a5bbae23c6e17cda9c4485b9f8a651ad",
     "severity": "major",
     "location": {
       "path": "sample.js"
     }
   },
   {
+    "check_name": null,
     "description": "kind: absent",
-    "fingerprint": "efe1446ebbd5df2a934915997bc2d8bc989950b7f6985259a3c01be63cf13b8b",
+    "fingerprint": "5b664560e1ef05ba43132e7f4f6c0ca8df1e4d2a5baeb34daa90cc6a52ea2482",
     "severity": "major",
     "location": {
       "path": "sample.js"

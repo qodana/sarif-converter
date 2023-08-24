@@ -50,6 +50,10 @@ func (w Wrapper) RequireReport() bool {
 	return true
 }
 
+func (w Wrapper) RuleId() *string {
+	return w.result.RuleID
+}
+
 func NewWrapper(result *sarif.Result, invocations invocation.Wrappers, rules rule.Wrappers) Wrapper {
 	return Wrapper{
 		result:      result,

@@ -10,6 +10,12 @@ import (
 	"testing"
 )
 
+func TestCheckName(t *testing.T) {
+	target := testingIssue("foo.js", newRegion(10), emptyMessage(), p("security/detect-eval-with-expression"))
+
+	assert.Equal(t, "security/detect-eval-with-expression", *target.checkName())
+}
+
 func TestLocation(t *testing.T) {
 	target := testingIssue("foo.js", newRegion(10), emptyMessage(), nil)
 

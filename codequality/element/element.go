@@ -10,6 +10,7 @@ type Location struct {
 }
 
 type Element struct {
+	CheckName   *string  `json:"check_name"`
 	Description *string  `json:"description"`
 	Fingerprint string   `json:"fingerprint"`
 	Severity    string   `json:"severity"`

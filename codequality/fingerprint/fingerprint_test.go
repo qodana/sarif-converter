@@ -8,6 +8,7 @@ import (
 
 func TestFingerprint(t *testing.T) {
 	actual := Fingerprint(element.Element{
+		CheckName:   p("security/detect-eval-with-expression"),
 		Description: p("description"),
 		Severity:    "Warning",
 		Location: element.Location{
@@ -18,7 +19,7 @@ func TestFingerprint(t *testing.T) {
 		},
 	})
 
-	assert.Equal(t, "f42130385113fe8a11be6c5d542d99f62ef04c44155294c4e38ca005be422688", actual)
+	assert.Equal(t, "b4ca3486a7f81d2847ccb81fa126a46faac17dc136d4f0dcee26301a9bf9ac1d", actual)
 }
 
 func p(s string) *string {

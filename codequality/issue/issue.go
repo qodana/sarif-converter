@@ -13,6 +13,7 @@ type Issue struct {
 
 func (i Issue) Element() element.Element {
 	el := element.Element{
+		CheckName:   i.checkName(),
 		Description: i.description(),
 		Severity:    i.severity(),
 		Location:    i.location(),
@@ -42,6 +43,10 @@ func (i Issue) location() element.Location {
 		Path:  location.PhysicalLocation.ArtifactLocation.URI,
 		Lines: i.locationLine(),
 	}
+}
+
+func (i Issue) checkName() *string {
+	return i.r.RuleId()
 }
 
 func (i Issue) locationLine() *element.LocationLine {

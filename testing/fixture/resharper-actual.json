@@ -1,7 +1,8 @@
 [
   {
+    "check_name": "UnusedMember.Global",
     "description": "Method 'Run' is never used",
-    "fingerprint": "ec25d89461da0dc85640f9235384fb6afcaaa7b0f2fd65a43259a90ca5b06e98",
+    "fingerprint": "6918b76968a2a05376581440ffadb2cc7dd2357e93f1024a3d327c9110e887ca",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/CPU.cs",
@@ -11,8 +12,9 @@
     }
   },
   {
+    "check_name": "FunctionNeverReturns",
     "description": "Function never returns",
-    "fingerprint": "55fac4554f4a0f53bcb2e7e0a6addf18c633cdc3778d87202b85aa783ac30897",
+    "fingerprint": "dc4f99c5ef13f4f09a16e917bf646f7f78170f8a13b1bf04c0a43f14d2e1e12f",
     "severity": "major",
     "location": {
       "path": "Intel8086.Tests/CPU.cs",
@@ -22,8 +24,9 @@
     }
   },
   {
+    "check_name": "MemberCanBePrivate.Global",
     "description": "Constructor 'Address' can be made private",
-    "fingerprint": "6b5d25f0de4d01cc2327b85a1f77cdd2aa131846b7e8a6ae981ac813beaaa3e7",
+    "fingerprint": "dcb26ce93036c11877c79e1c048aab089c44bf1a214e9b09d6c67f8c1283ddd2",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/Memory/Address.cs",
@@ -33,8 +36,9 @@
     }
   },
   {
+    "check_name": "MemberCanBePrivate.Global",
     "description": "Method 'Poke' can be made private",
-    "fingerprint": "9f64a567871e1dadf231b167575234bf464b71c7e905a0b3f7b9f2e5a042e1ac",
+    "fingerprint": "6f2df435138650f70d60612cd979d41e62e9591ebbc67bcbbbc77d08a7925031",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/Memory/CPUMemory.cs",
@@ -44,8 +48,9 @@
     }
   },
   {
+    "check_name": "RedundantUsingDirective",
     "description": "Using directive is not required by the code and can be safely removed",
-    "fingerprint": "8fa3f0ba1e68bf15ae9dd42417d60a668b578827ddf42f71ba312971615ee063",
+    "fingerprint": "1e06e72a62eb46961b45b9b0c1ecbb2a4392cf1f0403b945b6793ff13933b6b1",
     "severity": "major",
     "location": {
       "path": "Intel8086.Tests/Memory/ProgramMemory.cs",
@@ -55,8 +60,9 @@
     }
   },
   {
+    "check_name": "RedundantUsingDirective",
     "description": "Using directive is not required by the code and can be safely removed",
-    "fingerprint": "e15d739e64643d2636a715ccc3d933b77770727fac737aa58b94ad136c217bae",
+    "fingerprint": "6e7017e888c98f4f77b2e61b3f2bf271ba227c2180fea27f627f6558d4aeca48",
     "severity": "major",
     "location": {
       "path": "Intel8086.Tests/Operations/Mov/MovImmediateWordToRegisterTest.cs",
@@ -66,8 +72,9 @@
     }
   },
   {
+    "check_name": "RedundantUsingDirective",
     "description": "Using directive is not required by the code and can be safely removed",
-    "fingerprint": "d9b4a2a709f75c748d7ffcf3613194688a47f998aefff0b941ac38b14a5eeade",
+    "fingerprint": "4fc5894d8dbf7325a2005c6f1c6996e8356aa066a2020f7a9b48476987991528",
     "severity": "major",
     "location": {
       "path": "Intel8086.Tests/Operations/Mov/MovMemoryToRegisterWordTest.cs",
@@ -77,8 +84,9 @@
     }
   },
   {
+    "check_name": "UnusedType.Global",
     "description": "Class 'TestCase' is never used",
-    "fingerprint": "94d6241a28857822697f20952e10b6081ebd7ae15193ae1a9b15d5d3c0f491b1",
+    "fingerprint": "6727462f8236df1c345cd8e83f5aef25fbaaf4e7a5bdc42ccb260078ab76677d",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/Operations/Mov/Testing/TestCase.cs",
@@ -88,8 +96,9 @@
     }
   },
   {
+    "check_name": "UnusedMember.Global",
     "description": "Method 'Word' is never used",
-    "fingerprint": "04095eaca3b66085f8221c4c6b563cd8e121e2f145128f2481349f25e29c7007",
+    "fingerprint": "353fb23b12ab53f04b4573f00abfd48b1bdde5a51af4b0d14e52978d1bb51755",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/Operations/Mov/Testing/TestCase.cs",
@@ -99,8 +108,9 @@
     }
   },
   {
+    "check_name": "UnusedMember.Global",
     "description": "Method 'Byte' is never used",
-    "fingerprint": "0f2e848e7f5ee2109f2fe17e5ca2b959b96fe537bde2ae86ae79d7d773fc72c3",
+    "fingerprint": "401db3af8a769f56bee61d46034ad219ef6c3df06148ff215768f0b2f5b77161",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/Operations/Mov/Testing/TestCase.cs",
@@ -110,8 +120,9 @@
     }
   },
   {
+    "check_name": "UnusedMember.Global",
     "description": "Property 'Opcode' is never used",
-    "fingerprint": "158e0390f4d0c544be3ec1df5530505af0a3a8ce6f4a043c081002ba535d715e",
+    "fingerprint": "c8bcbe214e10eb64260f3dabf7f0c3734837e6955c1e98b919722b144358923f",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/Operations/Mov/Testing/TestCase.cs",
@@ -121,8 +132,9 @@
     }
   },
   {
+    "check_name": "UnusedMember.Global",
     "description": "Method 'RegisterValue' is never used",
-    "fingerprint": "333dee2ebb91ae414de614e5b166baaf424f0a83546fb5a001f4e9cc06016057",
+    "fingerprint": "9c1fb61b27881d8f56cc90b1d0b1d7a7681782dfcee52c1ca61ec0e1a78a1d89",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/Operations/Mov/Testing/TestCase.cs",
@@ -132,8 +144,9 @@
     }
   },
   {
+    "check_name": "UnusedParameter.Global",
     "description": "Parameter 'cpu' is only passed to itself",
-    "fingerprint": "9d5b2d1f9db818e11b92cd86d2ad77baa7bf82a41dbbcb0842bf5604712c3338",
+    "fingerprint": "eb91b1d49c9664dd4238631a1b5e5b6aed78fd27ea9d6cbd43d2bbc4bec39584",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/Operations/Parsing/IParser.cs",
@@ -143,8 +156,9 @@
     }
   },
   {
+    "check_name": "MemberCanBeProtected.Global",
     "description": "Constructor 'ParserCollection' can be made protected",
-    "fingerprint": "3605b283fe1892e94bc43176bf9cbec2295e02d61cbc0aee0bff861a231c148b",
+    "fingerprint": "fc093e494f15ce2b7569c547414a1c592d6bb2059d365e698a55f8eb755431d1",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/Operations/Parsing/ParserCollection.cs",
@@ -154,8 +168,9 @@
     }
   },
   {
+    "check_name": "RedundantNameQualifier",
     "description": "Qualifier is redundant",
-    "fingerprint": "278615b88c4588516938188a2c5fe39708adac0bff863370e8d3a6ab128bc18f",
+    "fingerprint": "cbb850541eb0bc6201e21fc77b53e3d59e6192d4c0d161482829247fa574e05e",
     "severity": "major",
     "location": {
       "path": "Intel8086.Tests/Operations/Parsing/Register/RegByte.cs",
@@ -165,8 +180,9 @@
     }
   },
   {
+    "check_name": "UnusedMember.Global",
     "description": "Method 'Dump' is never used",
-    "fingerprint": "ccd6c722ffb163011b1f29e660ec9b033396d5c763e7823561ffca91b5ff79b4",
+    "fingerprint": "eac422f6bf6421e41630b6686aa73a09c37529e6c137015d8222c0cc504447ca",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/Register/Registers.cs",
@@ -176,8 +192,9 @@
     }
   },
   {
+    "check_name": "MemberCanBePrivate.Global",
     "description": "Property 'Value' can be made private",
-    "fingerprint": "91406592996f02552a259b07f84c75128979ffb544e7bb87967fa20520c2d952",
+    "fingerprint": "a63ce9f8054cc0f8d95de5997a54720c3213567b886de9c92e4d15cc0eaad20a",
     "severity": "minor",
     "location": {
       "path": "Intel8086.Tests/Store/ImmediateSource.cs",
@@ -187,8 +204,9 @@
     }
   },
   {
+    "check_name": "RedundantUsingDirective",
     "description": "Using directive is not required by the code and can be safely removed",
-    "fingerprint": "3633436346d82a6c38a5aeb3ece85b3c81920c2a814286222395644859671007",
+    "fingerprint": "d250d3ec49d4b4601e248adcc213d730904d096e9f6ee24663c5891622c53693",
     "severity": "major",
     "location": {
       "path": "Intel8086.Tests/Store/ISource.cs",
