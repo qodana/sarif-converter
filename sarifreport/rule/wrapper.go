@@ -56,6 +56,12 @@ func (w Wrapper) TextFullDescription() *string {
 	return description.Text
 }
 
+func (w Wrapper) TextMessage(message sarif.Message) string {
+	messageStrings := *w.rule.MessageStrings
+	m := messageStrings[*message.ID]
+	return *m.Text
+}
+
 func newWrapper(rule *sarif.ReportingDescriptor) Wrapper {
 	return Wrapper{rule: rule}
 }

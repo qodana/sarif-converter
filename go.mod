@@ -9,6 +9,8 @@ require (
 	gitlab.com/gitlab-org/security-products/analyzers/report/v4 v4.1.5
 )
 
+replace github.com/owenrumney/go-sarif/v2 v2.2.0 => github.com/masakura/go-sarif/v2 v2.2.1-0.20230824050731-f25eb8e7078d
+
 require (
 	github.com/Microsoft/go-winio v0.5.1 // indirect
 	github.com/ProtonMail/go-crypto v0.0.0-20211112122917-428f8eabeeb3 // indirect

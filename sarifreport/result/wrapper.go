@@ -5,6 +5,7 @@ import (
 	"sarif-converter/sarifreport/invocation"
 	"sarif-converter/sarifreport/kind"
 	"sarif-converter/sarifreport/level"
+	"sarif-converter/sarifreport/message"
 	"sarif-converter/sarifreport/rule"
 )
 
@@ -19,7 +20,7 @@ func (w Wrapper) Level() string {
 }
 
 func (w Wrapper) TextMessage() *string {
-	return w.result.Message.Text
+	return message.GetTextMessage(w.result, w.rules)
 }
 
 func (w Wrapper) FirstLocation() *sarif.Location {
