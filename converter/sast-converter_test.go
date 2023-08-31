@@ -2,6 +2,7 @@ package converter
 
 import (
 	"github.com/stretchr/testify/assert"
+	"sarif-converter/meta"
 	"sarif-converter/now"
 	"sarif-converter/testing/fixture"
 	"testing"
@@ -26,7 +27,7 @@ func TestConvert_SastMetadata(t *testing.T) {
 
 func newSastConverter() Converter {
 	provider := now.NewFakeTime(parse("2023-08-31T15:00:42Z"))
-	return GetConverter("sast", &provider)
+	return GetConverter("sast", &provider, meta.NewMetadata("0.5.1", "a9323"))
 }
 
 func parse(value string) time.Time {

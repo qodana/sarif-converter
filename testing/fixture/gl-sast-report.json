@@ -39,7 +39,7 @@
       "vendor": {
         "name": "SARIF Converter"
       },
-      "version": "unknown"
+      "version": "0.5.1"
     },
     "scanner": {
       "id": "semgrep",

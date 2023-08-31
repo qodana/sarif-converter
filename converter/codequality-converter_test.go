@@ -13,27 +13,27 @@ import (
 func TestConvert(t *testing.T) {
 	fixtures := fixture.NewFixtures("../testing/fixtures")
 
-	report, _ := GetConverter("codequality", nil).Convert(fixtures.SemgrepSarif())
+	report, _ := newCodeQualityConverter().Convert(fixtures.SemgrepSarif())
 
 	assert.Equal(t, fixtures.ActualJson(), string(report))
 }
 
 func TestConvert_FilterByKind(t *testing.T) {
-	report, _ := GetConverter("codequality", nil).Convert(fixture.KindSarif())
+	report, _ := newCodeQualityConverter().Convert(fixture.KindSarif())
 
 	assert.Equal(t, fixture.KindCodeQuality(), string(report))
 
 }
 
 func TestConvertFromReShaperInspectCodeNoInspections(t *testing.T) {
-	report, _ := GetConverter("codequality", nil).Convert(fixture.ReSharperNoInspectionsSarif())
+	report, _ := newCodeQualityConverter().Convert(fixture.ReSharperNoInspectionsSarif())
 
 	assert.Equal(t, "[]", string(report))
 }
 
 func TestConvertFromSecurityCodeScan(t *testing.T) {
 	bytes := convertToRelativePath(fixture.SecurityCodeScan(), "file:///home/masakura/tmp/sc")
-	report, _ := GetConverter("codequality", nil).Convert(bytes)
+	report, _ := newCodeQualityConverter().Convert(bytes)
 
 	result := codeQuality(report)
 
@@ -41,7 +41,7 @@ func TestConvertFromSecurityCodeScan(t *testing.T) {
 }
 
 func TestConvertFromEslintSarif(t *testing.T) {
-	report, _ := GetConverter("codequality", nil).Convert(fixture.Eslint())
+	report, _ := newCodeQualityConverter().Convert(fixture.Eslint())
 
 	result := codeQuality(report)
 
@@ -49,12 +49,16 @@ func TestConvertFromEslintSarif(t *testing.T) {
 }
 
 func TestConvertFromBinSkimSarif(t *testing.T) {
-	report, _ := GetConverter("codequality", nil).Convert(fixture.BinSkim())
+	report, _ := newCodeQualityConverter().Convert(fixture.BinSkim())
 
 	result := codeQuality(report)
 
 	assert.Nil(t, result[0].Location.Lines)
 	assert.Equal(t, "Application code should be compiled with the Spectre mitigations switch (/Qspectre) and toolsets that support it.", *result[0].Description)
+}
+
+func newCodeQualityConverter() Converter {
+	return GetConverter("codequality", nil, nil)
 }
 
 func sarifToBytes(report *sarif.Report) []byte {

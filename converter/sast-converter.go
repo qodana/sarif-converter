@@ -5,12 +5,14 @@ import (
 	"encoding/json"
 	"gitlab.com/gitlab-org/security-products/analyzers/report/v4"
 	"os"
+	"sarif-converter/meta"
 	"sarif-converter/now"
 	"sarif-converter/sast/sarif"
 )
 
 type sastConverter struct {
-	time *now.TimeProvider
+	time     *now.TimeProvider
+	metadata meta.Metadata
 }
 
 var Sast = sastConverter{}
@@ -35,7 +37,7 @@ func (c sastConverter) Convert(input []byte) ([]byte, error) {
 	}
 
 	sast.Scan.Type = "sast"
-	sast.Scan = r.Override(sast.Scan)
+	sast.Scan = r.Override(sast.Scan, c.metadata)
 
 	bytes, err := json.MarshalIndent(sast, "", "  ")
 	if err != nil {
@@ -48,6 +50,13 @@ func (c sastConverter) Convert(input []byte) ([]byte, error) {
 func (c sastConverter) WithTimeProvider(p *now.TimeProvider) Converter {
 	if p != nil {
 		c.time = p
+	}
+	return c
+}
+
+func (c sastConverter) WithMetadata(metadata *meta.Metadata) sastConverter {
+	if metadata != nil {
+		c.metadata = *metadata
 	}
 	return c
 }
