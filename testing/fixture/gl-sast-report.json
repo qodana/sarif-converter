@@ -34,12 +34,12 @@
   "dependency_files": [],
   "scan": {
     "analyzer": {
-      "id": "",
-      "name": "",
+      "id": "sarif-converter",
+      "name": "SARIF Converter",
       "vendor": {
-        "name": ""
+        "name": "SARIF Converter"
       },
-      "version": ""
+      "version": "unknown"
     },
     "scanner": {
       "id": "semgrep",

@@ -29,6 +29,7 @@ func (c sastConverter) Convert(input []byte) ([]byte, error) {
 	}
 
 	sast.Scan.Scanner = r.Scanner.ToSast()
+	sast.Scan.Analyzer = r.Analyzer.ToSast()
 	sast.Scan.Type = "sast"
 
 	bytes, err := json.MarshalIndent(sast, "", "  ")
