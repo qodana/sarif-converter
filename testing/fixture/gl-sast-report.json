@@ -45,9 +45,9 @@
       "id": "semgrep",
       "name": "semgrep",
       "vendor": {
-        "name": ""
+        "name": "semgrep"
       },
-      "version": ""
+      "version": "0.110.0"
     },
     "type": "sast"
   }

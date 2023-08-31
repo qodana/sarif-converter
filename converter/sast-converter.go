@@ -3,9 +3,9 @@ package converter
 import (
 	bytes2 "bytes"
 	"encoding/json"
-	"github.com/owenrumney/go-sarif/v2/sarif"
 	"gitlab.com/gitlab-org/security-products/analyzers/report/v4"
 	"os"
+	"sarif-converter/sast/sarif"
 )
 
 type sastConverter struct {
@@ -18,7 +18,7 @@ func (c sastConverter) Type() string {
 }
 
 func (c sastConverter) Convert(input []byte) ([]byte, error) {
-	s, err := sarif.FromBytes(input)
+	r, err := sarif.FromBytes(input)
 	if err != nil {
 		return nil, err
 	}
@@ -28,8 +28,7 @@ func (c sastConverter) Convert(input []byte) ([]byte, error) {
 		return nil, err
 	}
 
-	sast.Scan.Scanner.ID = s.Runs[0].Tool.Driver.Name
-	sast.Scan.Scanner.Name = s.Runs[0].Tool.Driver.Name
+	sast.Scan.Scanner = r.Scanner.ToSast()
 	sast.Scan.Type = "sast"
 
 	bytes, err := json.MarshalIndent(sast, "", "  ")
