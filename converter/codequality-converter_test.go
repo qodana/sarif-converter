@@ -13,27 +13,27 @@ import (
 func TestConvert(t *testing.T) {
 	fixtures := fixture.NewFixtures("../testing/fixtures")
 
-	report, _ := GetConverter("codequality").Convert(fixtures.SemgrepSarif())
+	report, _ := GetConverter("codequality", nil).Convert(fixtures.SemgrepSarif())
 
 	assert.Equal(t, fixtures.ActualJson(), string(report))
 }
 
 func TestConvert_FilterByKind(t *testing.T) {
-	report, _ := GetConverter("codequality").Convert(fixture.KindSarif())
+	report, _ := GetConverter("codequality", nil).Convert(fixture.KindSarif())
 
 	assert.Equal(t, fixture.KindCodeQuality(), string(report))
 
 }
 
 func TestConvertFromReShaperInspectCodeNoInspections(t *testing.T) {
-	report, _ := GetConverter("codequality").Convert(fixture.ReSharperNoInspectionsSarif())
+	report, _ := GetConverter("codequality", nil).Convert(fixture.ReSharperNoInspectionsSarif())
 
 	assert.Equal(t, "[]", string(report))
 }
 
 func TestConvertFromSecurityCodeScan(t *testing.T) {
 	bytes := convertToRelativePath(fixture.SecurityCodeScan(), "file:///home/masakura/tmp/sc")
-	report, _ := GetConverter("codequality").Convert(bytes)
+	report, _ := GetConverter("codequality", nil).Convert(bytes)
 
 	result := codeQuality(report)
 
@@ -41,7 +41,7 @@ func TestConvertFromSecurityCodeScan(t *testing.T) {
 }
 
 func TestConvertFromEslintSarif(t *testing.T) {
-	report, _ := GetConverter("codequality").Convert(fixture.Eslint())
+	report, _ := GetConverter("codequality", nil).Convert(fixture.Eslint())
 
 	result := codeQuality(report)
 
@@ -49,7 +49,7 @@ func TestConvertFromEslintSarif(t *testing.T) {
 }
 
 func TestConvertFromBinSkimSarif(t *testing.T) {
-	report, _ := GetConverter("codequality").Convert(fixture.BinSkim())
+	report, _ := GetConverter("codequality", nil).Convert(fixture.BinSkim())
 
 	result := codeQuality(report)
 

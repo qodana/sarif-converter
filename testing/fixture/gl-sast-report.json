@@ -49,6 +49,9 @@
       },
       "version": "0.110.0"
     },
-    "type": "sast"
+    "type": "sast",
+    "start_time": "2023-08-31T15:00:42",
+    "end_time": "2023-08-31T15:00:42",
+    "status": "success"
   }
 }

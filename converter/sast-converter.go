@@ -5,10 +5,12 @@ import (
 	"encoding/json"
 	"gitlab.com/gitlab-org/security-products/analyzers/report/v4"
 	"os"
+	"sarif-converter/now"
 	"sarif-converter/sast/sarif"
 )
 
 type sastConverter struct {
+	time *now.TimeProvider
 }
 
 var Sast = sastConverter{}
@@ -28,9 +30,12 @@ func (c sastConverter) Convert(input []byte) ([]byte, error) {
 		return nil, err
 	}
 
-	sast.Scan.Scanner = r.Scanner.ToSast()
-	sast.Scan.Analyzer = r.Analyzer.ToSast()
+	if c.time != nil {
+		r = r.WithTimeProvider(c.time)
+	}
+
 	sast.Scan.Type = "sast"
+	sast.Scan = r.Override(sast.Scan)
 
 	bytes, err := json.MarshalIndent(sast, "", "  ")
 	if err != nil {
@@ -38,6 +43,13 @@ func (c sastConverter) Convert(input []byte) ([]byte, error) {
 	}
 
 	return bytes, nil
+}
+
+func (c sastConverter) WithTimeProvider(p *now.TimeProvider) Converter {
+	if p != nil {
+		c.time = p
+	}
+	return c
 }
 
 func transformToGLSASTReport(input []byte, err error) (*report.Report, error) {

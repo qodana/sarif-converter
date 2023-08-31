@@ -2,6 +2,7 @@ package fixture
 
 import (
 	_ "embed"
+	sast2 "sarif-converter/testing/fixture/sast"
 )
 
 //go:embed actual.json
@@ -54,6 +55,7 @@ var html string
 
 type Fixtures struct {
 	path string
+	Sast sast2.Sast
 }
 
 func (f Fixtures) ActualJson() string {
@@ -125,5 +127,8 @@ func Html() string {
 }
 
 func NewFixtures(path string) Fixtures {
-	return Fixtures{path: path}
+	return Fixtures{
+		path: path,
+		Sast: sast2.NewSast(),
+	}
 }

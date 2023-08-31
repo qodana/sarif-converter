@@ -71,7 +71,7 @@ func (c Command) runFilter(input []byte, arguments *argument.Arguments) ([]byte,
 }
 
 func (c Command) runConvert(input []byte, arguments *argument.Arguments) ([]byte, error) {
-	sarifConverter := converter.GetConverter(arguments.Type())
+	sarifConverter := converter.GetConverter(arguments.Type(), nil)
 	return sarifConverter.Convert(input)
 
 }

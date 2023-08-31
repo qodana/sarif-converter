@@ -1,13 +1,16 @@
 package converter
 
-import "errors"
+import (
+	"errors"
+	"sarif-converter/now"
+)
 
-func GetConverter(converterType string) Converter {
+func GetConverter(converterType string, p *now.TimeProvider) Converter {
 	switch converterType {
 	case CodeQuality.Type():
 		return CodeQuality
 	case Sast.Type():
-		return Sast
+		return Sast.WithTimeProvider(p)
 	case Html.Type():
 		return Html
 	}
