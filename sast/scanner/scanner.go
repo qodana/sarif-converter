@@ -49,3 +49,7 @@ func (s Scanner) Id() string {
 func NewScanner(driver *sarif.ToolComponent) Scanner {
 	return Scanner{driver: driver}
 }
+
+func NewScannerFrom(r *sarif.Report) Scanner {
+	return NewScanner(r.Runs[0].Tool.Driver)
+}

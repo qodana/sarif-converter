@@ -49,6 +49,10 @@ func NewScanning(invocation *sarif.Invocation) Scanning {
 	return NewScanningWithTimeProvider(invocation, now.NewTimeProvider())
 }
 
+func NewScanningFrom(r *sarif.Report) Scanning {
+	return NewScanning(r.Runs[0].Invocations[0])
+}
+
 func NewScanningWithTimeProvider(invocation *sarif.Invocation, p now.TimeProvider) Scanning {
 	return Scanning{
 		invocation:   invocation,
