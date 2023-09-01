@@ -8,8 +8,8 @@ import (
 )
 
 type Scanning struct {
-	invocation   *sarif.Invocation
 	timeProvider now.TimeProvider
+	report       *sarif.Report
 }
 
 func (s Scanning) Status() string {
@@ -17,11 +17,11 @@ func (s Scanning) Status() string {
 }
 
 func (s Scanning) StartTime() *report.ScanTime {
-	return s.scanTime(s.invocation.StartTimeUTC)
+	return s.scanTime(s.currentInvocation().StartTimeUTC)
 }
 
 func (s Scanning) EndTime() *report.ScanTime {
-	return s.scanTime(s.invocation.EndTimeUTC)
+	return s.scanTime(s.currentInvocation().EndTimeUTC)
 }
 
 func (s Scanning) scanTime(t *time.Time) *report.ScanTime {
@@ -45,17 +45,26 @@ func (s Scanning) WithTimeProvider(provider *now.TimeProvider) Scanning {
 	return s
 }
 
-func NewScanning(invocation *sarif.Invocation) Scanning {
-	return NewScanningWithTimeProvider(invocation, now.NewTimeProvider())
-}
+func (s Scanning) currentInvocation() *sarif.Invocation {
+	run := s.currentRun()
 
-func NewScanningFrom(r *sarif.Report) Scanning {
-	return NewScanning(r.Runs[0].Invocations[0])
-}
-
-func NewScanningWithTimeProvider(invocation *sarif.Invocation, p now.TimeProvider) Scanning {
-	return Scanning{
-		invocation:   invocation,
-		timeProvider: p,
+	if len(run.Invocations) <= 0 {
+		return emptyInvocation()
 	}
+	return run.Invocations[0]
+}
+
+func (s Scanning) currentRun() *sarif.Run {
+	if len(s.report.Runs) <= 0 {
+		return &sarif.Run{Invocations: []*sarif.Invocation{}}
+	}
+	return s.report.Runs[0]
+}
+
+func NewScanning(r *sarif.Report) Scanning {
+	return Scanning{report: r}
+}
+
+func emptyInvocation() *sarif.Invocation {
+	return &sarif.Invocation{}
 }

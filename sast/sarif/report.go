@@ -34,7 +34,7 @@ func FromBytes(input []byte) (*Report, error) {
 	}
 
 	return &Report{
-		Scanning: scanning.NewScanningFrom(r),
+		Scanning: scanning.NewScanning(r),
 		Scanner:  scanner.NewScannerFrom(r),
 		Analyzer: analyzer.NewAnalyzer(),
 	}, nil
