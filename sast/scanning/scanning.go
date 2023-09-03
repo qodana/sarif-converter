@@ -62,7 +62,7 @@ func (s Scanning) currentRun() *sarif.Run {
 }
 
 func NewScanning(r *sarif.Report) Scanning {
-	return Scanning{report: r}
+	return Scanning{report: r, timeProvider: now.NewTimeProvider()}
 }
 
 func emptyInvocation() *sarif.Invocation {
