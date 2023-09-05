@@ -58,32 +58,6 @@ func TestEndTime_EmptyRun(t *testing.T) {
 	assert.Equal(t, (report.ScanTime)(s), *target.EndTime())
 }
 
-func TestCurrentInvocation(t *testing.T) {
-	target := NewScanning(fakeReport(&sarif.Invocation{
-		CommandLine: p("command"),
-	}))
-
-	assert.Equal(t, "command", *target.currentInvocation().CommandLine)
-}
-
-func TestCurrentInvocation_EmptyRun(t *testing.T) {
-	target := NewScanning(&sarif.Report{Runs: []*sarif.Run{}})
-
-	assert.Nil(t, target.currentInvocation().CommandLine)
-}
-
-func TestCurrentInvocation_EmptyInvocation(t *testing.T) {
-	target := NewScanning(&sarif.Report{Runs: []*sarif.Run{
-		{Invocations: []*sarif.Invocation{}},
-	}})
-
-	assert.Nil(t, target.currentInvocation().CommandLine)
-}
-
-func p(s string) *string {
-	return &s
-}
-
 func parse(value string) time.Time {
 	s, _ := time.Parse("2006-01-02T15:04:05Z07:00", value)
 	return s
