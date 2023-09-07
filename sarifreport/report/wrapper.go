@@ -15,13 +15,13 @@ func (w Wrapper) Results() result.Wrappers {
 	return w.runs.Results()
 }
 
-func (w Wrapper) OnlyRequireReport() Wrapper {
+func (w Wrapper) OnlyRequireReport() *Wrapper {
 	runs := w.runs.OnlyRequireReport()
 
 	report := *w.value
 	report.Runs = runs.Value()
 
-	return Wrapper{
+	return &Wrapper{
 		runs:  runs,
 		value: &report,
 	}

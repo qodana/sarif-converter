@@ -3,9 +3,9 @@ package converter
 import (
 	bytes2 "bytes"
 	"encoding/json"
-	"github.com/owenrumney/go-sarif/v2/sarif"
 	"gitlab.com/gitlab-org/security-products/analyzers/report/v4"
 	"os"
+	report2 "sarif-converter/sarifreport/report"
 )
 
 type sastConverter struct {
@@ -18,18 +18,20 @@ func (c sastConverter) Type() string {
 }
 
 func (c sastConverter) Convert(input []byte) ([]byte, error) {
-	s, err := sarif.FromBytes(input)
+	s, err := report2.FromBytes(input)
 	if err != nil {
 		return nil, err
 	}
+
+	filtered := s.OnlyRequireReport().Value()
 
 	sast, err := transformToGLSASTReport(input, err)
 	if err != nil {
 		return nil, err
 	}
 
-	sast.Scan.Scanner.ID = s.Runs[0].Tool.Driver.Name
-	sast.Scan.Scanner.Name = s.Runs[0].Tool.Driver.Name
+	sast.Scan.Scanner.ID = filtered.Runs[0].Tool.Driver.Name
+	sast.Scan.Scanner.Name = filtered.Runs[0].Tool.Driver.Name
 	sast.Scan.Type = "sast"
 
 	bytes, err := json.MarshalIndent(sast, "", "  ")

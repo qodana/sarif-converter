@@ -78,7 +78,7 @@ func NewIssue(r result.Wrapper) Issue {
 func NewIssues(results result.Wrappers) []Issue {
 	list := make([]Issue, 0)
 
-	for r := range results.OnlyRequireReport().Iter() {
+	for r := range results.Iter() {
 		list = append(list, NewIssue(r))
 	}
 
