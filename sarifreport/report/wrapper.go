@@ -7,16 +7,34 @@ import (
 )
 
 type Wrapper struct {
-	runs run.Wrappers
+	runs  run.Wrappers
+	value *sarif.Report
 }
 
 func (w Wrapper) Results() result.Wrappers {
 	return w.runs.Results()
 }
 
+func (w Wrapper) OnlyRequireReport() Wrapper {
+	runs := w.runs.OnlyRequireReport()
+
+	report := *w.value
+	report.Runs = runs.Value()
+
+	return Wrapper{
+		runs:  runs,
+		value: &report,
+	}
+}
+
+func (w Wrapper) Value() *sarif.Report {
+	return w.value
+}
+
 func NewReport(report *sarif.Report) *Wrapper {
 	return &Wrapper{
-		runs: run.NewWrappers(report),
+		runs:  run.NewWrappers(report),
+		value: report,
 	}
 }
 
