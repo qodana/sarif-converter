@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"gitlab.com/gitlab-org/security-products/analyzers/report/v4"
-	report2 "sarif-converter/sarifreport/report"
+	sarif "sarif-converter/sarifreport/report"
 )
 
 type Report struct {
@@ -15,7 +15,7 @@ func (r Report) Json() ([]byte, error) {
 	return json.MarshalIndent(r.sast, "", "  ")
 }
 
-func ConvertFrom(report *report2.Wrapper) (*Report, error) {
+func ConvertFrom(report *sarif.Wrapper) (*Report, error) {
 	original := report.Value()
 	filtered := report.OnlyRequireReport()
 	filteredBytes, err := filtered.Bytes()
