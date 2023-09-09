@@ -9,11 +9,31 @@ import (
 
 type Wrapper struct {
 	Results result.Wrappers
+	value   *sarif.Run
+}
+
+func (w Wrapper) OnlyRequireReport() Wrapper {
+	results := w.Results.OnlyRequireReport()
+
+	run := *w.value
+	run.Results = results.Value()
+
+	return Wrapper{
+		Results: results,
+		value:   &run,
+	}
+}
+
+func (w Wrapper) Value() *sarif.Run {
+	return w.value
 }
 
 func newWrapper(run *sarif.Run) Wrapper {
 	invocations := invocation.NewWrappers(run)
 	rules := rule.NewWrappers(run)
 
-	return Wrapper{Results: result.NewWrappers(run.Results, invocations, rules)}
+	return Wrapper{
+		Results: result.NewWrappers(run.Results, invocations, rules),
+		value:   run,
+	}
 }

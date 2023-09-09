@@ -8,6 +8,7 @@ import (
 
 type Wrappers struct {
 	results []Wrapper
+	value   []*sarif.Result
 }
 
 func (w Wrappers) Get(i int) Wrapper {
@@ -37,16 +38,22 @@ func (w Wrappers) Append(results Wrappers) Wrappers {
 	return Wrappers{results: list}
 }
 
-func (w Wrappers) RequireReport() Wrappers {
-	list := make([]Wrapper, 0)
+func (w Wrappers) OnlyRequireReport() Wrappers {
+	listWrapper := make([]Wrapper, 0)
+	listResult := make([]*sarif.Result, 0)
 
 	for _, result := range w.results {
 		if result.RequireReport() {
-			list = append(list, result)
+			listWrapper = append(listWrapper, result)
+			listResult = append(listResult, result.Value())
 		}
 	}
 
-	return Wrappers{results: list}
+	return Wrappers{results: listWrapper, value: listResult}
+}
+
+func (w Wrappers) Value() []*sarif.Result {
+	return w.value
 }
 
 func EmptyWrappers() Wrappers {
@@ -59,5 +66,5 @@ func NewWrappers(results []*sarif.Result, invocations invocation.Wrappers, rules
 	for _, result := range results {
 		list = append(list, NewWrapper(result, invocations, rules))
 	}
-	return Wrappers{results: list}
+	return Wrappers{results: list, value: results}
 }

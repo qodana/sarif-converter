@@ -16,7 +16,7 @@ type Report struct {
 	Scanning scanning.Scanning
 }
 
-func (r Report) Override(scan report.Scan, metadata meta.Metadata) report.Scan {
+func (r Report) OverrideScan(scan report.Scan, metadata meta.Metadata) report.Scan {
 	scan.Scanner = r.Scanner.ToSast()
 	scan.Analyzer = r.Analyzer.ToSast(metadata)
 	return r.Scanning.Override(scan)
@@ -27,15 +27,10 @@ func (r *Report) WithTimeProvider(time *now.TimeProvider) *Report {
 	return r
 }
 
-func FromBytes(input []byte) (*Report, error) {
-	r, err := sarif.FromBytes(input)
-	if err != nil {
-		return nil, err
-	}
-
+func NewReport(report *sarif.Report) *Report {
 	return &Report{
-		Scanning: scanning.NewScanning(r),
-		Scanner:  scanner.NewScannerFrom(r),
+		Scanning: scanning.NewScanning(report),
+		Scanner:  scanner.NewScannerFrom(report),
 		Analyzer: analyzer.NewAnalyzer(),
-	}, nil
+	}
 }

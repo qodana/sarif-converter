@@ -26,5 +26,5 @@ func (r Report) elements() []element.Element {
 }
 
 func ConvertFrom(report *report.Wrapper) Report {
-	return Report{issues: issue.NewIssues(report.Results())}
+	return Report{issues: issue.NewIssues(report.OnlyRequireReport().Results())}
 }
