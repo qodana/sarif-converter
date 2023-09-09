@@ -1,6 +1,7 @@
 package report
 
 import (
+	"encoding/json"
 	"github.com/owenrumney/go-sarif/v2/sarif"
 	"sarif-converter/sarifreport/result"
 	"sarif-converter/sarifreport/run"
@@ -29,6 +30,10 @@ func (w Wrapper) OnlyRequireReport() *Wrapper {
 
 func (w Wrapper) Value() *sarif.Report {
 	return w.value
+}
+
+func (w Wrapper) Bytes() ([]byte, error) {
+	return json.Marshal(w.Value())
 }
 
 func NewReport(report *sarif.Report) *Wrapper {
