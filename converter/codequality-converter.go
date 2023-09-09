@@ -18,7 +18,7 @@ func (c codeQualityConverter) Convert(input []byte) ([]byte, error) {
 		return nil, err
 	}
 
-	r := codequality.ConvertFrom(data.OnlyRequireReport())
+	r := codequality.ConvertFrom(data)
 
 	output, err := r.Json()
 	if err != nil {
