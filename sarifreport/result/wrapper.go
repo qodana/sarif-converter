@@ -12,6 +12,7 @@ type Wrapper struct {
 	result      *sarif.Result
 	invocations invocation.Wrappers
 	rules       rule.Wrappers
+	value       *sarif.Result
 }
 
 func (w Wrapper) Level() string {
@@ -54,10 +55,15 @@ func (w Wrapper) RuleId() *string {
 	return w.result.RuleID
 }
 
+func (w Wrapper) Value() *sarif.Result {
+	return w.value
+}
+
 func NewWrapper(result *sarif.Result, invocations invocation.Wrappers, rules rule.Wrappers) Wrapper {
 	return Wrapper{
 		result:      result,
 		invocations: invocations,
 		rules:       rules,
+		value:       result,
 	}
 }

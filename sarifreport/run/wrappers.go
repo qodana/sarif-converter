@@ -6,7 +6,8 @@ import (
 )
 
 type Wrappers struct {
-	runs []Wrapper
+	runs  []Wrapper
+	value []*sarif.Run
 }
 
 func (w Wrappers) Results() result.Wrappers {
@@ -18,6 +19,23 @@ func (w Wrappers) Results() result.Wrappers {
 	return list
 }
 
+func (w Wrappers) OnlyRequireReport() Wrappers {
+	length := len(w.runs)
+	listRuns := make([]Wrapper, length)
+	listValue := make([]*sarif.Run, length)
+
+	for i, run := range w.runs {
+		filtered := run.OnlyRequireReport()
+		listRuns[i] = filtered
+		listValue[i] = filtered.Value()
+	}
+	return Wrappers{runs: listRuns, value: listValue}
+}
+
+func (w Wrappers) Value() []*sarif.Run {
+	return w.value
+}
+
 func NewWrappers(report *sarif.Report) Wrappers {
 	list := make([]Wrapper, 0)
 
@@ -25,5 +43,5 @@ func NewWrappers(report *sarif.Report) Wrappers {
 		list = append(list, newWrapper(run))
 	}
 
-	return Wrappers{runs: list}
+	return Wrappers{runs: list, value: report.Runs}
 }
