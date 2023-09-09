@@ -32,7 +32,6 @@ func ConvertFrom(report *wrapper.Wrapper, time *now.TimeProvider, metadata meta.
 		return nil, err
 	}
 
-	sast.Scan.Type = "sast"
 	sast.Scan = overrideScan(original, time, sast, metadata)
 
 	return NewReport(sast), nil
@@ -43,7 +42,9 @@ func overrideScan(original *sarif2.Report, time *now.TimeProvider, sast *report.
 	if time != nil {
 		r = r.WithTimeProvider(time)
 	}
-	return r.OverrideScan(sast.Scan, metadata)
+	overrides := r.OverrideScan(sast.Scan, metadata)
+	overrides.Type = "sast"
+	return overrides
 }
 
 func NewReport(sast *report.Report) *Report {
