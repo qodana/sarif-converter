@@ -1,16 +1,21 @@
 package sast
 
 import (
-	bytes2 "bytes"
+	"bytes"
 	"encoding/json"
 	"gitlab.com/gitlab-org/security-products/analyzers/report/v4"
 	report2 "sarif-converter/sarifreport/report"
 )
 
 type Report struct {
+	sast *report.Report
 }
 
-func ConvertFrom(report *report2.Wrapper) ([]byte, error) {
+func (r Report) Json() ([]byte, error) {
+	return json.MarshalIndent(r.sast, "", "  ")
+}
+
+func ConvertFrom(report *report2.Wrapper) (*Report, error) {
 	original := report.Value()
 	filtered := report.OnlyRequireReport()
 	filteredBytes, err := filtered.Bytes()
@@ -27,19 +32,18 @@ func ConvertFrom(report *report2.Wrapper) ([]byte, error) {
 	sast.Scan.Scanner.Name = original.Runs[0].Tool.Driver.Name
 	sast.Scan.Type = "sast"
 
-	bytes, err := json.MarshalIndent(sast, "", "  ")
-	if err != nil {
-		return nil, err
-	}
+	return NewReport(sast), nil
+}
 
-	return bytes, nil
+func NewReport(sast *report.Report) *Report {
+	return &Report{sast: sast}
 }
 
 func transformToGLSASTReport(input []byte, err error) (*report.Report, error) {
 	gf := newGitLabFeatures()
 
 	gf.unset()
-	sast, err := report.TransformToGLSASTReport(bytes2.NewReader(input), "", "", report.Scanner{})
+	sast, err := report.TransformToGLSASTReport(bytes.NewReader(input), "", "", report.Scanner{})
 	gf.restore()
 
 	return sast, err

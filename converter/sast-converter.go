@@ -1,8 +1,8 @@
 package converter
 
 import (
-	report2 "sarif-converter/sarifreport/report"
-	sast2 "sarif-converter/sast"
+	"sarif-converter/sarifreport/report"
+	"sarif-converter/sast"
 )
 
 type sastConverter struct {
@@ -15,10 +15,15 @@ func (c sastConverter) Type() string {
 }
 
 func (c sastConverter) Convert(input []byte) ([]byte, error) {
-	sarifReport, err := report2.FromBytes(input)
+	sarifReport, err := report.FromBytes(input)
 	if err != nil {
 		return nil, err
 	}
 
-	return sast2.ConvertFrom(sarifReport)
+	r, err := sast.ConvertFrom(sarifReport)
+	if err != nil {
+		return nil, err
+	}
+
+	return r.Json()
 }
