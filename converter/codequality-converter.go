@@ -20,12 +20,7 @@ func (c codeQualityConverter) Convert(input []byte) ([]byte, error) {
 
 	r := codequality.ConvertFrom(data)
 
-	output, err := r.Json()
-	if err != nil {
-		return nil, err
-	}
-
-	return output, nil
+	return r.Json()
 }
 
 var CodeQuality = codeQualityConverter{}

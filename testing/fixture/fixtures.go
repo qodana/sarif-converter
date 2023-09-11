@@ -2,6 +2,7 @@ package fixture
 
 import (
 	_ "embed"
+	"sarif-converter/testing/fixture/sast"
 )
 
 //go:embed actual.json
@@ -35,7 +36,7 @@ var eslint []byte
 var binskim []byte
 
 //go:embed gl-sast-report.json
-var sast []byte
+var sastJson []byte
 
 //go:embed multi-run.sarif
 var multiRunSarif []byte
@@ -54,6 +55,7 @@ var html string
 
 type Fixtures struct {
 	path string
+	Sast sast.Sast
 }
 
 func (f Fixtures) ActualJson() string {
@@ -101,7 +103,7 @@ func BinSkim() []byte {
 }
 
 func Sast() []byte {
-	return sast
+	return sastJson
 }
 
 func MultiRunSarif() []byte {
@@ -125,5 +127,8 @@ func Html() string {
 }
 
 func NewFixtures(path string) Fixtures {
-	return Fixtures{path: path}
+	return Fixtures{
+		path: path,
+		Sast: sast.NewSast(),
+	}
 }

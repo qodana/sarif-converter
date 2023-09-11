@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "toolExecutionNotifications": [],
+          "startTimeUtc": "2020-02-14T16:01:00Z",
+          "endTimeUtc": "2020-02-14T16:01:59Z"
+        }
+      ],
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "my tool",
+          "organization": "my org",
+          "rules": [],
+          "semanticVersion": "0.110.0"
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

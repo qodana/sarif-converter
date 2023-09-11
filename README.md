@@ -109,5 +109,9 @@ codequality:sast:
 ![](docs/gitlab-merge-request.png)
 
 
+## Warning
+* `sast` - If `start_time` and etc is not provided in the SARIF file, ad hoc values are set.
+
+
 ## License
 MIT

@@ -7,12 +7,12 @@ import (
 	"sarif-converter/file"
 	"sarif-converter/filter"
 	"sarif-converter/main/argument"
+	"sarif-converter/meta"
 )
 
 type Command struct {
 	io       file.IO
-	version  string
-	revision string
+	metadata *meta.Metadata
 }
 
 func (c Command) Convert(args []string) error {
@@ -71,19 +71,26 @@ func (c Command) runFilter(input []byte, arguments *argument.Arguments) ([]byte,
 }
 
 func (c Command) runConvert(input []byte, arguments *argument.Arguments) ([]byte, error) {
-	sarifConverter := converter.GetConverter(arguments.Type())
+	sarifConverter := converter.GetConverter(arguments.Type(), nil, c.metadata)
 	return sarifConverter.Convert(input)
 
 }
 
 func (c Command) showVersion(arguments *argument.Arguments) {
-	fmt.Println(arguments.Command() + " version " + c.version + " (" + c.revision + ")")
+	fmt.Println(arguments.Command() + " version " + c.version() + " (" + c.revision() + ")")
 }
 
-func NewCommand(io file.IO, version string, revision string) Command {
+func (c Command) version() string {
+	return c.metadata.Version
+}
+
+func (c Command) revision() string {
+	return c.metadata.Revision
+}
+
+func NewCommand(io file.IO, metadata *meta.Metadata) Command {
 	return Command{
 		io:       io,
-		version:  version,
-		revision: revision,
+		metadata: metadata,
 	}
 }

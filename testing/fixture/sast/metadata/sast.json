@@ -1,0 +1,27 @@
+{
+  "version": "15.0.4",
+  "vulnerabilities": null,
+  "dependency_files": [],
+  "scan": {
+    "analyzer": {
+      "id": "sarif-converter",
+      "name": "SARIF Converter",
+      "vendor": {
+        "name": "SARIF Converter"
+      },
+      "version": "0.5.1"
+    },
+    "scanner": {
+      "id": "my tool",
+      "name": "my tool",
+      "vendor": {
+        "name": "my org"
+      },
+      "version": "0.110.0"
+    },
+    "type": "sast",
+    "start_time": "2020-02-14T16:01:00",
+    "end_time": "2020-02-14T16:01:59",
+    "status": "success"
+  }
+}
