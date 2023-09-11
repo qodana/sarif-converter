@@ -3,7 +3,6 @@ package sast
 import (
 	"bytes"
 	"encoding/json"
-	sarif2 "github.com/owenrumney/go-sarif/v2/sarif"
 	"gitlab.com/gitlab-org/security-products/analyzers/report/v4"
 	"sarif-converter/meta"
 	"sarif-converter/now"
@@ -20,43 +19,41 @@ func (r Report) Json() ([]byte, error) {
 }
 
 func ConvertFrom(report *wrapper.Wrapper, time *now.TimeProvider, metadata meta.Metadata) (*Report, error) {
-	original := report.Value()
 	filtered := report.OnlyRequireReport()
-	filteredBytes, err := filtered.Bytes()
+
+	sast, err := transformToGLSASTReport(filtered)
 	if err != nil {
 		return nil, err
 	}
 
-	sast, err := transformToGLSASTReport(filteredBytes, err)
-	if err != nil {
-		return nil, err
-	}
-
-	sast.Scan = overrideScan(original, time, sast, metadata)
-
-	return NewReport(sast), nil
+	return sast.overrideScan(filtered, time, metadata)
 }
 
-func overrideScan(original *sarif2.Report, time *now.TimeProvider, sast *report.Report, metadata meta.Metadata) report.Scan {
-	r := sarif.NewReport(original)
+func (r Report) overrideScan(report *wrapper.Wrapper, time *now.TimeProvider, metadata meta.Metadata) (*Report, error) {
+	overrider := sarif.NewReport(report.Value())
 	if time != nil {
-		r = r.WithTimeProvider(time)
+		overrider = overrider.WithTimeProvider(time)
 	}
-	overrides := r.OverrideScan(sast.Scan, metadata)
+
+	sast := *r.sast
+	overrides := overrider.OverrideScan(sast.Scan, metadata)
 	overrides.Type = "sast"
-	return overrides
+	sast.Scan = overrides
+
+	return &Report{sast: &sast}, nil
 }
 
-func NewReport(sast *report.Report) *Report {
-	return &Report{sast: sast}
-}
+func transformToGLSASTReport(input *wrapper.Wrapper) (*Report, error) {
+	b, err := input.Bytes()
+	if err != nil {
+		return nil, err
+	}
 
-func transformToGLSASTReport(input []byte, err error) (*report.Report, error) {
 	gf := newGitLabFeatures()
 
 	gf.unset()
-	sast, err := report.TransformToGLSASTReport(bytes.NewReader(input), "", "", report.Scanner{})
+	sast, err := report.TransformToGLSASTReport(bytes.NewReader(b), "", "", report.Scanner{})
 	gf.restore()
 
-	return sast, err
+	return &Report{sast: sast}, err
 }
