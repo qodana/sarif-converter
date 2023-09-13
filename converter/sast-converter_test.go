@@ -6,7 +6,6 @@ import (
 	"sarif-converter/now"
 	"sarif-converter/testing/fixture"
 	"testing"
-	"time"
 )
 
 func TestConvertToSast(t *testing.T) {
@@ -26,11 +25,6 @@ func TestConvert_SastMetadata(t *testing.T) {
 }
 
 func newSastConverter() Converter {
-	provider := now.NewFakeTime(parse("2023-08-31T15:00:42Z"))
+	provider := now.NewFakeTime(now.Parse("2023-08-31T15:00:42Z"))
 	return GetConverter("sast", &provider, meta.NewMetadata("0.5.1", "a9323"))
-}
-
-func parse(value string) time.Time {
-	s, _ := time.Parse("2006-01-02T15:04:05Z07:00", value)
-	return s
 }

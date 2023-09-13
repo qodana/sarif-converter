@@ -1,0 +1,166 @@
+{
+  "version": "15.0.4",
+  "vulnerabilities": [
+    {
+      "id": "238be0492c36ef7b9755693eb87c616b628d4951b2142f8b00f3aae43a8216bd",
+      "category": "sast",
+      "name": "Ensure the Default Bash Umask is Set Correctly.",
+      "description": "To ensure the default umask for users of the Bash shell is set properly,\nadd or correct thesetting into read\nas follows:.",
+      "severity": "Medium",
+      "scanner": {
+        "id": "",
+        "name": ""
+      },
+      "location": {
+        "file": "file:///",
+        "start_line": 1,
+        "end_line": 1
+      },
+      "identifiers": [
+        {
+          "type": "_id",
+          "name": "EnsureTheDefaultBashUmaskIsSetCorrectly",
+          "value": "xccdf_org.ssgproject.content_rule_accounts_umask_etc_bashrc"
+        }
+      ]
+    },
+    {
+      "id": "50d6baa408917dfae971ba14547525e3960ea3a7b080535029abeb3c0ee763c8",
+      "category": "sast",
+      "name": "Ensure the Default Umask is Set Correctly in /etc/profile.",
+      "description": "To ensure the default umask controlled byis set properly,\nadd or correct thesetting into read as follows:Note thatalso reads scrips withindirectory.\nThese scripts are also valid files to set umask value. Therefore, they should also be\nconsidered during the check and properly remediated, if necessary.",
+      "severity": "Medium",
+      "scanner": {
+        "id": "",
+        "name": ""
+      },
+      "location": {
+        "file": "file:///",
+        "start_line": 1,
+        "end_line": 1
+      },
+      "identifiers": [
+        {
+          "type": "_id",
+          "name": "EnsureTheDefaultUmaskIsSetCorrectlyIn/etc/profile",
+          "value": "xccdf_org.ssgproject.content_rule_accounts_umask_etc_profile"
+        }
+      ]
+    },
+    {
+      "id": "1121cdd62327d13c02e1631b61004fbe0b2b5cc9ba10b51f85cd4d8fb84f37b4",
+      "category": "sast",
+      "name": "Ensure ip6tables Firewall Rules Exist for All Open Ports.",
+      "description": "Any ports that have been opened on non-loopback addresses\nneed firewall rules to govern traffic.",
+      "severity": "Medium",
+      "scanner": {
+        "id": "",
+        "name": ""
+      },
+      "location": {
+        "file": "file:///",
+        "start_line": 1,
+        "end_line": 1
+      },
+      "identifiers": [
+        {
+          "type": "_id",
+          "name": "EnsureIp6tablesFirewallRulesExistForAllOpenPorts",
+          "value": "xccdf_org.ssgproject.content_rule_ip6tables_rules_for_open_ports"
+        }
+      ]
+    },
+    {
+      "id": "ca7c7419e671c9b9dfd9afd35f727893b7cc6b344da4b7d2e015949836a6c221",
+      "category": "sast",
+      "name": "Ensure iptables Firewall Rules Exist for All Open Ports.",
+      "description": "Any ports that have been opened on non-loopback addresses\nneed firewall rules to govern traffic.",
+      "severity": "Medium",
+      "scanner": {
+        "id": "",
+        "name": ""
+      },
+      "location": {
+        "file": "file:///",
+        "start_line": 1,
+        "end_line": 1
+      },
+      "identifiers": [
+        {
+          "type": "_id",
+          "name": "EnsureIptablesFirewallRulesExistForAllOpenPorts",
+          "value": "xccdf_org.ssgproject.content_rule_iptables_rules_for_open_ports"
+        }
+      ]
+    },
+    {
+      "id": "b3daeae7263d594a7fd2e9c040ed0c7c7b8fc5be730790e2322bf308bdab15ad",
+      "category": "sast",
+      "name": "Set Default iptables Policy for Incoming Packets.",
+      "description": "To set the default policy to DROP (instead of ACCEPT) for\nthe built-in INPUT chain which processes incoming packets,\nadd or correct the following line in:.",
+      "severity": "Medium",
+      "scanner": {
+        "id": "",
+        "name": ""
+      },
+      "location": {
+        "file": "file:///",
+        "start_line": 1,
+        "end_line": 1
+      },
+      "identifiers": [
+        {
+          "type": "_id",
+          "name": "SetDefaultIptablesPolicyForIncomingPackets",
+          "value": "xccdf_org.ssgproject.content_rule_set_iptables_default_rule"
+        }
+      ]
+    },
+    {
+      "id": "fb4ad182e58b06183d97eb6de93d2c43c509cb4d4d24ba861c2c8b21d1c061e1",
+      "category": "sast",
+      "name": "Ensure No World-Writable Files Exist.",
+      "description": "It is generally a good idea to remove global (other) write\naccess to a file when it is discovered. However, check with\ndocumentation for specific applications before making changes.\nAlso, monitor for recurring world-writable files, as these may be\nsymptoms of a misconfigured application or user account. Finally,\nthis applies to real files and not virtual files that are a part of\npseudo file systems such asor.",
+      "severity": "Medium",
+      "scanner": {
+        "id": "",
+        "name": ""
+      },
+      "location": {
+        "file": "file:///",
+        "start_line": 1,
+        "end_line": 1
+      },
+      "identifiers": [
+        {
+          "type": "_id",
+          "name": "EnsureNoWorld-WritableFilesExist",
+          "value": "xccdf_org.ssgproject.content_rule_file_permissions_unauthorized_world_writable"
+        }
+      ]
+    }
+  ],
+  "dependency_files": [],
+  "scan": {
+    "analyzer": {
+      "id": "sarif-converter",
+      "name": "SARIF Converter",
+      "vendor": {
+        "name": "SARIF Converter"
+      },
+      "version": "0.5.1"
+    },
+    "scanner": {
+      "id": "Heimdall Tools",
+      "name": "Heimdall Tools",
+      "vendor": {
+        "name": "Heimdall Tools"
+      },
+      "version": "2.7.2"
+    },
+    "type": "sast",
+    "start_time": "2023-08-31T15:00:42",
+    "end_time": "2023-08-31T15:00:42",
+    "status": "success"
+  }
+}
