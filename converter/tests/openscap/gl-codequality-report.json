@@ -1,0 +1,74 @@
+[
+  {
+    "check_name": "xccdf_org.ssgproject.content_rule_accounts_umask_etc_bashrc",
+    "description": "To ensure the default umask for users of the Bash shell is set properly,\nadd or correct thesetting into read\nas follows:.",
+    "fingerprint": "a6afc20287695dc6b30e4065c1e3356c49d541ed1af8990525588e9eac6b5555",
+    "severity": "major",
+    "location": {
+      "path": "file:///",
+      "lines": {
+        "begin": 1
+      }
+    }
+  },
+  {
+    "check_name": "xccdf_org.ssgproject.content_rule_accounts_umask_etc_profile",
+    "description": "To ensure the default umask controlled byis set properly,\nadd or correct thesetting into read as follows:Note thatalso reads scrips withindirectory.\nThese scripts are also valid files to set umask value. Therefore, they should also be\nconsidered during the check and properly remediated, if necessary.",
+    "fingerprint": "2d62052199cabb5b0352e4d882250d406d0bf7bc2450c9880eebe2588cbc3a34",
+    "severity": "major",
+    "location": {
+      "path": "file:///",
+      "lines": {
+        "begin": 1
+      }
+    }
+  },
+  {
+    "check_name": "xccdf_org.ssgproject.content_rule_ip6tables_rules_for_open_ports",
+    "description": "Any ports that have been opened on non-loopback addresses\nneed firewall rules to govern traffic.",
+    "fingerprint": "bb9d77b3627119e9e516317c98277caa6a60ec26d99d9a14d9ab674a9b65b039",
+    "severity": "info",
+    "location": {
+      "path": "file:///",
+      "lines": {
+        "begin": 1
+      }
+    }
+  },
+  {
+    "check_name": "xccdf_org.ssgproject.content_rule_iptables_rules_for_open_ports",
+    "description": "Any ports that have been opened on non-loopback addresses\nneed firewall rules to govern traffic.",
+    "fingerprint": "362ff94bdd26a3e818c2920041649fed91ca8d981f6eac7931c664e73e8b9a3b",
+    "severity": "info",
+    "location": {
+      "path": "file:///",
+      "lines": {
+        "begin": 1
+      }
+    }
+  },
+  {
+    "check_name": "xccdf_org.ssgproject.content_rule_set_iptables_default_rule",
+    "description": "To set the default policy to DROP (instead of ACCEPT) for\nthe built-in INPUT chain which processes incoming packets,\nadd or correct the following line in:.",
+    "fingerprint": "c0c7ae77c8f9a4cbc81eadaed047b498a361d8e8b9dd882cb97f7205fa6dfd99",
+    "severity": "info",
+    "location": {
+      "path": "file:///",
+      "lines": {
+        "begin": 1
+      }
+    }
+  },
+  {
+    "check_name": "xccdf_org.ssgproject.content_rule_file_permissions_unauthorized_world_writable",
+    "description": "It is generally a good idea to remove global (other) write\naccess to a file when it is discovered. However, check with\ndocumentation for specific applications before making changes.\nAlso, monitor for recurring world-writable files, as these may be\nsymptoms of a misconfigured application or user account. Finally,\nthis applies to real files and not virtual files that are a part of\npseudo file systems such asor.",
+    "fingerprint": "1cb5e9315e8f1ea0eda8ab8e3774ec17a42fdf03a0d81307cb0e49a604861106",
+    "severity": "major",
+    "location": {
+      "path": "file:///",
+      "lines": {
+        "begin": 1
+      }
+    }
+  }
+]
