@@ -13,8 +13,8 @@ func (m Metadata) SemanticVersion() string {
 	return strings.Replace(m.Version, "v", "", 1)
 }
 
-func NewMetadata(version string, revision string) *Metadata {
-	return &Metadata{
+func NewMetadata(version string, revision string) Metadata {
+	return Metadata{
 		Package:  "sarif-converter",
 		Name:     "SARIF Converter",
 		Version:  version,

@@ -2,6 +2,7 @@ package command
 
 import (
 	"sarif-converter/file"
+	"sarif-converter/meta"
 	fake "sarif-converter/testing/file"
 )
 
@@ -28,7 +29,7 @@ func (w wrapper) readText(name string) string {
 func newWrapper() wrapper {
 	io := fake.NewFakeIO()
 	return wrapper{
-		command: NewCommand(io, nil),
+		command: NewCommand(io, meta.NewMetadata("", "")),
 		io:      io,
 	}
 }

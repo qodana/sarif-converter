@@ -22,7 +22,7 @@ func (r Report) OverrideScan(scan report.Scan, metadata meta.Metadata) report.Sc
 	return r.Scanning.Override(scan)
 }
 
-func (r *Report) WithTimeProvider(time *now.TimeProvider) *Report {
+func (r *Report) WithTimeProvider(time now.TimeProvider) *Report {
 	r.Scanning = r.Scanning.WithTimeProvider(time)
 	return r
 }

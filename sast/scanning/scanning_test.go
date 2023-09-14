@@ -27,7 +27,7 @@ func TestStartTime_NoTime(t *testing.T) {
 	s := parse("2016-10-08T16:08:25.943Z")
 	fakeTime := now.NewFakeTime(s)
 
-	target := NewScanning(fakeReport(&sarif.Invocation{})).WithTimeProvider(&fakeTime)
+	target := NewScanning(fakeReport(&sarif.Invocation{})).WithTimeProvider(fakeTime)
 
 	assert.Equal(t, (report.ScanTime)(s), *target.StartTime())
 }
@@ -44,7 +44,7 @@ func TestEndTime_NoTime(t *testing.T) {
 	s := parse("2016-10-08T16:08:25.943Z")
 	fakeTime := now.NewFakeTime(s)
 
-	target := NewScanning(fakeReport(&sarif.Invocation{})).WithTimeProvider(&fakeTime)
+	target := NewScanning(fakeReport(&sarif.Invocation{})).WithTimeProvider(fakeTime)
 
 	assert.Equal(t, (report.ScanTime)(s), *target.EndTime())
 }
@@ -53,7 +53,7 @@ func TestEndTime_EmptyRun(t *testing.T) {
 	s := parse("2016-10-08T16:08:25.943Z")
 	fakeTime := now.NewFakeTime(s)
 
-	target := NewScanning(&sarif.Report{Runs: []*sarif.Run{}}).WithTimeProvider(&fakeTime)
+	target := NewScanning(&sarif.Report{Runs: []*sarif.Run{}}).WithTimeProvider(fakeTime)
 
 	assert.Equal(t, (report.ScanTime)(s), *target.EndTime())
 }
