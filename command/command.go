@@ -12,7 +12,7 @@ import (
 
 type Command struct {
 	io       file.IO
-	metadata *meta.Metadata
+	metadata meta.Metadata
 }
 
 func (c Command) Convert(args []string) error {
@@ -71,7 +71,7 @@ func (c Command) runFilter(input []byte, arguments *argument.Arguments) ([]byte,
 }
 
 func (c Command) runConvert(input []byte, arguments *argument.Arguments) ([]byte, error) {
-	sarifConverter := converter.GetConverter(arguments.Type(), nil, c.metadata)
+	sarifConverter := converter.GetConverter(arguments.Type(), c.metadata)
 	return sarifConverter.Convert(input)
 
 }
@@ -88,7 +88,7 @@ func (c Command) revision() string {
 	return c.metadata.Revision
 }
 
-func NewCommand(io file.IO, metadata *meta.Metadata) Command {
+func NewCommand(io file.IO, metadata meta.Metadata) Command {
 	return Command{
 		io:       io,
 		metadata: metadata,

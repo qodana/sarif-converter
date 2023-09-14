@@ -1,4 +1,4 @@
-package converter
+package html
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -9,7 +9,7 @@ import (
 func TestConvertToHtml(t *testing.T) {
 	fixtures := fixture.NewFixtures("")
 
-	report, _ := GetConverter("html", nil, nil).Convert(fixtures.SemgrepSarif())
+	report, _ := NewHtmlConverter().Convert(fixtures.SemgrepSarif())
 
 	assert.Equal(t, fixture.Html(), string(report))
 }

@@ -41,8 +41,8 @@ func (s Scanning) Override(scan report.Scan) report.Scan {
 	return scan
 }
 
-func (s Scanning) WithTimeProvider(provider *now.TimeProvider) Scanning {
-	s.timeProvider = *provider
+func (s Scanning) WithTimeProvider(provider now.TimeProvider) Scanning {
+	s.timeProvider = provider
 	return s
 }
 

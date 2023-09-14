@@ -18,7 +18,7 @@ func (r Report) Json() ([]byte, error) {
 	return json.MarshalIndent(r.sast, "", "  ")
 }
 
-func ConvertFrom(report *wrapper.Wrapper, time *now.TimeProvider, metadata meta.Metadata) (*Report, error) {
+func ConvertFrom(report *wrapper.Wrapper, time now.TimeProvider, metadata meta.Metadata) (*Report, error) {
 	filtered := report.OnlyRequireReport()
 
 	sast, err := transformToGLSASTReport(filtered)
@@ -29,7 +29,7 @@ func ConvertFrom(report *wrapper.Wrapper, time *now.TimeProvider, metadata meta.
 	return sast.overrideScan(filtered, time, metadata)
 }
 
-func (r Report) overrideScan(report *wrapper.Wrapper, time *now.TimeProvider, metadata meta.Metadata) (*Report, error) {
+func (r Report) overrideScan(report *wrapper.Wrapper, time now.TimeProvider, metadata meta.Metadata) (*Report, error) {
 	overrider := sarif.NewReport(report.Value())
 	if time != nil {
 		overrider = overrider.WithTimeProvider(time)
