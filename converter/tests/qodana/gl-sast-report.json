@@ -1,0 +1,49 @@
+{
+  "version": "15.0.4",
+  "vulnerabilities": [
+    {
+      "id": "c5cb60d7364d28cddd36741ebfa38edbb0f0112ae6a6b58cd92d5982e094088f",
+      "category": "sast",
+      "description": "Parameter 'a' value is not used",
+      "severity": "Medium",
+      "scanner": {
+        "id": "",
+        "name": ""
+      },
+      "location": {
+        "file": "main.py",
+        "start_line": 1
+      },
+      "identifiers": [
+        {
+          "type": "_id",
+          "name": "",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "dependency_files": [],
+  "scan": {
+    "analyzer": {
+      "id": "sarif-converter",
+      "name": "SARIF Converter",
+      "vendor": {
+        "name": "SARIF Converter"
+      },
+      "version": "0.5.1"
+    },
+    "scanner": {
+      "id": "QDPYC",
+      "name": "QDPYC",
+      "vendor": {
+        "name": "QDPYC"
+      },
+      "version": "232.9876.133"
+    },
+    "type": "sast",
+    "start_time": "2023-08-31T15:00:42",
+    "end_time": "2023-08-31T15:00:42",
+    "status": "success"
+  }
+}
