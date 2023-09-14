@@ -1,0 +1,14 @@
+[
+  {
+    "check_name": "PyUnusedLocalInspection",
+    "description": "Parameter 'a' value is not used",
+    "fingerprint": "cb734070762091cca37adc3dfe86004bcd78f62d99b7b75b1ed398ac23eb0b29",
+    "severity": "minor",
+    "location": {
+      "path": "main.py",
+      "lines": {
+        "begin": 1
+      }
+    }
+  }
+]
